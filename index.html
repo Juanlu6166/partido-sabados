@@ -1,0 +1,1155 @@
+<!DOCTYPE html>
+<html lang="es" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>El Partido de los Sábados | Temporada 2025-2026</title>
+    <meta name="description" content="Web oficial del grupo de amigos del partido de los sábados.">
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&family=Montserrat:wght@600;700;800&display=swap" rel="stylesheet">
+    
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <!-- Markdown Parser (para las respuestas de la IA) -->
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+
+    <!-- PapaParse (para leer Google Sheets) -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/5.3.0/papaparse.min.js"></script>
+
+    <!-- Configuración de colores -->
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        udablue: {
+                            900: '#0f172a', 
+                            800: '#1e3a8a', 
+                            600: '#2563eb', 
+                            100: '#dbeafe', 
+                        },
+                        grass: '#16a34a',
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        heading: ['Montserrat', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        body { font-family: 'Inter', sans-serif; }
+        h1, h2, h3, h4 { font-family: 'Montserrat', sans-serif; }
+        
+        .reveal {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s ease-out;
+        }
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .card-hover:hover img { transform: scale(1.05); }
+        .card-hover img { transition: transform 0.5s ease; }
+
+        /* Modal Scroll */
+        .modal-open { overflow: hidden; }
+        
+        /* Estilos para Tabs de Estadísticas */
+        .tab-btn.active {
+            background-color: #1e3a8a; /* Azul corporativo */
+            color: white;
+            border-color: #1e3a8a;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+        }
+        .tab-content {
+            display: none;
+            animation: fadeIn 0.5s;
+        }
+        .tab-content.active {
+            display: block;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        
+        /* Ocultar scrollbar estándar pero mantener funcionalidad */
+        .scrollbar-hide::-webkit-scrollbar {
+            display: none;
+        }
+        .scrollbar-hide {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+
+        /* Estilos para el Markdown generado */
+        .markdown-body p { margin-bottom: 1em; }
+        .markdown-body h3 { font-weight: bold; font-size: 1.25em; margin-top: 1.5em; margin-bottom: 0.5em; color: #1e3a8a; }
+        .markdown-body ul { list-style-type: disc; margin-left: 1.5em; margin-bottom: 1em; }
+        .markdown-body strong { color: #0f172a; }
+
+        /* Efecto Glassmorphism para botones */
+        .btn-glass {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            color: white;
+            transition: all 0.3s ease;
+        }
+        .btn-glass:hover {
+            background: rgba(255, 255, 255, 0.25);
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+        }
+        
+        /* Cursor para imágenes ampliables */
+        .zoom-cursor {
+            cursor: zoom-in;
+        }
+
+        /* Estilos Específicos para la Tabla Moderna */
+        .modern-table th {
+            position: sticky;
+            top: 0;
+            background-color: #1e3a8a; /* udablue-800 */
+            color: white;
+            z-index: 10;
+        }
+        .modern-table tr:nth-child(even) {
+            background-color: #f8fafc; /* slate-50 */
+        }
+        .modern-table tr:hover {
+            background-color: #dbeafe; /* udablue-100 */
+            transition: background-color 0.2s ease;
+        }
+        
+        /* Avatar de jugador */
+        .player-avatar {
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 2px solid #e2e8f0;
+            background-color: #f1f5f9;
+            flex-shrink: 0;
+        }
+    </style>
+</head>
+<body class="bg-slate-50 text-slate-800 antialiased">
+
+    <!-- NAVEGACIÓN -->
+    <nav id="navbar" class="fixed w-full z-50 transition-all duration-300 bg-white/95 backdrop-blur-sm shadow-md">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between h-20 items-center">
+                <div class="flex-shrink-0 flex items-center gap-3 cursor-pointer" onclick="window.scrollTo(0,0)">
+                    <i class="fas fa-trophy text-yellow-500 text-3xl drop-shadow-sm"></i>
+                    <i class="fas fa-futbol text-udablue-800 text-3xl drop-shadow-sm"></i>
+                    <span class="font-heading font-bold text-xl text-slate-900 tracking-tight">Sábados de <span class="text-udablue-600">Fútbol</span></span>
+                </div>
+                
+                <!-- Menú Escritorio -->
+                <div class="hidden md:flex space-x-6 items-center">
+                    <a href="#inicio" class="text-slate-600 hover:text-udablue-600 font-medium transition text-sm uppercase tracking-wide">Inicio</a>
+                    <a href="#jornadas" class="text-slate-600 hover:text-udablue-600 font-medium transition text-sm uppercase tracking-wide">Jornadas</a>
+                    <a href="#cronicas" class="text-slate-600 hover:text-udablue-600 font-medium transition text-sm uppercase tracking-wide">Crónicas</a>
+                    <a href="#clasificacion" class="text-slate-600 hover:text-udablue-600 font-medium transition text-sm uppercase tracking-wide">Estadísticas</a>
+                    <a href="#herramientas-ia" class="text-udablue-600 hover:text-udablue-800 font-bold transition text-sm uppercase tracking-wide flex items-center gap-1"><i class="fas fa-magic"></i> IA</a>
+                </div>
+
+                <!-- Botón Menú Móvil -->
+                <div class="md:hidden flex items-center">
+                    <button id="mobile-menu-btn" class="text-slate-600 hover:text-udablue-800 focus:outline-none">
+                        <i class="fas fa-bars text-2xl"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Menú Móvil -->
+        <div id="mobile-menu" class="hidden md:hidden bg-white border-t border-gray-100 absolute w-full">
+            <div class="px-4 pt-2 pb-6 space-y-2 shadow-lg">
+                <a href="#inicio" class="block px-3 py-3 rounded-md text-base font-medium text-slate-700 hover:text-udablue-600 hover:bg-slate-50">Inicio</a>
+                <a href="#jornadas" class="block px-3 py-3 rounded-md text-base font-medium text-slate-700 hover:text-udablue-600 hover:bg-slate-50">Jornadas</a>
+                <a href="#cronicas" class="block px-3 py-3 rounded-md text-base font-medium text-slate-700 hover:text-udablue-600 hover:bg-slate-50">Crónicas</a>
+                <a href="#clasificacion" class="block px-3 py-3 rounded-md text-base font-medium text-slate-700 hover:text-udablue-600 hover:bg-slate-50">Estadísticas</a>
+                <a href="#herramientas-ia" class="block px-3 py-3 rounded-md text-base font-bold text-udablue-600 hover:bg-slate-50">✨ Herramientas IA</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- HERO -->
+    <section id="inicio" class="relative h-screen flex items-center justify-center overflow-hidden">
+        <div class="absolute inset-0 z-0">
+            <img src="https://images.unsplash.com/photo-1518091043644-c1d4457512c6?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80" alt="Campo de fútbol" class="w-full h-full object-cover">
+            <div class="absolute inset-0 bg-gradient-to-r from-udablue-900/40 to-udablue-800/30"></div>
+        </div>
+
+        <!-- Etiqueta Temporada -->
+        <div class="absolute top-24 right-4 md:top-28 md:right-12 z-20 reveal">
+             <span class="inline-block py-2 px-4 rounded-full bg-white/10 border border-white/30 text-white text-sm font-bold backdrop-blur-md shadow-lg">
+                Temporada 2025 - 2026
+            </span>
+        </div>
+
+        <div class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 text-center">
+            <h1 class="text-4xl md:text-6xl lg:text-7xl font-heading font-extrabold text-white leading-tight mb-6 reveal drop-shadow-lg">
+                El Partido de los Sábados<br>
+                <span class="text-blue-300">es sagrado.</span>
+            </h1>
+            <p class="mt-4 max-w-2xl mx-auto text-xl text-gray-200 mb-10 reveal font-light">
+                Fútbol, amigos, piques sanos y un tercer tiempo en el Bar Lengüetas.
+            </p>
+            
+            <div class="flex flex-col sm:flex-row justify-center gap-4 reveal">
+                <a href="#cronicas" class="btn-glass px-8 py-4 rounded-xl font-bold flex items-center justify-center gap-2">
+                    <i class="fas fa-newspaper"></i> Leer Crónicas
+                </a>
+                <a href="#jornadas" class="btn-glass px-8 py-4 rounded-xl font-bold flex items-center justify-center gap-2 bg-white/20 border-white/40">
+                    <i class="fas fa-calendar-alt"></i> Ver Jornadas
+                </a>
+                <a href="#clasificacion" class="btn-glass px-8 py-4 rounded-xl font-bold flex items-center justify-center gap-2">
+                    <i class="fas fa-trophy"></i> Clasificación
+                </a>
+            </div>
+        </div>
+
+        <div class="absolute bottom-8 left-1/2 transform -translate-x-1/2 animate-bounce text-white/70">
+            <i class="fas fa-chevron-down text-2xl"></i>
+        </div>
+    </section>
+
+    <!-- SECCIÓN JORNADAS (RESULTADOS REALES CORREGIDOS) -->
+    <section id="jornadas" class="py-20 bg-slate-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16 reveal">
+                <h2 class="text-3xl md:text-4xl font-heading font-bold text-slate-900 mb-4">Calendario de Jornadas</h2>
+                <div class="h-1 w-20 bg-udablue-600 mx-auto rounded"></div>
+                <p class="mt-4 text-lg text-slate-600">Resultados y fotos de la temporada. (Haz clic en la foto para ampliar)</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 reveal">
+                <!-- J11 -->
+                <div class="bg-white rounded-2xl overflow-hidden shadow-md hover:shadow-xl transition duration-300 flex flex-col border border-gray-100 group">
+                    <div class="relative h-56 overflow-hidden">
+                        <img src="https://drive.google.com/thumbnail?id=1Te_CiOzCt1FPPY1WwIgJ9P9i_PdaQdJu&sz=w1000" alt="Jornada 11" class="w-full h-full object-cover group-hover:scale-105 transition duration-500 zoom-cursor" onclick="openImageModal(this.src, 'Jornada 11: Blancos vs Azules')">
+                        <div class="absolute top-0 right-0 bg-udablue-600 text-white text-xs font-bold px-3 py-1 rounded-bl-lg pointer-events-none">Jornada 11</div>
+                    </div>
+                    <div class="p-5">
+                        <div class="flex justify-between items-center mb-3">
+                            <span class="text-xs font-bold text-slate-400 uppercase tracking-wider">15 Noviembre 2025</span>
+                            <span class="bg-green-100 text-green-800 text-xs font-bold px-2 py-1 rounded">1 - 2</span>
+                        </div>
+                        <h3 class="text-lg font-bold text-slate-800 mb-1">1 - 2. Azules conquistan la cima.</h3>
+                    </div>
+                </div>
+
+                <!-- J10 -->
+                <div class="bg-white rounded-2xl overflow-hidden shadow-md hover:shadow-xl transition duration-300 flex flex-col border border-gray-100 group">
+                    <div class="relative h-56 overflow-hidden">
+                        <img src="https://drive.google.com/thumbnail?id=1MJ6aiIqIqOx9TcKgAWn7JB3_r7loBjx5&sz=w1000" alt="Jornada 10" class="w-full h-full object-cover group-hover:scale-105 transition duration-500 zoom-cursor" onclick="openImageModal(this.src, 'Jornada 10: El Regreso de Guti')">
+                        <div class="absolute top-0 right-0 bg-udablue-600 text-white text-xs font-bold px-3 py-1 rounded-bl-lg pointer-events-none">Jornada 10</div>
+                    </div>
+                    <div class="p-5">
+                        <div class="flex justify-between items-center mb-3">
+                            <span class="text-xs font-bold text-slate-400 uppercase tracking-wider">08 Noviembre 2025</span>
+                            <span class="bg-yellow-100 text-yellow-800 text-xs font-bold px-2 py-1 rounded">5 - 1</span>
+                        </div>
+                        <h3 class="text-lg font-bold text-slate-800 mb-1">5 - 1. Manita en el Homenaje.</h3>
+                    </div>
+                </div>
+
+                <!-- J9 -->
+                <div class="bg-white rounded-2xl overflow-hidden shadow-md hover:shadow-xl transition duration-300 flex flex-col border border-gray-100 group">
+                    <div class="relative h-56 overflow-hidden">
+                        <img src="https://drive.google.com/thumbnail?id=1o1aFRahieo_we2e9g1JB1L6YofNcBo0M&sz=w1000" alt="Jornada 9" class="w-full h-full object-cover group-hover:scale-105 transition duration-500 zoom-cursor" onclick="openImageModal(this.src, 'Jornada 9: Azules vs Blancos')">
+                        <div class="absolute top-0 right-0 bg-udablue-600 text-white text-xs font-bold px-3 py-1 rounded-bl-lg pointer-events-none">Jornada 9</div>
+                    </div>
+                    <div class="p-5">
+                        <div class="flex justify-between items-center mb-3">
+                            <span class="text-xs font-bold text-slate-400 uppercase tracking-wider">01 Noviembre 2025</span>
+                            <span class="bg-green-100 text-green-800 text-xs font-bold px-2 py-1 rounded">3 - 2</span>
+                        </div>
+                        <h3 class="text-lg font-bold text-slate-800 mb-1">3 - 2. Victoria blanca muy sufrida.</h3>
+                    </div>
+                </div>
+
+                <!-- J8 -->
+                <div class="bg-white rounded-2xl overflow-hidden shadow-md hover:shadow-xl transition duration-300 flex flex-col border border-gray-100 group">
+                    <div class="relative h-56 overflow-hidden">
+                        <img src="https://drive.google.com/thumbnail?id=12tXH4TcCVJEA53ofMmpa7C3juRrSLO4A&sz=w1000" alt="Jornada 8" class="w-full h-full object-cover group-hover:scale-105 transition duration-500 zoom-cursor" onclick="openImageModal(this.src, 'Jornada 8: Desérticos y Raphaeles')">
+                        <div class="absolute top-0 right-0 bg-udablue-600 text-white text-xs font-bold px-3 py-1 rounded-bl-lg pointer-events-none">Jornada 8</div>
+                    </div>
+                    <div class="p-5">
+                        <div class="flex justify-between items-center mb-3">
+                            <span class="text-xs font-bold text-slate-400 uppercase tracking-wider">25 Octubre 2025</span>
+                            <span class="bg-gray-100 text-gray-800 text-xs font-bold px-2 py-1 rounded">0 - 2</span>
+                        </div>
+                        <h3 class="text-lg font-bold text-slate-800 mb-1">0 - 2. Candado azul inquebrantable.</h3>
+                    </div>
+                </div>
+
+                <!-- J7 -->
+                <div class="bg-white rounded-2xl overflow-hidden shadow-md hover:shadow-xl transition duration-300 flex flex-col border border-gray-100 group">
+                    <div class="relative h-56 overflow-hidden">
+                        <img src="https://drive.google.com/thumbnail?id=1tXRa3wt0c9wJwk_aBKrYwcTydSsiZtDu&sz=w1000" alt="Jornada 7" class="w-full h-full object-cover group-hover:scale-105 transition duration-500 zoom-cursor" onclick="openImageModal(this.src, 'Jornada 7: Espadas en alto')">
+                        <div class="absolute top-0 right-0 bg-udablue-600 text-white text-xs font-bold px-3 py-1 rounded-bl-lg pointer-events-none">Jornada 7</div>
+                    </div>
+                    <div class="p-5">
+                        <div class="flex justify-between items-center mb-3">
+                            <span class="text-xs font-bold text-slate-400 uppercase tracking-wider">18 Octubre 2025</span>
+                            <span class="bg-gray-100 text-gray-800 text-xs font-bold px-2 py-1 rounded">3 - 5</span>
+                        </div>
+                        <h3 class="text-lg font-bold text-slate-800 mb-1">3 - 5. Lluvia de goles azules.</h3>
+                    </div>
+                </div>
+
+                <!-- J6 -->
+                <div class="bg-white rounded-2xl overflow-hidden shadow-md hover:shadow-xl transition duration-300 flex flex-col border border-gray-100 group">
+                    <div class="relative h-56 overflow-hidden">
+                        <img src="https://drive.google.com/thumbnail?id=11aRd3_TW90rfTdNKzIN5krZBV1aICoyx&sz=w1000" alt="Jornada 6" class="w-full h-full object-cover group-hover:scale-105 transition duration-500 zoom-cursor" onclick="openImageModal(this.src, 'Jornada 6: Agenda apretada')">
+                        <div class="absolute top-0 right-0 bg-udablue-600 text-white text-xs font-bold px-3 py-1 rounded-bl-lg pointer-events-none">Jornada 6</div>
+                    </div>
+                    <div class="p-5">
+                        <div class="flex justify-between items-center mb-3">
+                            <span class="text-xs font-bold text-slate-400 uppercase tracking-wider">11 Octubre 2025</span>
+                            <span class="bg-gray-100 text-gray-800 text-xs font-bold px-2 py-1 rounded">1 - 2</span>
+                        </div>
+                        <h3 class="text-lg font-bold text-slate-800 mb-1">1 - 2. Ajustada victoria visitante.</h3>
+                    </div>
+                </div>
+
+                <!-- J5 -->
+                <div class="bg-white rounded-2xl overflow-hidden shadow-md hover:shadow-xl transition duration-300 flex flex-col border border-gray-100 group">
+                    <div class="relative h-56 overflow-hidden">
+                        <img src="https://drive.google.com/thumbnail?id=1_TXvA5AWZ5aR2uRamkH17uuA8fgmJQBM&sz=w1000" alt="Jornada 5" class="w-full h-full object-cover group-hover:scale-105 transition duration-500 zoom-cursor" onclick="openImageModal(this.src, 'Jornada 5: Agenda apretada y regalos')">
+                        <div class="absolute top-0 right-0 bg-udablue-600 text-white text-xs font-bold px-3 py-1 rounded-bl-lg pointer-events-none">Jornada 5</div>
+                    </div>
+                    <div class="p-5">
+                        <div class="flex justify-between items-center mb-3">
+                            <span class="text-xs font-bold text-slate-400 uppercase tracking-wider">04 Octubre 2025</span>
+                            <span class="bg-gray-100 text-gray-800 text-xs font-bold px-2 py-1 rounded">5 - 3</span>
+                        </div>
+                        <h3 class="text-lg font-bold text-slate-800 mb-1">5 - 3. Blancos aprovechan regalos.</h3>
+                    </div>
+                </div>
+
+                <!-- J4 -->
+                <div class="bg-white rounded-2xl overflow-hidden shadow-md hover:shadow-xl transition duration-300 flex flex-col border border-gray-100 group">
+                    <div class="relative h-56 overflow-hidden">
+                        <img src="https://drive.google.com/thumbnail?id=1TWuhsX3ToYbwSU_zW7FBi-O0dR-zXDCy&sz=w1000" alt="Jornada 4" class="w-full h-full object-cover group-hover:scale-105 transition duration-500 zoom-cursor" onclick="openImageModal(this.src, 'Jornada 4: Mañana de ausencias')">
+                        <div class="absolute top-0 right-0 bg-udablue-600 text-white text-xs font-bold px-3 py-1 rounded-bl-lg pointer-events-none">Jornada 4</div>
+                    </div>
+                    <div class="p-5">
+                        <div class="flex justify-between items-center mb-3">
+                            <span class="text-xs font-bold text-slate-400 uppercase tracking-wider">27 Septiembre 2025</span>
+                            <span class="bg-gray-100 text-gray-800 text-xs font-bold px-2 py-1 rounded">3 - 3</span>
+                        </div>
+                        <h3 class="text-lg font-bold text-slate-800 mb-1">3 - 3. Empate justo y reñido.</h3>
+                    </div>
+                </div>
+
+                <!-- J3 -->
+                <div class="bg-white rounded-2xl overflow-hidden shadow-md hover:shadow-xl transition duration-300 flex flex-col border border-gray-100 group">
+                    <div class="relative h-56 overflow-hidden">
+                        <img src="https://drive.google.com/thumbnail?id=1gxnOWj2xS07IT2FfFN7uuZCf9gBz0c2g&sz=w1000" alt="Jornada 3" class="w-full h-full object-cover group-hover:scale-105 transition duration-500 zoom-cursor" onclick="openImageModal(this.src, 'Jornada 3: Lucha de poder a poder')">
+                        <div class="absolute top-0 right-0 bg-udablue-600 text-white text-xs font-bold px-3 py-1 rounded-bl-lg pointer-events-none">Jornada 3</div>
+                    </div>
+                    <div class="p-5">
+                        <div class="flex justify-between items-center mb-3">
+                            <span class="text-xs font-bold text-slate-400 uppercase tracking-wider">20 Septiembre 2025</span>
+                            <span class="bg-gray-100 text-gray-800 text-xs font-bold px-2 py-1 rounded">4 - 2</span>
+                        </div>
+                        <h3 class="text-lg font-bold text-slate-800 mb-1">4 - 2. Dominio del Vaticano.</h3>
+                    </div>
+                </div>
+
+                <!-- J2 -->
+                <div class="bg-white rounded-2xl overflow-hidden shadow-md hover:shadow-xl transition duration-300 flex flex-col border border-gray-100 group">
+                    <div class="relative h-56 overflow-hidden">
+                        <img src="https://drive.google.com/thumbnail?id=1rtVt1ze0LlDljKS84yJr8YubGYFO1NR6&sz=w1000" alt="Jornada 2" class="w-full h-full object-cover group-hover:scale-105 transition duration-500 zoom-cursor" onclick="openImageModal(this.src, 'Jornada 2: Reencuentro de furgoleros')">
+                        <div class="absolute top-0 right-0 bg-udablue-600 text-white text-xs font-bold px-3 py-1 rounded-bl-lg pointer-events-none">Jornada 2</div>
+                    </div>
+                    <div class="p-5">
+                        <div class="flex justify-between items-center mb-3">
+                            <span class="text-xs font-bold text-slate-400 uppercase tracking-wider">13 Septiembre 2025</span>
+                            <span class="bg-gray-100 text-gray-800 text-xs font-bold px-2 py-1 rounded">4 - 1</span>
+                        </div>
+                        <h3 class="text-lg font-bold text-slate-800 mb-1">4 - 1. Contundente victoria blanca.</h3>
+                    </div>
+                </div>
+                
+                <!-- J1 -->
+                <div class="bg-white rounded-2xl overflow-hidden shadow-md hover:shadow-xl transition duration-300 flex flex-col border border-gray-100 group">
+                    <div class="relative h-56 overflow-hidden">
+                        <img src="https://drive.google.com/thumbnail?id=147IdpXwky4iYSwVO9LPUueD2dvkz2jwj&sz=w1000" alt="Jornada 1" class="w-full h-full object-cover group-hover:scale-105 transition duration-500 zoom-cursor" onclick="openImageModal(this.src, 'Jornada 1: El comienzo de todo')">
+                        <div class="absolute top-0 right-0 bg-udablue-600 text-white text-xs font-bold px-3 py-1 rounded-bl-lg pointer-events-none">Jornada 1</div>
+                    </div>
+                    <div class="p-5">
+                        <div class="flex justify-between items-center mb-3">
+                            <span class="text-xs font-bold text-slate-400 uppercase tracking-wider">06 Septiembre 2025</span>
+                            <span class="bg-gray-100 text-gray-800 text-xs font-bold px-2 py-1 rounded">1 - 6</span>
+                        </div>
+                        <h3 class="text-lg font-bold text-slate-800 mb-1">1 - 6. Goleada Azul inicial.</h3>
+                        <span class="text-gray-400 text-sm italic mt-2 inline-block">Crónica no disponible</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CRÓNICAS (GRID HEMEROTECA) -->
+    <section id="cronicas" class="py-20 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16 reveal">
+                <h2 class="text-3xl md:text-4xl font-heading font-bold text-slate-900 mb-4">Hemeroteca de Crónicas</h2>
+                <div class="h-1 w-20 bg-udablue-600 mx-auto rounded"></div>
+                <p class="mt-4 text-lg text-slate-600">Lo que pasa en el campo, se queda en la crónica.</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- J11 -->
+                <article class="bg-slate-50 rounded-2xl overflow-hidden shadow-md hover:shadow-2xl transition duration-300 flex flex-col h-full reveal card-hover border border-slate-100">
+                    <div class="relative h-64 overflow-hidden">
+                        <img src="https://drive.google.com/thumbnail?id=1NQ2KBYr0rsD6ZD2TaEIl5ShNFhqQ2ofr&sz=w1000" onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1511886929837-354d827aae26?q=80&w=800&auto=format&fit=crop';" alt="Futbolín" class="w-full h-full object-cover">
+                        <div class="absolute top-4 right-4 bg-udablue-600 text-white text-xs font-bold px-3 py-1 rounded-full">Jornada 11</div>
+                    </div>
+                    <div class="p-6 flex-1 flex flex-col">
+                        <div class="text-sm text-slate-500 mb-3"><i class="far fa-calendar-alt mr-2"></i> 15 Noviembre 2025</div>
+                        <h3 class="text-xl font-heading font-bold text-slate-800 mb-3">Futbolín, muñecos IA y bólidos</h3>
+                        <p class="text-slate-600 text-sm line-clamp-3 flex-1">Sábado de futbolín, muñecos IA y otros sólo Artificial...</p>
+                        <button onclick="openModal('modal-j11')" class="mt-4 text-udablue-600 font-bold text-sm hover:text-udablue-800 flex items-center self-start">Leer completa <i class="fas fa-arrow-right ml-1"></i></button>
+                    </div>
+                </article>
+
+                <!-- J10 -->
+                <article class="bg-slate-50 rounded-2xl overflow-hidden shadow-md hover:shadow-2xl transition duration-300 flex flex-col h-full reveal card-hover border border-slate-100">
+                    <div class="relative h-64 overflow-hidden">
+                        <img src="https://drive.google.com/thumbnail?id=1h84ETYlO6SX5h0G_pSB0oAoGfQnCkHIz&sz=w1000" onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1529900748604-07564a03e7a6?q=80&w=800&auto=format&fit=crop';" alt="Guti" class="w-full h-full object-cover">
+                        <div class="absolute top-4 right-4 bg-udablue-600 text-white text-xs font-bold px-3 py-1 rounded-full">Jornada 10</div>
+                    </div>
+                    <div class="p-6 flex-1 flex flex-col">
+                        <div class="text-sm text-slate-500 mb-3"><i class="far fa-calendar-alt mr-2"></i> 08 Noviembre 2025</div>
+                        <h3 class="text-xl font-heading font-bold text-slate-800 mb-3">El regreso de Guti</h3>
+                        <p class="text-slate-600 text-sm line-clamp-3 flex-1">Sábado de Santos... Esta crónica la quiero dedicar especialmente...</p>
+                        <button onclick="openModal('modal-j10')" class="mt-4 text-udablue-600 font-bold text-sm hover:text-udablue-800 flex items-center self-start">Leer completa <i class="fas fa-arrow-right ml-1"></i></button>
+                    </div>
+                </article>
+
+                <!-- J9 -->
+                <article class="bg-slate-50 rounded-2xl overflow-hidden shadow-md hover:shadow-2xl transition duration-300 flex flex-col h-full reveal card-hover border border-slate-100">
+                    <div class="relative h-64 overflow-hidden">
+                        <img src="https://drive.google.com/thumbnail?id=1fNFQ-sUhPvg1Ww2BNlAqISgPKRmavJ_P&sz=w1000" onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1515162305285-0293e4767cc2?q=80&w=800&auto=format&fit=crop';" alt="Lluvia" class="w-full h-full object-cover">
+                        <div class="absolute top-4 right-4 bg-udablue-600 text-white text-xs font-bold px-3 py-1 rounded-full">Jornada 9</div>
+                    </div>
+                    <div class="p-6 flex-1 flex flex-col">
+                        <div class="text-sm text-slate-500 mb-3"><i class="far fa-calendar-alt mr-2"></i> 01 Noviembre 2025</div>
+                        <h3 class="text-xl font-heading font-bold text-slate-800 mb-3">Síntomas veraniegos</h3>
+                        <p class="text-slate-600 text-sm line-clamp-3 flex-1">Finalizando Octubre y con los cuerpos aún mostrando síntomas...</p>
+                        <button onclick="openModal('modal-j9')" class="mt-4 text-udablue-600 font-bold text-sm hover:text-udablue-800 flex items-center self-start">Leer completa <i class="fas fa-arrow-right ml-1"></i></button>
+                    </div>
+                </article>
+
+                <!-- J8 -->
+                <article class="bg-slate-50 rounded-2xl overflow-hidden shadow-md hover:shadow-2xl transition duration-300 flex flex-col h-full reveal card-hover border border-slate-100">
+                    <div class="relative h-64 overflow-hidden">
+                        <img src="https://drive.google.com/thumbnail?id=1ia1Axe4OP7_Ot4RT2qcdRF3AsP893CNf&sz=w1000" onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1560272564-c8304700f688?q=80&w=800&auto=format&fit=crop';" alt="Partido" class="w-full h-full object-cover">
+                        <div class="absolute top-4 right-4 bg-udablue-600 text-white text-xs font-bold px-3 py-1 rounded-full">Jornada 8</div>
+                    </div>
+                    <div class="p-6 flex-1 flex flex-col">
+                        <div class="text-sm text-slate-500 mb-3"><i class="far fa-calendar-alt mr-2"></i> 25 Octubre 2025</div>
+                        <h3 class="text-xl font-heading font-bold text-slate-800 mb-3">Desérticos y Raphaeles</h3>
+                        <p class="text-slate-600 text-sm line-clamp-3 flex-1">Sábado de Desérticos y Raphaeles, siendo los teloneros...</p>
+                        <button onclick="openModal('modal-j8')" class="mt-4 text-udablue-600 font-bold text-sm hover:text-udablue-800 flex items-center self-start">Leer completa <i class="fas fa-arrow-right ml-1"></i></button>
+                    </div>
+                </article>
+
+                <!-- J7 -->
+                <article class="bg-slate-50 rounded-2xl overflow-hidden shadow-md hover:shadow-2xl transition duration-300 flex flex-col h-full reveal card-hover border border-slate-100">
+                    <div class="relative h-64 overflow-hidden">
+                        <img src="https://drive.google.com/thumbnail?id=1yb0BIxK2BGNsnxxgWq3GepPY7x3FMZdL&sz=w1000" onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1434648957308-5e6a859697e8?q=80&w=800&auto=format&fit=crop';" alt="Luto" class="w-full h-full object-cover">
+                        <div class="absolute top-4 right-4 bg-udablue-600 text-white text-xs font-bold px-3 py-1 rounded-full">Jornada 7</div>
+                    </div>
+                    <div class="p-6 flex-1 flex flex-col">
+                        <div class="text-sm text-slate-500 mb-3"><i class="far fa-calendar-alt mr-2"></i> 18 Octubre 2025</div>
+                        <h3 class="text-xl font-heading font-bold text-slate-800 mb-3">Espadas en alto y despedida</h3>
+                        <p class="text-slate-600 text-sm line-clamp-3 flex-1">Esta mañana los Hispanos volvían con las espadas en alto...</p>
+                        <button onclick="openModal('modal-j7')" class="mt-4 text-udablue-600 font-bold text-sm hover:text-udablue-800 flex items-center self-start">Leer completa <i class="fas fa-arrow-right ml-1"></i></button>
+                    </div>
+                </article>
+
+                <!-- J6 -->
+                <article class="bg-slate-50 rounded-2xl overflow-hidden shadow-md hover:shadow-2xl transition duration-300 flex flex-col h-full reveal card-hover border border-slate-100">
+                    <div class="relative h-64 overflow-hidden">
+                        <img src="https://drive.google.com/thumbnail?id=1rMxwcAERS6-GK4SuhpcmrMZy2j-Ar_b9&sz=w1000" onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1626248324034-f93d8d28298d?q=80&w=800&auto=format&fit=crop';" alt="Cronica" class="w-full h-full object-cover">
+                        <div class="absolute top-4 right-4 bg-udablue-600 text-white text-xs font-bold px-3 py-1 rounded-full">Jornada 6</div>
+                    </div>
+                    <div class="p-6 flex-1 flex flex-col">
+                        <div class="text-sm text-slate-500 mb-3"><i class="far fa-calendar-alt mr-2"></i> 11 Octubre 2025</div>
+                        <h3 class="text-xl font-heading font-bold text-slate-800 mb-3">Agenda apretada y caraja azul</h3>
+                        <p class="text-slate-600 text-sm line-clamp-3 flex-1">Hoy, la agenda de nuestro plumilla estaba apretada...</p>
+                        <button onclick="openModal('modal-j6')" class="mt-4 text-udablue-600 font-bold text-sm hover:text-udablue-800 flex items-center self-start">Leer completa <i class="fas fa-arrow-right ml-1"></i></button>
+                    </div>
+                </article>
+
+                <!-- J5 -->
+                <article class="bg-slate-50 rounded-2xl overflow-hidden shadow-md hover:shadow-2xl transition duration-300 flex flex-col h-full reveal card-hover border border-slate-100">
+                    <div class="relative h-64 overflow-hidden">
+                        <img src="https://drive.google.com/thumbnail?id=1qzQCWFFRQ03-bupKrH2w96BM3PAw9SMt&sz=w1000" alt="Jornada 5" class="w-full h-full object-cover">
+                        <div class="absolute top-4 right-4 bg-udablue-600 text-white text-xs font-bold px-3 py-1 rounded-full">Jornada 5</div>
+                    </div>
+                    <div class="p-6 flex-1 flex flex-col">
+                        <div class="text-sm text-slate-500 mb-3"><i class="far fa-calendar-alt mr-2"></i> 04 Octubre 2025</div>
+                        <h3 class="text-xl font-heading font-bold text-slate-800 mb-3">Agenda apretada y regalos</h3>
+                        <p class="text-slate-600 text-sm line-clamp-3 flex-1">Hoy, la agenda de nuestro plumilla estaba apretada...</p>
+                        <button onclick="openModal('modal-j5')" class="mt-4 text-udablue-600 font-bold text-sm hover:text-udablue-800 flex items-center self-start">Leer completa <i class="fas fa-arrow-right ml-1"></i></button>
+                    </div>
+                </article>
+
+                <!-- J4 -->
+                <article class="bg-slate-50 rounded-2xl overflow-hidden shadow-md hover:shadow-2xl transition duration-300 flex flex-col h-full reveal card-hover border border-slate-100">
+                    <div class="relative h-64 overflow-hidden">
+                        <img src="https://drive.google.com/thumbnail?id=1C4s3Zh62Arj0wdCe0WYT6jvNdnL2F_lt&sz=w1000" alt="Jornada 4" class="w-full h-full object-cover">
+                        <div class="absolute top-4 right-4 bg-udablue-600 text-white text-xs font-bold px-3 py-1 rounded-full">Jornada 4</div>
+                    </div>
+                    <div class="p-6 flex-1 flex flex-col">
+                        <div class="text-sm text-slate-500 mb-3"><i class="far fa-calendar-alt mr-2"></i> 27 Septiembre 2025</div>
+                        <h3 class="text-xl font-heading font-bold text-slate-800 mb-3">Mañana de ausencias</h3>
+                        <p class="text-slate-600 text-sm line-clamp-3 flex-1">Mañana de ausencias, escaqueos y lesiones mas o menos graves...</p>
+                        <button onclick="openModal('modal-j4')" class="mt-4 text-udablue-600 font-bold text-sm hover:text-udablue-800 flex items-center self-start">Leer completa <i class="fas fa-arrow-right ml-1"></i></button>
+                    </div>
+                </article>
+
+                <!-- J3 -->
+                <article class="bg-slate-50 rounded-2xl overflow-hidden shadow-md hover:shadow-2xl transition duration-300 flex flex-col h-full reveal card-hover border border-slate-100">
+                    <div class="relative h-64 overflow-hidden">
+                        <img src="https://drive.google.com/thumbnail?id=1kNrKitrZ3veXyQwI6U72UAr8hYSL0Jwj&sz=w1000" alt="Jornada 3" class="w-full h-full object-cover">
+                        <div class="absolute top-4 right-4 bg-udablue-600 text-white text-xs font-bold px-3 py-1 rounded-full">Jornada 3</div>
+                    </div>
+                    <div class="p-6 flex-1 flex flex-col">
+                        <div class="text-sm text-slate-500 mb-3"><i class="far fa-calendar-alt mr-2"></i> 20 Septiembre 2025</div>
+                        <h3 class="text-xl font-heading font-bold text-slate-800 mb-3">Lucha de poder a poder</h3>
+                        <p class="text-slate-600 text-sm line-clamp-3 flex-1">Queridos todos, todas y todes... el blanco vaticano se ha impuesto...</p>
+                        <button onclick="openModal('modal-j3')" class="mt-4 text-udablue-600 font-bold text-sm hover:text-udablue-800 flex items-center self-start">Leer completa <i class="fas fa-arrow-right ml-1"></i></button>
+                    </div>
+                </article>
+
+                <!-- J2 -->
+                <article class="bg-slate-50 rounded-2xl overflow-hidden shadow-md hover:shadow-2xl transition duration-300 flex flex-col h-full reveal card-hover border border-slate-100">
+                    <div class="relative h-64 overflow-hidden">
+                        <img src="https://drive.google.com/thumbnail?id=1af0ytCT4VRt4ywBYdIx02YOLm7-UCypP&sz=w1000" alt="Jornada 2" class="w-full h-full object-cover">
+                        <div class="absolute top-4 right-4 bg-udablue-600 text-white text-xs font-bold px-3 py-1 rounded-full">Jornada 2</div>
+                    </div>
+                    <div class="p-6 flex-1 flex flex-col">
+                        <div class="text-sm text-slate-500 mb-3"><i class="far fa-calendar-alt mr-2"></i> 13 Septiembre 2025</div>
+                        <h3 class="text-xl font-heading font-bold text-slate-800 mb-3">Reencuentro de furgoleros</h3>
+                        <p class="text-slate-600 text-sm line-clamp-3 flex-1">Buenos días furgoleros y pachangueros, ha sido un placer...</p>
+                        <button onclick="openModal('modal-j2')" class="mt-4 text-udablue-600 font-bold text-sm hover:text-udablue-800 flex items-center self-start">Leer completa <i class="fas fa-arrow-right ml-1"></i></button>
+                    </div>
+                </article>
+            </div>
+        </div>
+    </section>
+
+    <!-- CLASIFICACIÓN -->
+    <section id="clasificacion" class="py-20 bg-slate-100 relative">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl font-heading font-bold text-slate-900">Estadísticas</h2>
+                <p class="text-slate-600 mt-2">Datos en tiempo real de la temporada.</p>
+            </div>
+
+            <div class="mb-8 border-b border-gray-300 pb-4 overflow-x-auto scrollbar-hide">
+                <div class="flex space-x-2 min-w-max px-2">
+                    <button onclick="openTab(event, 'tab1')" class="tab-btn active px-4 py-2 rounded-t-lg text-xs font-bold text-slate-500 hover:bg-white hover:text-udablue-600 border-b-2 border-transparent transition-all duration-200">General</button>
+                    <button onclick="openTab(event, 'tab-valoracion')" class="tab-btn px-4 py-2 rounded-t-lg text-xs font-bold text-slate-500 hover:bg-white hover:text-udablue-600 border-b-2 border-transparent transition-all duration-200">Valoración</button>
+                    <button onclick="openTab(event, 'tab-racha')" class="tab-btn px-4 py-2 rounded-t-lg text-xs font-bold text-slate-500 hover:bg-white hover:text-udablue-600 border-b-2 border-transparent transition-all duration-200">Racha</button>
+                    <button onclick="openTab(event, 'tab-asistencias')" class="tab-btn px-4 py-2 rounded-t-lg text-xs font-bold text-slate-500 hover:bg-white hover:text-udablue-600 border-b-2 border-transparent transition-all duration-200">Asistencias</button>
+                    <button onclick="openTab(event, 'tab-pichichi')" class="tab-btn px-4 py-2 rounded-t-lg text-xs font-bold text-slate-500 hover:bg-white hover:text-udablue-600 border-b-2 border-transparent transition-all duration-200">Pichichi</button>
+                    <button onclick="openTab(event, 'tab-regularidad')" class="tab-btn px-4 py-2 rounded-t-lg text-xs font-bold text-slate-500 hover:bg-white hover:text-udablue-600 border-b-2 border-transparent transition-all duration-200">Regularidad</button>
+                    <button onclick="openTab(event, 'tab-defensa')" class="tab-btn px-4 py-2 rounded-t-lg text-xs font-bold text-slate-500 hover:bg-white hover:text-udablue-600 border-b-2 border-transparent transition-all duration-200">Defensa</button>
+                    <button onclick="openTab(event, 'tab-zamora')" class="tab-btn px-4 py-2 rounded-t-lg text-xs font-bold text-slate-500 hover:bg-white hover:text-udablue-600 border-b-2 border-transparent transition-all duration-200">Zamora</button>
+                    <button onclick="openTab(event, 'tab-eficiencia')" class="tab-btn px-4 py-2 rounded-t-lg text-xs font-bold text-slate-500 hover:bg-white hover:text-udablue-600 border-b-2 border-transparent transition-all duration-200">Eficiencia</button>
+                </div>
+            </div>
+
+            <!-- Contenedor de Tablas con Nuevo Diseño -->
+            <div class="bg-white rounded-2xl shadow-2xl border border-gray-200 overflow-hidden min-h-[500px]">
+                
+                <!-- General -->
+                <div id="tab1" class="tab-content active h-full p-4">
+                    <div class="overflow-x-auto rounded-xl border border-gray-200">
+                        <div id="table-container-general" class="min-w-full">
+                            <div class="flex items-center justify-center h-64 text-slate-400 animate-pulse">
+                                <i class="fas fa-circle-notch fa-spin mr-2"></i> Cargando clasificación...
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Valoración -->
+                <div id="tab-valoracion" class="tab-content h-full p-4">
+                    <div class="overflow-x-auto rounded-xl border border-gray-200">
+                        <div id="table-container-valoracion" class="min-w-full">
+                            <div class="flex items-center justify-center h-64 text-slate-400">
+                                <i class="fas fa-circle-notch fa-spin mr-2"></i> Cargando valoración...
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Racha -->
+                <div id="tab-racha" class="tab-content h-full p-4">
+                    <div class="overflow-x-auto rounded-xl border border-gray-200">
+                        <div id="table-container-racha" class="min-w-full">
+                            <div class="flex items-center justify-center h-64 text-slate-400">
+                                <i class="fas fa-circle-notch fa-spin mr-2"></i> Cargando racha...
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Asistencias -->
+                <div id="tab-asistencias" class="tab-content h-full p-4">
+                    <div class="overflow-x-auto rounded-xl border border-gray-200">
+                        <div id="table-container-asistencias" class="min-w-full">
+                             <div class="flex items-center justify-center h-64 text-slate-400">
+                                <i class="fas fa-circle-notch fa-spin mr-2"></i> Cargando asistencias...
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Pichichi -->
+                <div id="tab-pichichi" class="tab-content h-full p-4">
+                    <div class="overflow-x-auto rounded-xl border border-gray-200">
+                        <div id="table-container-pichichi" class="min-w-full">
+                             <div class="flex items-center justify-center h-64 text-slate-400">
+                                <i class="fas fa-circle-notch fa-spin mr-2"></i> Cargando pichichi...
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Regularidad -->
+                <div id="tab-regularidad" class="tab-content h-full p-4">
+                    <div class="overflow-x-auto rounded-xl border border-gray-200">
+                        <div id="table-container-regularidad" class="min-w-full">
+                             <div class="flex items-center justify-center h-64 text-slate-400">
+                                <i class="fas fa-circle-notch fa-spin mr-2"></i> Cargando regularidad...
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Defensa -->
+                <div id="tab-defensa" class="tab-content h-full p-4">
+                    <div class="overflow-x-auto rounded-xl border border-gray-200">
+                        <div id="table-container-defensa" class="min-w-full">
+                             <div class="flex items-center justify-center h-64 text-slate-400">
+                                <i class="fas fa-circle-notch fa-spin mr-2"></i> Cargando defensa...
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Zamora -->
+                <div id="tab-zamora" class="tab-content h-full p-4">
+                    <div class="overflow-x-auto rounded-xl border border-gray-200">
+                        <div id="table-container-zamora" class="min-w-full">
+                             <div class="flex items-center justify-center h-64 text-slate-400">
+                                <i class="fas fa-circle-notch fa-spin mr-2"></i> Cargando zamora...
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Eficiencia -->
+                <div id="tab-eficiencia" class="tab-content h-full p-4">
+                    <div class="overflow-x-auto rounded-xl border border-gray-200">
+                        <div id="table-container-eficiencia" class="min-w-full">
+                             <div class="flex items-center justify-center h-64 text-slate-400">
+                                <i class="fas fa-circle-notch fa-spin mr-2"></i> Cargando eficiencia...
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- HERRAMIENTAS IA -->
+    <section id="herramientas-ia" class="py-20 bg-white border-t border-slate-100">
+        <div class="max-w-5xl mx-auto px-4 text-center">
+            <h2 class="text-3xl font-heading font-bold text-slate-900 mb-8">Herramientas IA ✨</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                <div class="p-8 bg-slate-50 rounded-xl border border-slate-200 shadow-sm hover:shadow-md transition">
+                    <i class="fas fa-feather-alt text-4xl text-udablue-600 mb-4"></i>
+                    <h3 class="text-xl font-bold mb-2">Cronista IA</h3>
+                    <p class="text-slate-600 mb-4">Redacta crónicas épicas automáticamente.</p>
+                    <button onclick="openIAModal('modal-cronista')" class="w-full py-2 bg-udablue-800 text-white rounded font-bold">Probar</button>
+                </div>
+                <div class="p-8 bg-slate-50 rounded-xl border border-slate-200 shadow-sm hover:shadow-md transition">
+                    <i class="fas fa-users text-4xl text-green-600 mb-4"></i>
+                    <h3 class="text-xl font-bold mb-2">Míster IA</h3>
+                    <p class="text-slate-600 mb-4">Genera equipos equilibrados y divertidos.</p>
+                    <button onclick="openIAModal('modal-mister')" class="w-full py-2 bg-green-700 text-white rounded font-bold">Probar</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="bg-udablue-900 text-white py-12 text-center">
+        <p>&copy; 2025 Partido de los Sábados.</p>
+    </footer>
+
+    <!-- MODALES (Crónicas + IA + IMAGEN) -->
+    <div id="modal-backdrop" class="fixed inset-0 bg-black/70 z-[60] hidden transition-opacity duration-300" onclick="closeModal()"></div>
+
+    <!-- Modal Imagen (Lightbox) -->
+    <div id="modal-image" class="modal-content fixed inset-0 z-[90] flex items-center justify-center hidden pointer-events-none">
+        <div class="relative w-full h-full max-w-6xl max-h-screen p-4 flex flex-col items-center justify-center pointer-events-auto">
+            <button onclick="closeModal()" class="absolute top-4 right-4 text-white hover:text-gray-300 text-4xl z-50"><i class="fas fa-times"></i></button>
+            <img id="lightbox-img" src="" alt="Imagen ampliada" class="max-w-full max-h-[85vh] object-contain rounded-lg shadow-2xl">
+            <h3 id="lightbox-caption" class="text-white text-xl font-bold mt-4 text-center drop-shadow-md"></h3>
+        </div>
+    </div>
+
+    <!-- Modal J11 -->
+    <div id="modal-j11" class="modal-content fixed inset-0 z-[70] flex items-center justify-center hidden pointer-events-none">
+        <div class="bg-white w-full max-w-2xl max-h-[90vh] overflow-y-auto rounded-xl p-8 m-4 pointer-events-auto relative">
+            <button onclick="closeModal()" class="absolute top-4 right-4 text-2xl"><i class="fas fa-times"></i></button>
+            <h3 class="text-2xl font-bold text-udablue-800 mb-4">Jornada 11</h3>
+            <div class="prose text-slate-700">
+                <p>Equipos dispares tanto en número como en velocidad, los blancos en inferioridad numérica y los azules con bólidos consagrados como Carmelo Alonso, Salinas Verstapen y Javi Hamilton, pero cuidado y no vendas la piel del oso antes de cazarlo y de eso el de las tierras altas del Santo Reino, sabe algo.</p>
+                <p>Estrategia descomunal de los Ariel con una defensa en línea, un cancerbero iluminado y guapo, un centro del campo dopao de vermut y una línea de ataque fantasmal, los azules en superioridad numérica con un juvenil en prácticas en Copysur algo perdido entre fotocopia y fotocopia, comienza el choque con marcaje férreo sobre el motrileño, siendo acogotado segundo a segundo notando en sus canillas la presión del choque.</p>
+                <p>La estrategia blanca surge efecto y tras un acoso constante en la portería de la 🕷 llegan los dos primeros goles, en internadas del muñeco Miguel y una contra desde la portería que finaliza Usain Bolt Mañas, en las postrimerías de la primera parte acortan distancias Salinas Jr, en jugada individual batiendo a Juan Luis por bajo, se llega al descanso con 3-1 al anotar Rafa un buen pase de Carmelo Jr. presionado hoy por una comida en Granada y una posterior visita a una exposición de trajes de novia... de ahí su nerviosismo matutino... veremos donde acaba este..</p>
+                <p>Segunda parte con cambio de algún cromo, pero sin cambiar la dinámica blanca que en cada jugada crea peligro, aumentando su distancia hasta el 5-1 definitivo con goles de Mañas y Gabi.</p>
+                <p>Gran afluencia de público en las gradas Salinas Sr., que despiden a los exhaustos guerreros con palmas y vítores varios. Así que así han sido las cosas y así se las hemos relatado, buen finde y mañana a comernos unas caballas en Ceuta y ponernos lideres. Nota: Hoy nuestro Guti, se habrá ido a la montaña con su bicicleta igual y hasta ha cogio 🍄</p>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Modal J10 -->
+    <div id="modal-j10" class="modal-content fixed inset-0 z-[70] flex items-center justify-center hidden pointer-events-none">
+        <div class="bg-white w-full max-w-2xl max-h-[90vh] overflow-y-auto rounded-xl p-8 m-4 pointer-events-auto relative">
+            <button onclick="closeModal()" class="absolute top-4 right-4 text-2xl"><i class="fas fa-times"></i></button>
+            <h3 class="text-2xl font-bold text-udablue-800 mb-4">El Regreso de Guti</h3>
+            <div class="prose text-slate-700">
+                <p>Sábado de Santos, y no precisamente muchos de los descarrilados tuercebotas que en esta mañana se han atado sus borceguies a los tobillos.</p>
+                <p>La crónica de este dia no irá destinada ni al resultado, ni a las hazañas de la Araña o del de la txapela, tampoco relatará las correrías del pulmón Toni, ni del habilidoso Mañas, obviara la calidad de Jorge y la ausencia de Salinas Sr., así mismo no tendrá en cuenta las asistencias, regates o alaridos descomunales del Antonio alias Microsoft, no destacará la baja batería del Vicente pavía, ni los vuelos rasantes del Gavilán, tampoco hará mención a los regates, amagues y buen juego del Jerezano, por supuesto ni mencionara a este humilde cronista, venido a menos, ni destacara internadas de Fede palangana, Carmelo caracol o Salinas Jr ajamonao, no olvidara a Miguel lavadoras ni a un Cordobés expulsado de su tierra y recogido y querido en nuestra Almeria, un Juan Luis camisa manchada y ......puede que se me olvide algun imprescindible y querido componente de este gran grupo...</p>
+                <p class="font-bold text-udablue-600">...pero esta crónica de hoy la quiero dedicar especialmente a una persona que es querida por todos, que será de los mas veteranos y que ha tenido que luchar por combatir y ganar quizás la batalla mas importante se su vida, no ha estado solo, acompañado de su familia, de sus amigos y de todo aquel que era sabedor de su lucha coraje y buen hacer, ha hecho que en el dia de hoy podamos de nuevo disfrutar de su presencia, por todo ello Guti, Jose Antonio, bien venido y nunca mas se te ocurra darnos estos sustos.</p>
+                <p>Así que nada este humilde escribiente se despide de las tierras altas del Santo Reino, entre Olivos, Jaras y jabalíes, y creo que Fran acechando, os deseo un feliz fin de semana y que hoy nuestra UDA, nos de una una alegría no tanta como la que los afortunados de hoy os habéis llevado al ver a Guti😘😘😘</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal J9 -->
+    <div id="modal-j9" class="modal-content fixed inset-0 z-[70] flex items-center justify-center hidden pointer-events-none">
+        <div class="bg-white w-full max-w-2xl max-h-[90vh] overflow-y-auto rounded-xl p-8 m-4 pointer-events-auto relative">
+            <button onclick="closeModal()" class="absolute top-4 right-4 text-2xl"><i class="fas fa-times"></i></button>
+            <h3 class="text-2xl font-bold text-udablue-800 mb-4">Jornada 9</h3>
+            <div class="prose text-slate-700">
+                <p>Finalizando Octubre y con los cuerpos aún mostrando síntomas veraniegos y zamarras apretadas, se ha disputado uno de los encuentros mas reñidos y competidos de los últimos siglos, comienzo arrollador de los azules con un Fran oro verde muy incisivo y que gracias al inmenso Juan Luis, bajo palos evita un 2-0 casi de milagro efectuando una serie de paradas salvadores para los blanquillos que ni podían ni sabían zafarse de tal acoso azulino, comandados por un Rafa omnipresente, apoyado por Vicente de Padua, asistido por un Padilla correoso y un Fran que a la cuarta hace el 1-0, que a la postre fue el resultado final.</p>
+                <p>No obstante los ariel, con mas fe que fuerza y organización, en varias contras a punto estuvieron de romper la tupida tela que el arácnido y su compinche pajarraco habían tejido bajo la supervisión de un Juli leñero y un Toni rompepatas.</p>
+                <p>La segunda parte fue un toma y daca en ambas porterías, estando de manifiesto que si los blancos tenían la pólvora húmeda, tras la incesante lluvia cañonera terminó totalmente mojada y así pudo un bien colocado José Manuel dejar su portería inmaculada y virgen de cualquier profanador blanco. Destacar el buen juego en equipo de los azulones comandados por Rafa y Vicente, las aperturas por bandera de Nico y Jorge.</p>
+                <p>En los blancos destacar la lucha y peleo pero como perdices sin cabeza y la gran actuación de Juan Luis, dejando una honrosa derrota por tan solo un gol. Buen finde a todos, mañana si tenéis que sufrir que sea viendo ganar al Almería.</p>
+            </div>
+        </div>
+    </div>
+    <!-- Modal J8 -->
+    <div id="modal-j8" class="modal-content fixed inset-0 z-[70] flex items-center justify-center hidden pointer-events-none">
+        <div class="bg-white w-full max-w-2xl max-h-[90vh] overflow-y-auto rounded-xl p-8 m-4 pointer-events-auto relative">
+            <button onclick="closeModal()" class="absolute top-4 right-4 text-2xl"><i class="fas fa-times"></i></button>
+            <h3 class="text-2xl font-bold text-udablue-800 mb-4">Jornada 8</h3>
+            <div class="prose text-slate-700">
+                <p>Sábado de Desérticos y Raphaeles, siendo los teloneros de tales eventos los incansables y luchadores furgoleros como los definiría mi maestro D. Juan.</p>
+                <p>Un inicio de partido engañoso con un 0-2 para los blancos y una defensa blandengue del de las medias amarillas y pelo corto, pero lejos de acogotarse los azulinos remontan antes del descanso con un 4-2 y un centro del campo dirigido por Javi, Monthy y Salinas. Tras la reanudación tímida reacción blanca recortando Antonio 4-3, tras hacerle un nuevo nudo al Juli, hoy sólo atento al calamar del Lengüetas y aun así este se le ha hecho un caño.</p>
+                <p>En las postrimerías del choque con los blancos volcados y con su retaguardia bajo mínimos y un Miguel herido gravemente, se propicia un contragolpe fugaz del que el mismísimo Luis Aragonés estaría más que orgulloso, poniendo Salinas Jr, para orgullo de su padruco atento en la grada el definitivo 5-3. Por los blancos destacar un Carmelo oxidao, un Rafa pensando en los Sobrinos y un Fran con la mente puesta en la recogida de las aceitunas.</p>
+                <p>Los azules han contado con la Araña en su tela, un Vicente en recarga y un Salinas, Javi y Monthy matadores. La ausencia hoy de nuestro Notario y apuntaor ha sido reemplazada por el sustituto. Y Juan Blanes por favor regresa que se me acaba la beca. Buen finde a todos.</p>
+            </div>
+        </div>
+    </div>
+    <!-- Modal J7 -->
+    <div id="modal-j7" class="modal-content fixed inset-0 z-[70] flex items-center justify-center hidden pointer-events-none">
+        <div class="bg-white w-full max-w-2xl max-h-[90vh] overflow-y-auto rounded-xl p-8 m-4 pointer-events-auto relative">
+            <button onclick="closeModal()" class="absolute top-4 right-4 text-2xl"><i class="fas fa-times"></i></button>
+            <h3 class="text-2xl font-bold text-udablue-800 mb-4">Jornada 7</h3>
+            <div class="prose text-slate-700">
+                <p>Esta mañana los Hispanos volvían con las espadas en alto y afiladas, presagiando un fin de semana largo y un lunes festivo para regocijo de pajarracos y clientes de los Sobrinos.</p>
+                <p>Comienza el choque con la efímera superioridad sobre la alineación de los blanquos, pero un Nico dormido, legañoso y frío, ve como un Toni explosivo le come la tostada, y asiste a Diego para poner el 1-0 en el luminoso para los azuletes, que no conformes con este exiguo resultado y con las internadas de un Toni correcabras y un Fran aceituna se colocan 2-0.</p>
+                <p>Una segunda parte equilibrada, un querer y no puedo de los del Vaticano, pero una lesión impensable e inoportuna del tirillas Diego, desequilibra el encuentro y los Ariel en un acoso y escaso derribo, acortan distancias con el 2-1 definitivo. Tras el choque Toni se ha ido a Blanes a comprarse unas botas nuevas y a pasar la ITV, ya que junto a Fran se han pasado de km.</p>
+                <p class="italic">No quiero terminar esta crónica para recordar a un amigo, gran persona y enorme profesional periodístico... un gran abrazo allá donde estés mi querido JOAQUÍN AMERIGO, estoy seguro que esta tarde gritaras conmigo y sufriremos por la victoria de nuestra UDA, descansa en Paz.😘😢</p>
+            </div>
+        </div>
+    </div>
+    <!-- Modal J6 -->
+    <div id="modal-j6" class="modal-content fixed inset-0 z-[70] flex items-center justify-center hidden pointer-events-none">
+        <div class="bg-white w-full max-w-2xl max-h-[90vh] overflow-y-auto rounded-xl p-8 m-4 pointer-events-auto relative">
+            <button onclick="closeModal()" class="absolute top-4 right-4 text-2xl"><i class="fas fa-times"></i></button>
+            <h3 class="text-2xl font-bold text-udablue-800 mb-4">Jornada 6</h3>
+            <div class="prose text-slate-700">
+                <p>Hoy, la agenda de nuestro plumilla estaba apretada, había que improvisar para poder cumplir con sus múltiples quehaceres. Los tiempos van cambiando y con ello los esforzados espartanos que sábado si y otro también se dan cita en el coliseum universitario como sonámbulos adormecidos yendo al roca a las 4 de la madrugada tras una noche del viernes fiestera.</p>
+                <p>Pues así ha comenzado hoy la contienda los ariel adormecido su potencial físico y los azulinos incrédulos en sus posibilidades no sólo se ponen delante en el marcador tras contra bien ejecutada por Antonio alias quejido, sino que bien por los fallos de algún falso delantero llamado Juan Luis, o las intervenciones del humanitario Enrique, se malogran 3 claras ocasiones de gol... continuaban los blancos adormecidos hasta que llegan los regalos de Reyes azulones, el primero Carmelo, se lía en la frontal del área y entre que si que no, le roban la pelota y Rolex Mañas hace el empate tras vaselina malévola a la que la 🕷 no llega.</p>
+                <p>1-1 y momento de ir a liberar prostatas y corregir marcas. Sin embargo en la segunda parte, caraja inmensa de los azules, regalando no uno ni dos sino hasta 3 goles... De ahí al final todo fue un querer y no poder de los azules, ya que un inmenso Fede palangana, cortaba todo balón con intención malévolo hacia la portería de Enri, a pesar de esto tanto Rafa Vermut con gran tiro con su pata mala y Javi Motriles, en un claro penalty acortan distancia a 3-4, pero en los prolegomenos del encuentro en rápido contragolpe Rolex Mañas hace el 3-5 definitivo.</p>
+                <p>Para mi el MVP, es para el centro del campo blanco y el pepino de plata para la defensa azulona.</p>
+            </div>
+        </div>
+    </div>
+    <!-- Modal J5 -->
+    <div id="modal-j5" class="modal-content fixed inset-0 z-[70] flex items-center justify-center hidden pointer-events-none">
+        <div class="bg-white w-full max-w-2xl max-h-[90vh] overflow-y-auto rounded-xl p-8 m-4 pointer-events-auto relative">
+            <button onclick="closeModal()" class="absolute top-4 right-4 text-2xl"><i class="fas fa-times"></i></button>
+            <h3 class="text-2xl font-bold text-udablue-800 mb-4">Jornada 5</h3>
+            <div class="prose text-slate-700">
+                <p>Hoy, la agenda de nuestro plumilla estaba apretada, había que improvisar para poder cumplir con sus múltiples quehaceres.</p>
+                <p>Los tiempos van cambiando y con ello los esforzados espartanos que sábado si y otro también se dan cita en el coliseum universitario como sonámbulos adormecidos yendo al roca a las 4 de la madrugada tras una noche del viernes fiestera.</p>
+                <p>Pues así ha comenzado hoy la contienda los ariel adormecido su potencial físico y los azulinos incrédulos en sus posibilidades no sólo se ponen delante en el marcador tras contra bien ejecutada por Antonio alias quejido, sino que bien por los fallos de algún falso delantero llamado Juan Luis, o las intervenciones del humanitario Enrique, se malogran 3 claras ocasiones de gol, continuaban los blancos adormecidos hasta que llegan los regalos de Reyes azulones, el primero Carmelo, se lía en la frontal del área y entre que si que no, le roban la pelota y Rolex Mañas hace el empate tras vaselina malévola a la que la 🕷 no llega.</p>
+                <p>1-1 y momento de ir a liberar prostatas y corregir marcas.</p>
+                <p>Sin embargo en la segunda parte, caraja inmensa de los azules, regalando no uno ni dos sino hasta 3 goles, los detalles los obviare por motivos piadosos. De ahí al final todo fue un querer y no poder de los azules, ya que un inmenso Fede palangana, cortaba todo balón con intención malévolo hacia la portería de Enri, a pesar de esto tanto Rafa Vermut con gran tiro con su pata mala y Javi Motriles, en un claro penalty acortan distancia a 3-4, pero en los prolegomenos del encuentro en rápido contragolpe Rolex Mañas hace el 3-5 definitivo.</p>
+                <p>Para mi el MVP, es para el centro del campo blanco y el pepino de plata para la defensa azulona.</p>
+                <p class="italic">Gran éxito en la convocatoria humanitaria por Palestina y dentro de un rato a por los 3 puntos de Riazor, buen finde a todas.</p>
+            </div>
+        </div>
+    </div>
+    <!-- Modal J4 -->
+    <div id="modal-j4" class="modal-content fixed inset-0 z-[70] flex items-center justify-center hidden pointer-events-none">
+        <div class="bg-white w-full max-w-2xl max-h-[90vh] overflow-y-auto rounded-xl p-8 m-4 pointer-events-auto relative">
+            <button onclick="closeModal()" class="absolute top-4 right-4 text-2xl"><i class="fas fa-times"></i></button>
+            <h3 class="text-2xl font-bold text-udablue-800 mb-4">Jornada 4</h3>
+            <div class="prose text-slate-700">
+                <p>Mañana de ausencias, escaqueos y lesiones mas o menos graves en patas y piernas siempre salvaguardando brazos y codos imprescindibles para disfrutar de birras, buenos caldos y tapas varias.</p>
+                <p>En lo deportivo partido disputado con un 3-3, engañoso tras el dominio azul de 3-1, malogrado por las malas decisiones de un Juli patas de mantequilla y cabeza choritera, que ha sido aprovechada por los del Vaticano. Destacar la pelea de Salinas Jr., con la madera y la ratoneria de un Nico Padilla, que por algo lleva gafas, listo como el solo. Haced mención al debut oficial de Antonio con 2 chicharros marca de la casa.</p>
+                <p>Desde las tierras altas del Santo Reino, y tras recoger el informe de mi halcón peregrino os deseo un feliz tercer tiempo, mejor finde y una gran victoria de nuestra UDA, en tierras plataneras.</p>
+                <p class="italic font-bold text-right">Firmado Chasquespeare de La Carolina, alias León</p>
+            </div>
+        </div>
+    </div>
+    <!-- Modal J3 -->
+    <div id="modal-j3" class="modal-content fixed inset-0 z-[70] flex items-center justify-center hidden pointer-events-none">
+        <div class="bg-white w-full max-w-2xl max-h-[90vh] overflow-y-auto rounded-xl p-8 m-4 pointer-events-auto relative">
+            <button onclick="closeModal()" class="absolute top-4 right-4 text-2xl"><i class="fas fa-times"></i></button>
+            <h3 class="text-2xl font-bold text-udablue-800 mb-4">Jornada 3</h3>
+            <div class="prose text-slate-700">
+                 <p>Queridos todos, todas y todes, que esta mañana se han batido en una lucha de poder a poder, en la que un sábado mas el blanco vaticano se ha impuesto por un claro 4-2 a los azules. Dominio alterno tanto en juego como en goles, destacando un gran gol de cabeza del notario, molestado en un gran salto por el que escribe, levantando del suelo la uña del pie izquierdo.</p>
+                 <p>Primera parte con 2-2, en los que los cancerberos anduvieron con varias de cal y otras de arena.</p>
+                 <p>Segunda parte con el mismo ritmo de juego, destacando el entramado tejido de la Araña 🕷 haciendo un fortín de su porteria, dos zarpazos de los blancos primero del juvenil Jorge, motivado por el seguimiento en la grada del seleccionador Salinas, que con gran zurdazo al palo corto, bate a Enri, y en las postrimerias del partido, internada de Fede palangana, cruzando el esférico ante la salida en cruz de Enrique, ni eso le salvo.</p>
+                 <p>Deseándoles a todos vds., un feliz finde y un gran triunfo de la UDA.</p>
+            </div>
+        </div>
+    </div>
+    <!-- Modal J2 -->
+    <div id="modal-j2" class="modal-content fixed inset-0 z-[70] flex items-center justify-center hidden pointer-events-none">
+        <div class="bg-white w-full max-w-2xl max-h-[90vh] overflow-y-auto rounded-xl p-8 m-4 pointer-events-auto relative">
+            <button onclick="closeModal()" class="absolute top-4 right-4 text-2xl"><i class="fas fa-times"></i></button>
+            <h3 class="text-2xl font-bold text-udablue-800 mb-4">Jornada 2</h3>
+            <div class="prose text-slate-700">
+                 <p>Buenos días furgoleros y pachangueros, ha sido un placer volver a compartir afición y amistad a pesar de que alguno iba amenazando con pluma, papel y recursos al límite de la legalidad.</p>
+                 <p>Buen partido de los blancos con un 3-1 final que gracias al arácnido cervecero evitó mayor casillero para los blancos.</p>
+                 <p>Como suele ser verdad, dicen que el buen vino mejora con los años, lamento comprobar que esta máxima no se puede aplicar ni a mi persona ni al conjunto de estos sufridores tuercebotas sabáticos, pero también he de decir que si se mejora y en mucho el afecto y camaradería de grupo. Así que nada a disfrutar del tercer, cuarto y quinto ( suena bien ehhh), tiempo este finde un fuerte abrazo para todos.</p>
+                 <p class="italic">Los datos técnicos ya los presentará mi machaca Juan Luis</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal IA Cronista -->
+    <div id="modal-cronista" class="modal-content fixed inset-0 z-[80] flex items-center justify-center hidden pointer-events-none">
+        <div class="bg-white w-full max-w-xl rounded-xl p-6 m-4 pointer-events-auto relative flex flex-col max-h-[90vh]">
+            <button onclick="closeModal()" class="absolute top-4 right-4 text-xl"><i class="fas fa-times"></i></button>
+            <h3 class="text-xl font-bold text-slate-900 mb-4">Asistente de Crónicas</h3>
+            <textarea id="chronicleInput" rows="4" class="w-full p-3 border rounded mb-4" placeholder="Datos del partido..."></textarea>
+            <button id="btnGenerateChronicle" onclick="generateChronicle()" class="bg-udablue-800 text-white px-4 py-2 rounded font-bold">Generar</button>
+            <div id="chronicleOutput" class="hidden mt-4 p-4 bg-slate-50 rounded border h-48 overflow-y-auto markdown-body"></div>
+        </div>
+    </div>
+
+    <!-- Modal IA Míster -->
+    <div id="modal-mister" class="modal-content fixed inset-0 z-[80] flex items-center justify-center hidden pointer-events-none">
+        <div class="bg-white w-full max-w-xl rounded-xl p-6 m-4 pointer-events-auto relative flex flex-col max-h-[90vh]">
+            <button onclick="closeModal()" class="absolute top-4 right-4 text-xl"><i class="fas fa-times"></i></button>
+            <h3 class="text-xl font-bold text-slate-900 mb-4">El Míster IA</h3>
+            <textarea id="playersInput" rows="4" class="w-full p-3 border rounded mb-4" placeholder="Lista de jugadores..."></textarea>
+            <button id="btnGenerateTeams" onclick="generateTeams()" class="bg-green-700 text-white px-4 py-2 rounded font-bold">Generar Equipos</button>
+            <div id="teamsOutput" class="hidden mt-4 p-4 bg-slate-50 rounded border h-48 overflow-y-auto markdown-body"></div>
+        </div>
+    </div>
+
+    <script>
+        // Configuración API
+        const apiKey = "";
+
+        // Menú Móvil
+        const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+        mobileMenuBtn.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+        });
+
+        // Reveal Animación
+        const revealElements = document.querySelectorAll('.reveal');
+        const revealObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) entry.target.classList.add('active');
+            });
+        }, { threshold: 0.1 });
+        revealElements.forEach(el => revealObserver.observe(el));
+
+        // Modales
+        function openModal(modalId) {
+            document.getElementById('modal-backdrop').classList.remove('hidden');
+            document.getElementById(modalId).classList.remove('hidden');
+            document.body.classList.add('modal-open');
+        }
+        function openIAModal(modalId) { openModal(modalId); }
+        function closeModal() {
+            document.getElementById('modal-backdrop').classList.add('hidden');
+            document.querySelectorAll('.modal-content').forEach(el => el.classList.add('hidden'));
+            document.body.classList.remove('modal-open');
+        }
+        
+        // Función específica para abrir imágenes
+        function openImageModal(src, title) {
+            const modal = document.getElementById('modal-image');
+            const img = document.getElementById('lightbox-img');
+            const caption = document.getElementById('lightbox-caption');
+            
+            img.src = src;
+            caption.innerText = title || '';
+            
+            document.getElementById('modal-backdrop').classList.remove('hidden');
+            modal.classList.remove('hidden');
+            document.body.classList.add('modal-open');
+        }
+
+        // Tabs
+        function openTab(evt, tabName) {
+            var i, tabcontent, tablinks;
+            tabcontent = document.getElementsByClassName("tab-content");
+            for (i = 0; i < tabcontent.length; i++) {
+                tabcontent[i].style.display = "none";
+                tabcontent[i].classList.remove('active');
+            }
+            tablinks = document.getElementsByClassName("tab-btn");
+            for (i = 0; i < tablinks.length; i++) {
+                tablinks[i].className = tablinks[i].className.replace(" active", "");
+                tablinks[i].style.backgroundColor = "";
+                tablinks[i].style.color = "";
+                tablinks[i].style.borderColor = "transparent";
+            }
+            document.getElementById(tabName).style.display = "block";
+            document.getElementById(tabName).classList.add('active');
+            evt.currentTarget.className += " active";
+            evt.currentTarget.style.borderColor = "#1e3a8a";
+        }
+
+        // --- LÓGICA DE TABLAS GOOGLE SHEETS (MODERNA) ---
+        const sheetBaseUrl = "https://docs.google.com/spreadsheets/d/e/2PACX-1vRXR-Va_Ws73XosK7V9wkioiR5sinJzif4fcpXJe518upKSDGtsJHoLJ2n6kUmE9ACwfnUMrPPXp0yc/pub?single=true&output=csv&gid=";
+        
+        // GID de la hoja de IMÁGENES
+        const GID_JUGADORES = '54735206'; 
+        
+        const sheets = {
+            'table-container-general': '852287887',
+            'table-container-valoracion': '308523986',
+            'table-container-racha': '904747213',
+            'table-container-asistencias': '756005638',
+            'table-container-pichichi': '1330179615',
+            'table-container-regularidad': '2131181564',
+            'table-container-defensa': '132385510',
+            'table-container-zamora': '1108366683',
+            'table-container-eficiencia': '922129375'
+        };
+
+        // Mapa para guardar fotos de jugadores { "NOMBRE MAYUS": "URL Foto" }
+        let playerImages = {};
+
+        // Función auxiliar para limpiar enlaces de Google Drive
+        function cleanGoogleDriveUrl(url) {
+            if (!url) return '';
+            // Si es un enlace de 'view' o 'open', lo convertimos a exportación directa
+            if (url.includes('drive.google.com')) {
+                // Extraer ID
+                let id = '';
+                const parts = url.split('/');
+                // Caso /file/d/ID/view
+                const dIndex = parts.indexOf('d');
+                if (dIndex !== -1 && parts.length > dIndex + 1) {
+                    id = parts[dIndex + 1];
+                } 
+                // Caso id=ID
+                else if (url.includes('id=')) {
+                    id = url.split('id=')[1].split('&')[0];
+                }
+
+                if (id) {
+                    return `https://drive.google.com/uc?export=view&id=${id}`;
+                }
+            }
+            return url;
+        }
+
+        // 1. Cargar primero las imágenes de los jugadores
+        function loadPlayerImages() {
+            Papa.parse(sheetBaseUrl + GID_JUGADORES, {
+                download: true,
+                header: true, 
+                complete: function(results) {
+                    if(results.data && results.data.length > 0) {
+                        results.data.forEach(row => {
+                            const nameKey = Object.keys(row).find(k => k.toUpperCase().includes("NOMBRE") || k.toUpperCase().includes("JUGADOR"));
+                            const photoKey = Object.keys(row).find(k => k.toUpperCase().includes("FOTOGRAFIA") || k.toUpperCase().includes("FOTO"));
+                            
+                            if (nameKey && photoKey && row[nameKey]) {
+                                const cleanUrl = cleanGoogleDriveUrl(row[photoKey]);
+                                playerImages[row[nameKey].trim().toUpperCase()] = cleanUrl;
+                            }
+                        });
+                    } else {
+                        console.warn("No se encontraron datos en la hoja JUGADORES (GID " + GID_JUGADORES + "). Verifica si está publicada.");
+                    }
+                    loadAllStats();
+                },
+                error: function(err) {
+                    console.warn("Error cargando hoja JUGADORES. GID incorrecto o error de red.", err);
+                    loadAllStats(); 
+                }
+            });
+        }
+
+        function loadAllStats() {
+            for (const [id, gid] of Object.entries(sheets)) {
+                loadSheetData(id, gid);
+            }
+        }
+
+        function loadSheetData(containerId, gid) {
+            Papa.parse(sheetBaseUrl + gid, {
+                download: true,
+                header: false,
+                complete: function(results) {
+                    renderTable(containerId, results.data);
+                },
+                error: function(err) {
+                    document.getElementById(containerId).innerHTML = '<div class="text-red-500 text-center p-4 text-sm">Error cargando datos.<br>Si ves esto desde WhatsApp/Móvil, es por restricciones de seguridad del archivo.<br>Sube la web a un servidor gratuito como GitHub Pages.</div>';
+                    console.error("Error parsing sheet:", err);
+                }
+            });
+        }
+
+        function renderTable(containerId, data) {
+            if (!data || data.length === 0) return;
+
+            let html = '<table class="min-w-full modern-table text-xs text-left text-slate-600">';
+            
+            // Detectar índices de columnas especiales
+            const headers = data[0];
+            const playerColIndex = headers.findIndex(h => h.toUpperCase().includes("JUGADOR") || h.toUpperCase().includes("NOMBRE"));
+            const dorsalColIndex = headers.findIndex(h => h.toUpperCase().includes("DORSAL"));
+
+            // Cabecera
+            html += '<thead class="text-[10px] md:text-xs uppercase bg-udablue-800 text-white">';
+            html += '<tr>';
+            headers.forEach((cell, index) => {
+                if(cell.trim() !== "") {
+                    html += `<th scope="col" class="px-2 py-2 font-bold tracking-wider whitespace-normal text-center align-bottom shadow-sm leading-none border-b border-udablue-900">${cell}</th>`;
+                }
+            });
+            html += '</tr></thead>';
+
+            // Cuerpo
+            html += '<tbody class="divide-y divide-slate-100">';
+            for (let i = 1; i < data.length; i++) {
+                const row = data[i];
+                if (row.length === 0 || (row.length === 1 && row[0] === "")) continue;
+                
+                html += '<tr class="transition-colors hover:bg-blue-50/50">';
+                row.forEach((cell, index) => {
+                     if(index < headers.length && headers[index].trim() !== "") {
+                        
+                        let cellContent = cell;
+                        let cellClasses = "px-2 py-2 whitespace-nowrap ";
+                        
+                        // Lógica especial para columna JUGADOR (FOTO + NOMBRE)
+                        if (index === playerColIndex) {
+                            cellClasses += "font-bold text-slate-900 text-left";
+                            const rawName = cell.trim();
+                            const playerPhoto = playerImages[rawName.toUpperCase()] || 'https://cdn-icons-png.flaticon.com/512/847/847969.png'; 
+                            
+                            cellContent = `
+                                <div class="flex items-center gap-2">
+                                    <img src="${playerPhoto}" alt="Foto" class="player-avatar shadow-sm bg-white" onerror="this.onerror=null; this.src='https://cdn-icons-png.flaticon.com/512/847/847969.png'">
+                                    <span>${rawName}</span>
+                                </div>
+                            `;
+                        } 
+                        // Lógica especial para columna DORSAL (Centrado)
+                        else if (index === dorsalColIndex) {
+                            cellClasses += "text-center font-bold text-udablue-800"; 
+                        }
+                        // Resto de columnas (Centradas por defecto para datos numéricos)
+                        else {
+                            cellClasses += "text-center font-medium";
+                        }
+                        
+                        html += `<td class="${cellClasses}">${cellContent}</td>`;
+                     }
+                });
+                html += '</tr>';
+            }
+            html += '</tbody></table>';
+
+            document.getElementById(containerId).innerHTML = html;
+        }
+
+        // Iniciar carga de datos al cargar la página
+        window.addEventListener('DOMContentLoaded', () => {
+            loadPlayerImages();
+        });
+
+
+        // IA Functions
+        async function callGeminiAPI(prompt) {
+            try {
+                const response = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash-preview-09-2025:generateContent?key=${apiKey}`, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ contents: [{ parts: [{ text: prompt }] }] })
+                });
+                const data = await response.json();
+                return data.candidates[0].content.parts[0].text;
+            } catch (error) { return "Error al conectar con IA."; }
+        }
+
+        async function generateChronicle() {
+            const input = document.getElementById('chronicleInput').value;
+            const output = document.getElementById('chronicleOutput');
+            if(!input) return alert("Escribe algo.");
+            output.classList.remove('hidden');
+            output.innerHTML = "Pensando...";
+            const result = await callGeminiAPI("Escribe una crónica de fútbol amateur divertida con estos datos: " + input);
+            output.innerHTML = marked.parse(result);
+        }
+
+        async function generateTeams() {
+            const input = document.getElementById('playersInput').value;
+            const output = document.getElementById('teamsOutput');
+            if(!input) return alert("Escribe jugadores.");
+            output.classList.remove('hidden');
+            output.innerHTML = "Calculando...";
+            const result = await callGeminiAPI("Genera 2 equipos equilibrados y divertidos con estos nombres: " + input);
+            output.innerHTML = marked.parse(result);
+        }
+    </script>
+</body>
+</html>
