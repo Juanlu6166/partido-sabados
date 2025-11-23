@@ -383,33 +383,16 @@
                 <!-- J2 -->
                 <div class="bg-white rounded-2xl overflow-hidden shadow-md hover:shadow-xl transition duration-300 flex flex-col border border-gray-100 group">
                     <div class="relative h-56 overflow-hidden">
-                        <img src="https://drive.google.com/thumbnail?id=1rtVt1ze0LlDljKS84yJr8YubGYFO1NR6&sz=w1000" alt="Jornada 2" class="w-full h-full object-cover group-hover:scale-105 transition duration-500 zoom-cursor" onclick="openImageModal(this.src, 'Jornada 2: Reencuentro de furgoleros')">
-                        <div class="absolute top-0 right-0 bg-udablue-600 text-white text-xs font-bold px-3 py-1 rounded-bl-lg pointer-events-none">Jornada 2</div>
+                        <img src="https://drive.google.com/thumbnail?id=1rtVt1ze0LlDljKS84yJr8YubGYFO1NR6&sz=w1000" alt="Jornada 2" class="w-full h-full object-cover">
+                        <div class="absolute top-4 right-4 bg-udablue-600 text-white text-xs font-bold px-3 py-1 rounded-full">Jornada 2</div>
                     </div>
-                    <div class="p-5">
-                        <div class="flex justify-between items-center mb-3">
-                            <span class="text-xs font-bold text-slate-400 uppercase tracking-wider">13 Septiembre 2025</span>
-                            <span class="bg-gray-100 text-gray-800 text-xs font-bold px-2 py-1 rounded">4 - 1</span>
-                        </div>
-                        <h3 class="text-lg font-bold text-slate-800 mb-1">4 - 1. Contundente victoria blanca.</h3>
+                    <div class="p-6 flex-1 flex flex-col">
+                        <div class="text-sm text-slate-500 mb-3"><i class="far fa-calendar-alt mr-2"></i> 13 Septiembre 2025</div>
+                        <h3 class="text-xl font-heading font-bold text-slate-800 mb-3">Reencuentro de furgoleros</h3>
+                        <p class="text-slate-600 text-sm line-clamp-3 flex-1">Buenos días furgoleros y pachangueros, ha sido un placer...</p>
+                        <button onclick="openModal('modal-j2')" class="mt-4 text-udablue-600 font-bold text-sm hover:text-udablue-800 flex items-center self-start">Leer completa <i class="fas fa-arrow-right ml-1"></i></button>
                     </div>
-                </div>
-                
-                <!-- J1 -->
-                <div class="bg-white rounded-2xl overflow-hidden shadow-md hover:shadow-xl transition duration-300 flex flex-col border border-gray-100 group">
-                    <div class="relative h-56 overflow-hidden">
-                        <img src="https://drive.google.com/thumbnail?id=147IdpXwky4iYSwVO9LPUueD2dvkz2jwj&sz=w1000" alt="Jornada 1" class="w-full h-full object-cover group-hover:scale-105 transition duration-500 zoom-cursor" onclick="openImageModal(this.src, 'Jornada 1: El comienzo de todo')">
-                        <div class="absolute top-0 right-0 bg-udablue-600 text-white text-xs font-bold px-3 py-1 rounded-bl-lg pointer-events-none">Jornada 1</div>
-                    </div>
-                    <div class="p-5">
-                        <div class="flex justify-between items-center mb-3">
-                            <span class="text-xs font-bold text-slate-400 uppercase tracking-wider">06 Septiembre 2025</span>
-                            <span class="bg-gray-100 text-gray-800 text-xs font-bold px-2 py-1 rounded">1 - 6</span>
-                        </div>
-                        <h3 class="text-lg font-bold text-slate-800 mb-1">1 - 6. Goleada Azul inicial.</h3>
-                        <span class="text-gray-400 text-sm italic mt-2 inline-block">Crónica no disponible</span>
-                    </div>
-                </div>
+                </article>
             </div>
         </div>
     </section>
@@ -433,7 +416,7 @@
                     <div class="p-6 flex-1 flex flex-col">
                         <div class="text-sm text-slate-500 mb-3"><i class="far fa-calendar-alt mr-2"></i> 22 Noviembre 2025</div>
                         <h3 class="text-xl font-heading font-bold text-slate-800 mb-3">Victoria blanca con sabor motrileño</h3>
-                        <p class="text-slate-600 text-sm line-clamp-3 flex-1">Sin crónica por motivos familiares del cronista...</p>
+                        <p class="text-slate-600 text-sm line-clamp-3 flex-1">Pendiente de redacción...</p>
                         <button onclick="openModal('modal-j12')" class="mt-4 text-udablue-600 font-bold text-sm hover:text-udablue-800 flex items-center self-start">Leer completa <i class="fas fa-arrow-right ml-1"></i></button>
                     </div>
                 </article>
@@ -709,7 +692,7 @@
         </div>
     </section>
 
-    <!-- SISTEMA DE PUNTUACIÓN -->
+    <!-- SISTEMA DE PUNTUACIÓN (ESTÁTICO) -->
     <section id="puntuacion" class="py-20 bg-white border-t border-slate-100">
         <div class="max-w-5xl mx-auto px-4">
             <div class="text-center mb-12">
@@ -723,12 +706,71 @@
                     <img src="https://drive.google.com/thumbnail?id=1AKUsNdLDKd5XfYfTCuPtvT6ruXbpaXy_&sz=w1000" alt="Sistema de Puntuación Visual" class="w-full h-auto">
                 </div>
 
-                <!-- Tabla de Puntuación -->
+                <!-- Tabla de Puntuación ESTÁTICA -->
                 <div class="w-full max-w-4xl bg-slate-50 rounded-2xl shadow-md border border-slate-200 p-6 reveal">
                     <div id="table-container-puntuacion" class="overflow-x-auto">
-                        <div class="flex items-center justify-center h-32 text-slate-400">
-                            <i class="fas fa-circle-notch fa-spin mr-2"></i> Cargando tabla de puntos...
-                        </div>
+                        <table class="min-w-full modern-table text-xs text-left text-slate-600">
+                            <thead class="text-[10px] md:text-xs uppercase bg-udablue-800 text-white">
+                                <tr>
+                                    <th scope="col" class="px-2 py-2 font-bold tracking-wider whitespace-normal text-left align-bottom shadow-sm leading-none border-b border-udablue-900">Sistema de puntuación temporada 2025 - 2026</th>
+                                    <th scope="col" class="px-2 py-2 font-bold tracking-wider whitespace-normal text-center align-bottom shadow-sm leading-none border-b border-udablue-900">Puntos</th>
+                                </tr>
+                            </thead>
+                            <tbody class="divide-y divide-slate-100">
+                                <tr class="transition-colors hover:bg-blue-50/50">
+                                    <td class="px-2 py-2 whitespace-nowrap font-bold text-slate-900 text-left">MVP</td>
+                                    <td class="px-2 py-2 whitespace-nowrap text-center font-medium">3</td>
+                                </tr>
+                                <tr class="transition-colors hover:bg-blue-50/50">
+                                    <td class="px-2 py-2 whitespace-nowrap font-bold text-slate-900 text-left">Por cada gol marcado</td>
+                                    <td class="px-2 py-2 whitespace-nowrap text-center font-medium">2</td>
+                                </tr>
+                                <tr class="transition-colors hover:bg-blue-50/50">
+                                    <td class="px-2 py-2 whitespace-nowrap font-bold text-slate-900 text-left">Asistencia de Gol</td>
+                                    <td class="px-2 py-2 whitespace-nowrap text-center font-medium">2</td>
+                                </tr>
+                                <tr class="transition-colors hover:bg-blue-50/50">
+                                    <td class="px-2 py-2 whitespace-nowrap font-bold text-slate-900 text-left">Marcador con diferencia goles = 1 (Equipo vencedor)</td>
+                                    <td class="px-2 py-2 whitespace-nowrap text-center font-medium">1</td>
+                                </tr>
+                                <tr class="transition-colors hover:bg-blue-50/50">
+                                    <td class="px-2 py-2 whitespace-nowrap font-bold text-slate-900 text-left">Marcador con diferencia goles = 2 (Equipo vencedor)</td>
+                                    <td class="px-2 py-2 whitespace-nowrap text-center font-medium">2</td>
+                                </tr>
+                                <tr class="transition-colors hover:bg-blue-50/50">
+                                    <td class="px-2 py-2 whitespace-nowrap font-bold text-slate-900 text-left">Marcador con diferencia goles >= 3 (Equipo vencedor)</td>
+                                    <td class="px-2 py-2 whitespace-nowrap text-center font-medium">3</td>
+                                </tr>
+                                <tr class="transition-colors hover:bg-blue-50/50">
+                                    <td class="px-2 py-2 whitespace-nowrap font-bold text-slate-900 text-left">Empate en el marcador (1 pto. cada jugador)</td>
+                                    <td class="px-2 py-2 whitespace-nowrap text-center font-medium">1</td>
+                                </tr>
+                                <tr class="transition-colors hover:bg-blue-50/50">
+                                    <td class="px-2 py-2 whitespace-nowrap font-bold text-slate-900 text-left">Defensas con porteria = 3 goles (Ambos equipos)</td>
+                                    <td class="px-2 py-2 whitespace-nowrap text-center font-medium">1</td>
+                                </tr>
+                                <tr class="transition-colors hover:bg-blue-50/50">
+                                    <td class="px-2 py-2 whitespace-nowrap font-bold text-slate-900 text-left">Defensas con porteria = 2 goles (Ambos equipos)</td>
+                                    <td class="px-2 py-2 whitespace-nowrap text-center font-medium">2</td>
+                                </tr>
+                                <tr class="transition-colors hover:bg-blue-50/50">
+                                    <td class="px-2 py-2 whitespace-nowrap font-bold text-slate-900 text-left">Defensas con porteria <= 1 gol (Ambos equipos)</td>
+                                    <td class="px-2 py-2 whitespace-nowrap text-center font-medium">3</td>
+                                </tr>
+                                <tr class="transition-colors hover:bg-blue-50/50">
+                                    <td class="px-2 py-2 whitespace-nowrap font-bold text-slate-900 text-left">Portero = 3 goles en un partido</td>
+                                    <td class="px-2 py-2 whitespace-nowrap text-center font-medium">1</td>
+                                </tr>
+                                <tr class="transition-colors hover:bg-blue-50/50">
+                                    <td class="px-2 py-2 whitespace-nowrap font-bold text-slate-900 text-left">Portero = 2 goles en un partido</td>
+                                    <td class="px-2 py-2 whitespace-nowrap text-center font-medium">2</td>
+                                </tr>
+                                <tr class="transition-colors hover:bg-blue-50/50">
+                                    <td class="px-2 py-2 whitespace-nowrap font-bold text-slate-900 text-left">Portero <= 1 goles en un partido</td>
+                                    <td class="px-2 py-2 whitespace-nowrap text-center font-medium">3</td>
+                                </tr>
+                            </tbody>
+                        </table>
                     </div>
                 </div>
             </div>
@@ -752,7 +794,7 @@
                     
                     <div>
                         <label for="alegacion-texto" class="block text-sm font-bold text-slate-700 mb-2">Motivo de la alegación</label>
-                        <textarea id="alegacion-texto" rows="10" class="w-full px-4 py-3 rounded-lg border border-slate-300 focus:ring-2 focus:ring-udablue-600 focus:border-transparent outline-none transition resize-none text-slate-700" placeholder="Expón aquí tus argumentos con todo detalle..." required></textarea>
+                        <textarea id="alegacion-texto" rows="20" class="w-full px-4 py-3 rounded-lg border border-slate-300 focus:ring-2 focus:ring-udablue-600 focus:border-transparent outline-none transition resize-none text-slate-700" placeholder="Expón aquí tus argumentos con todo detalle..." required></textarea>
                     </div>
 
                     <button type="submit" class="w-full bg-udablue-800 hover:bg-udablue-900 text-white font-bold py-4 rounded-xl transition duration-300 flex items-center justify-center gap-2 shadow-lg hover:shadow-xl transform hover:-translate-y-1">
@@ -1009,8 +1051,8 @@
             'table-container-regularidad': '2131181564',
             'table-container-defensa': '132385510',
             'table-container-zamora': '1108366683',
-            'table-container-eficiencia': '922129375',
-            'table-container-puntuacion': '2122834108' // Nuevo GID Puntuación
+            'table-container-eficiencia': '922129375'
+            // PUNTUACIÓN: Ya es estática, no hace falta aquí.
         };
 
         // Mapa para guardar fotos de jugadores { "NOMBRE MAYUS": "URL Foto" }
@@ -1081,7 +1123,8 @@
                     renderTable(containerId, results.data);
                 },
                 error: function(err) {
-                    document.getElementById(containerId).innerHTML = '<div class="text-red-500 text-center p-4 text-sm">Error cargando datos.</div>';
+                    const el = document.getElementById(containerId);
+                    if(el) el.innerHTML = '<div class="text-red-500 text-center p-4 text-sm">Error cargando datos.</div>';
                     console.error("Error parsing sheet:", err);
                 }
             });
@@ -1131,7 +1174,6 @@
                         } else if (index === dorsalColIndex) {
                             cellClasses += "text-center font-bold text-udablue-800"; 
                         } else {
-                            // Lógica para tabla PUNTUACIÓN: Primera columna alineada a la izquierda
                             // Si el encabezado contiene "Sistema", alineamos a la izquierda.
                             if (index === 0 && headers[0].toUpperCase().includes("SISTEMA")) {
                                 cellClasses += "text-left font-medium text-slate-700";
@@ -1145,7 +1187,8 @@
                 html += '</tr>';
             }
             html += '</tbody></table>';
-            document.getElementById(containerId).innerHTML = html;
+            const container = document.getElementById(containerId);
+            if(container) container.innerHTML = html;
         }
 
         // Función para enviar alegaciones por correo
