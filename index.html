@@ -15,9 +15,6 @@
     <!-- Font Awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
-    <!-- Markdown Parser (para las respuestas de la IA) -->
-    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
-
     <!-- PapaParse (para leer Google Sheets) -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/5.3.0/papaparse.min.js"></script>
 
@@ -92,12 +89,6 @@
             scrollbar-width: none;
         }
 
-        /* Estilos para el Markdown generado */
-        .markdown-body p { margin-bottom: 1em; }
-        .markdown-body h3 { font-weight: bold; font-size: 1.25em; margin-top: 1.5em; margin-bottom: 0.5em; color: #1e3a8a; }
-        .markdown-body ul { list-style-type: disc; margin-left: 1.5em; margin-bottom: 1em; }
-        .markdown-body strong { color: #0f172a; }
-
         /* Efecto Glassmorphism para botones */
         .btn-glass {
             background: rgba(255, 255, 255, 0.1);
@@ -163,7 +154,8 @@
                     <a href="#jornadas" class="text-slate-600 hover:text-udablue-600 font-medium transition text-sm uppercase tracking-wide">Jornadas</a>
                     <a href="#cronicas" class="text-slate-600 hover:text-udablue-600 font-medium transition text-sm uppercase tracking-wide">Crónicas</a>
                     <a href="#clasificacion" class="text-slate-600 hover:text-udablue-600 font-medium transition text-sm uppercase tracking-wide">Estadísticas</a>
-                    <a href="#herramientas-ia" class="text-udablue-600 hover:text-udablue-800 font-bold transition text-sm uppercase tracking-wide flex items-center gap-1"><i class="fas fa-magic"></i> IA</a>
+                    <a href="#puntuacion" class="text-slate-600 hover:text-udablue-600 font-medium transition text-sm uppercase tracking-wide">Puntuación</a>
+                    <a href="#alegaciones" class="text-udablue-600 hover:text-udablue-800 font-bold transition text-sm uppercase tracking-wide border border-udablue-600 rounded px-3 py-1">Alegaciones</a>
                 </div>
 
                 <!-- Botón Menú Móvil -->
@@ -182,7 +174,8 @@
                 <a href="#jornadas" class="block px-3 py-3 rounded-md text-base font-medium text-slate-700 hover:text-udablue-600 hover:bg-slate-50">Jornadas</a>
                 <a href="#cronicas" class="block px-3 py-3 rounded-md text-base font-medium text-slate-700 hover:text-udablue-600 hover:bg-slate-50">Crónicas</a>
                 <a href="#clasificacion" class="block px-3 py-3 rounded-md text-base font-medium text-slate-700 hover:text-udablue-600 hover:bg-slate-50">Estadísticas</a>
-                <a href="#herramientas-ia" class="block px-3 py-3 rounded-md text-base font-bold text-udablue-600 hover:bg-slate-50">✨ Herramientas IA</a>
+                <a href="#puntuacion" class="block px-3 py-3 rounded-md text-base font-medium text-slate-700 hover:text-udablue-600 hover:bg-slate-50">Puntuación</a>
+                <a href="#alegaciones" class="block px-3 py-3 rounded-md text-base font-bold text-udablue-600 hover:bg-slate-50">Alegaciones</a>
             </div>
         </div>
     </nav>
@@ -195,7 +188,7 @@
         </div>
 
         <!-- Etiqueta Temporada -->
-        <div class="absolute top-24 right-4 md:top-28 md:right-12 z-20 reveal">
+        <div class="relative mt-24 mb-4 md:mt-0 md:mb-0 md:absolute md:top-28 md:right-12 z-20 reveal text-center md:text-right">
              <span class="inline-block py-2 px-4 rounded-full bg-white/10 border border-white/30 text-white text-sm font-bold backdrop-blur-md shadow-lg">
                 Temporada 2025 - 2026
             </span>
@@ -203,8 +196,7 @@
 
         <div class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 text-center">
             <h1 class="text-4xl md:text-6xl lg:text-7xl font-heading font-extrabold text-white leading-tight mb-6 reveal drop-shadow-lg">
-                El Partido de los Sábados<br>
-                <span class="text-blue-300"></span>
+                El Partido de los Sábados
             </h1>
             <p class="mt-4 max-w-2xl mx-auto text-xl text-gray-200 mb-10 reveal font-light">
                 Fútbol, amigos, piques sanos y un tercer tiempo en el Lengüetas.
@@ -228,7 +220,7 @@
         </div>
     </section>
 
-    <!-- SECCIÓN JORNADAS (RESULTADOS REALES CORREGIDOS) -->
+    <!-- SECCIÓN JORNADAS -->
     <section id="jornadas" class="py-20 bg-slate-50">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="text-center mb-16 reveal">
@@ -238,6 +230,21 @@
             </div>
 
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 reveal">
+                <!-- J12 -->
+                <div class="bg-white rounded-2xl overflow-hidden shadow-md hover:shadow-xl transition duration-300 flex flex-col border border-gray-100 group">
+                    <div class="relative h-56 overflow-hidden">
+                        <img src="https://drive.google.com/thumbnail?id=1-AgY75VZ7XnSugxjNH_Cs5jywg-aaKcQ&sz=w1000" onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1579952363873-27f3bade9f55?q=80&w=1000&auto=format&fit=crop';" alt="Jornada 12" class="w-full h-full object-cover group-hover:scale-105 transition duration-500 zoom-cursor" onclick="openImageModal(this.src, 'Jornada 12: El motrileño sorpresa')">
+                        <div class="absolute top-0 right-0 bg-udablue-600 text-white text-xs font-bold px-3 py-1 rounded-bl-lg pointer-events-none">Jornada 12</div>
+                    </div>
+                    <div class="p-5">
+                        <div class="flex justify-between items-center mb-3">
+                            <span class="text-xs font-bold text-slate-400 uppercase tracking-wider">22 Noviembre 2025</span>
+                            <span class="bg-green-100 text-green-800 text-xs font-bold px-2 py-1 rounded">3 - 2</span>
+                        </div>
+                        <h3 class="text-lg font-bold text-slate-800 mb-1">3 - 2. El motrileño llegó y venció.</h3>
+                    </div>
+                </div>
+
                 <!-- J11 -->
                 <div class="bg-white rounded-2xl overflow-hidden shadow-md hover:shadow-xl transition duration-300 flex flex-col border border-gray-100 group">
                     <div class="relative h-56 overflow-hidden">
@@ -417,6 +424,20 @@
             </div>
 
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- J12 -->
+                <article class="bg-slate-50 rounded-2xl overflow-hidden shadow-md hover:shadow-2xl transition duration-300 flex flex-col h-full reveal card-hover border border-slate-100">
+                    <div class="relative h-64 overflow-hidden">
+                        <img src="https://drive.google.com/thumbnail?id=11Feo67lurQx4zLQ0zx_DqWdpQG6GdxO8&sz=w1000" onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1511886929837-354d827aae26?q=80&w=800&auto=format&fit=crop';" alt="Jornada 12" class="w-full h-full object-cover">
+                        <div class="absolute top-4 right-4 bg-udablue-600 text-white text-xs font-bold px-3 py-1 rounded-full">Jornada 12</div>
+                    </div>
+                    <div class="p-6 flex-1 flex flex-col">
+                        <div class="text-sm text-slate-500 mb-3"><i class="far fa-calendar-alt mr-2"></i> 22 Noviembre 2025</div>
+                        <h3 class="text-xl font-heading font-bold text-slate-800 mb-3">Victoria blanca con sabor motrileño</h3>
+                        <p class="text-slate-600 text-sm line-clamp-3 flex-1">Pendiente de redacción...</p>
+                        <button onclick="openModal('modal-j12')" class="mt-4 text-udablue-600 font-bold text-sm hover:text-udablue-800 flex items-center self-start">Leer completa <i class="fas fa-arrow-right ml-1"></i></button>
+                    </div>
+                </article>
+
                 <!-- J11 -->
                 <article class="bg-slate-50 rounded-2xl overflow-hidden shadow-md hover:shadow-2xl transition duration-300 flex flex-col h-full reveal card-hover border border-slate-100">
                     <div class="relative h-64 overflow-hidden">
@@ -688,23 +709,57 @@
         </div>
     </section>
 
-    <!-- HERRAMIENTAS IA -->
-    <section id="herramientas-ia" class="py-20 bg-white border-t border-slate-100">
-        <div class="max-w-5xl mx-auto px-4 text-center">
-            <h2 class="text-3xl font-heading font-bold text-slate-900 mb-8">Herramientas IA ✨</h2>
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
-                <div class="p-8 bg-slate-50 rounded-xl border border-slate-200 shadow-sm hover:shadow-md transition">
-                    <i class="fas fa-feather-alt text-4xl text-udablue-600 mb-4"></i>
-                    <h3 class="text-xl font-bold mb-2">Cronista IA</h3>
-                    <p class="text-slate-600 mb-4">Redacta crónicas épicas automáticamente.</p>
-                    <button onclick="openIAModal('modal-cronista')" class="w-full py-2 bg-udablue-800 text-white rounded font-bold">Probar</button>
+    <!-- SISTEMA DE PUNTUACIÓN -->
+    <section id="puntuacion" class="py-20 bg-white border-t border-slate-100">
+        <div class="max-w-5xl mx-auto px-4">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl font-heading font-bold text-slate-900">Sistema de Puntuación</h2>
+                <p class="text-slate-600 mt-2">Reglas para la asignación de puntos.</p>
+            </div>
+            
+            <div class="flex flex-col items-center gap-12">
+                <!-- Imagen del sistema -->
+                <div class="w-full max-w-3xl rounded-xl overflow-hidden shadow-lg border border-slate-200 reveal">
+                    <img src="https://drive.google.com/thumbnail?id=1AKUsNdLDKd5XfYfTCuPtvT6ruXbpaXy_&sz=w1000" alt="Sistema de Puntuación Visual" class="w-full h-auto">
                 </div>
-                <div class="p-8 bg-slate-50 rounded-xl border border-slate-200 shadow-sm hover:shadow-md transition">
-                    <i class="fas fa-users text-4xl text-green-600 mb-4"></i>
-                    <h3 class="text-xl font-bold mb-2">Míster IA</h3>
-                    <p class="text-slate-600 mb-4">Genera equipos equilibrados y divertidos.</p>
-                    <button onclick="openIAModal('modal-mister')" class="w-full py-2 bg-green-700 text-white rounded font-bold">Probar</button>
+
+                <!-- Tabla de Puntuación -->
+                <div class="w-full max-w-4xl bg-slate-50 rounded-2xl shadow-md border border-slate-200 p-6 reveal">
+                    <div id="table-container-puntuacion" class="overflow-x-auto">
+                        <div class="flex items-center justify-center h-32 text-slate-400">
+                            <i class="fas fa-circle-notch fa-spin mr-2"></i> Cargando tabla de puntos...
+                        </div>
+                    </div>
                 </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ALEGACIONES -->
+    <section id="alegaciones" class="py-20 bg-slate-50 border-t border-slate-200">
+        <div class="max-w-3xl mx-auto px-4">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl font-heading font-bold text-udablue-800">Alegaciones</h2>
+                <p class="text-slate-600 mt-2">¿No estás de acuerdo con algo? Envía tu reclamación al comité.</p>
+            </div>
+
+            <div class="bg-white rounded-2xl shadow-xl p-8 border border-slate-100 reveal">
+                <form onsubmit="event.preventDefault(); sendAllegation();" class="space-y-6">
+                    <div>
+                        <label for="alegacion-jornada" class="block text-sm font-bold text-slate-700 mb-2">Jornada</label>
+                        <input type="text" id="alegacion-jornada" class="w-full px-4 py-3 rounded-lg border border-slate-300 focus:ring-2 focus:ring-udablue-600 focus:border-transparent outline-none transition" placeholder="Ej: Jornada 12" required>
+                    </div>
+                    
+                    <div>
+                        <label for="alegacion-texto" class="block text-sm font-bold text-slate-700 mb-2">Motivo de la alegación</label>
+                        <textarea id="alegacion-texto" rows="20" class="w-full px-4 py-3 rounded-lg border border-slate-300 focus:ring-2 focus:ring-udablue-600 focus:border-transparent outline-none transition resize-none text-slate-700" placeholder="Expón aquí tus argumentos con todo detalle..." required></textarea>
+                    </div>
+
+                    <button type="submit" class="w-full bg-udablue-800 hover:bg-udablue-900 text-white font-bold py-4 rounded-xl transition duration-300 flex items-center justify-center gap-2 shadow-lg hover:shadow-xl transform hover:-translate-y-1">
+                        <i class="fas fa-paper-plane"></i> Enviar Alegación
+                    </button>
+                    <p class="text-center text-xs text-slate-400 mt-4">Se abrirá tu gestor de correo predeterminado para enviar el mensaje.</p>
+                </form>
             </div>
         </div>
     </section>
@@ -714,7 +769,7 @@
         <p>&copy; 2025 Partido de los Sábados.</p>
     </footer>
 
-    <!-- MODALES (Crónicas + IA + IMAGEN) -->
+    <!-- MODALES (Crónicas + IMAGEN) -->
     <div id="modal-backdrop" class="fixed inset-0 bg-black/70 z-[60] hidden transition-opacity duration-300" onclick="closeModal()"></div>
 
     <!-- Modal Imagen (Lightbox) -->
@@ -723,6 +778,18 @@
             <button onclick="closeModal()" class="absolute top-4 right-4 text-white hover:text-gray-300 text-4xl z-50"><i class="fas fa-times"></i></button>
             <img id="lightbox-img" src="" alt="Imagen ampliada" class="max-w-full max-h-[85vh] object-contain rounded-lg shadow-2xl">
             <h3 id="lightbox-caption" class="text-white text-xl font-bold mt-4 text-center drop-shadow-md"></h3>
+        </div>
+    </div>
+
+    <!-- Modal J12 (NUEVA) -->
+    <div id="modal-j12" class="modal-content fixed inset-0 z-[70] flex items-center justify-center hidden pointer-events-none">
+        <div class="bg-white w-full max-w-2xl max-h-[90vh] overflow-y-auto rounded-xl p-8 m-4 pointer-events-auto relative">
+            <button onclick="closeModal()" class="absolute top-4 right-4 text-2xl"><i class="fas fa-times"></i></button>
+            <h3 class="text-2xl font-bold text-udablue-800 mb-4">Jornada 12</h3>
+            <div class="prose text-slate-700">
+                <p><strong>[Texto de la crónica pendiente de recibir]</strong></p>
+                <p>Aquí irá el texto completo de la jornada 12. Puedes editar este HTML y pegar el texto que desees.</p>
+            </div>
         </div>
     </div>
 
@@ -863,32 +930,7 @@
         </div>
     </div>
 
-    <!-- Modal IA Cronista -->
-    <div id="modal-cronista" class="modal-content fixed inset-0 z-[80] flex items-center justify-center hidden pointer-events-none">
-        <div class="bg-white w-full max-w-xl rounded-xl p-6 m-4 pointer-events-auto relative flex flex-col max-h-[90vh]">
-            <button onclick="closeModal()" class="absolute top-4 right-4 text-xl"><i class="fas fa-times"></i></button>
-            <h3 class="text-xl font-bold text-slate-900 mb-4">Asistente de Crónicas</h3>
-            <textarea id="chronicleInput" rows="4" class="w-full p-3 border rounded mb-4" placeholder="Datos del partido..."></textarea>
-            <button id="btnGenerateChronicle" onclick="generateChronicle()" class="bg-udablue-800 text-white px-4 py-2 rounded font-bold">Generar</button>
-            <div id="chronicleOutput" class="hidden mt-4 p-4 bg-slate-50 rounded border h-48 overflow-y-auto markdown-body"></div>
-        </div>
-    </div>
-
-    <!-- Modal IA Míster -->
-    <div id="modal-mister" class="modal-content fixed inset-0 z-[80] flex items-center justify-center hidden pointer-events-none">
-        <div class="bg-white w-full max-w-xl rounded-xl p-6 m-4 pointer-events-auto relative flex flex-col max-h-[90vh]">
-            <button onclick="closeModal()" class="absolute top-4 right-4 text-xl"><i class="fas fa-times"></i></button>
-            <h3 class="text-xl font-bold text-slate-900 mb-4">El Míster IA</h3>
-            <textarea id="playersInput" rows="4" class="w-full p-3 border rounded mb-4" placeholder="Lista de jugadores..."></textarea>
-            <button id="btnGenerateTeams" onclick="generateTeams()" class="bg-green-700 text-white px-4 py-2 rounded font-bold">Generar Equipos</button>
-            <div id="teamsOutput" class="hidden mt-4 p-4 bg-slate-50 rounded border h-48 overflow-y-auto markdown-body"></div>
-        </div>
-    </div>
-
     <script>
-        // Configuración API
-        const apiKey = "";
-
         // Menú Móvil
         const mobileMenuBtn = document.getElementById('mobile-menu-btn');
         const mobileMenu = document.getElementById('mobile-menu');
@@ -911,7 +953,6 @@
             document.getElementById(modalId).classList.remove('hidden');
             document.body.classList.add('modal-open');
         }
-        function openIAModal(modalId) { openModal(modalId); }
         function closeModal() {
             document.getElementById('modal-backdrop').classList.add('hidden');
             document.querySelectorAll('.modal-content').forEach(el => el.classList.add('hidden'));
@@ -968,7 +1009,8 @@
             'table-container-regularidad': '2131181564',
             'table-container-defensa': '132385510',
             'table-container-zamora': '1108366683',
-            'table-container-eficiencia': '922129375'
+            'table-container-eficiencia': '922129375',
+            'table-container-puntuacion': '2122834108' // Nuevo GID Puntuación
         };
 
         // Mapa para guardar fotos de jugadores { "NOMBRE MAYUS": "URL Foto" }
@@ -977,32 +1019,22 @@
         // Función auxiliar para limpiar enlaces de Google Drive
         function cleanGoogleDriveUrl(url) {
             if (!url) return '';
-            // Si es un enlace de 'view' o 'open', lo convertimos a exportación directa
             if (url.includes('drive.google.com')) {
-                // Extraer ID
                 let id = '';
                 const parts = url.split('/');
-                // Caso /file/d/ID/view
                 const dIndex = parts.indexOf('d');
                 if (dIndex !== -1 && parts.length > dIndex + 1) {
                     id = parts[dIndex + 1];
-                } 
-                // Caso id=ID
-                else if (url.includes('id=')) {
+                } else if (url.includes('id=')) {
                     id = url.split('id=')[1].split('&')[0];
                 }
-
-                if (id) {
-                    return `https://drive.google.com/uc?export=view&id=${id}`;
-                }
+                if (id) return `https://drive.google.com/uc?export=view&id=${id}`;
             }
             return url;
         }
 
         // 1. Cargar primero las imágenes de los jugadores
         function loadPlayerImages() {
-            // --- ANULACIONES MANUALES ---
-            // Aquí puedes forzar imágenes específicas si fallan en la hoja de cálculo
             const manualOverrides = {
                 "TONI": "https://drive.google.com/uc?export=view&id=1LfC31jLds0Ewtpkd-MCLJOm_hwkto0it"
             };
@@ -1013,37 +1045,22 @@
                 complete: function(results) {
                     if(results.data && results.data.length > 0) {
                         results.data.forEach(row => {
-                            // Búsqueda flexible de columnas
                             const keys = Object.keys(row);
-                            const nameKey = keys.find(k => {
-                                const upper = k.toUpperCase();
-                                return upper.includes("NOMBRE") || upper.includes("JUGADOR");
-                            });
-                            
-                            const photoKey = keys.find(k => {
-                                const upper = k.toUpperCase();
-                                return upper.includes("FOTO") || upper.includes("IMAGEN") || upper.includes("LINK") || upper.includes("URL");
-                            });
+                            const nameKey = keys.find(k => k.toUpperCase().includes("NOMBRE") || k.toUpperCase().includes("JUGADOR"));
+                            const photoKey = keys.find(k => k.toUpperCase().includes("FOTO") || k.toUpperCase().includes("IMAGEN") || k.toUpperCase().includes("LINK") || k.toUpperCase().includes("URL"));
                             
                             if (nameKey && photoKey && row[nameKey]) {
                                 const cleanName = row[nameKey].trim().toUpperCase();
                                 const cleanUrl = cleanGoogleDriveUrl(row[photoKey]);
-                                if(cleanUrl) {
-                                    playerImages[cleanName] = cleanUrl;
-                                }
+                                if(cleanUrl) playerImages[cleanName] = cleanUrl;
                             }
                         });
                     }
-                    
-                    // Aplicar las anulaciones manuales (sobrescriben lo que venga del Excel)
                     Object.assign(playerImages, manualOverrides);
-
-                    console.log("Imágenes cargadas:", Object.keys(playerImages).length); // Debug
                     loadAllStats();
                 },
                 error: function(err) {
                     console.warn("Error cargando imágenes", err);
-                    // Incluso si falla la carga, aplicamos las manuales
                     Object.assign(playerImages, manualOverrides);
                     loadAllStats(); 
                 }
@@ -1064,7 +1081,7 @@
                     renderTable(containerId, results.data);
                 },
                 error: function(err) {
-                    document.getElementById(containerId).innerHTML = '<div class="text-red-500 text-center p-4 text-sm">Error cargando datos.<br>Si ves esto desde WhatsApp/Móvil, es por restricciones de seguridad del archivo.<br>Sube la web a un servidor gratuito como GitHub Pages.</div>';
+                    document.getElementById(containerId).innerHTML = '<div class="text-red-500 text-center p-4 text-sm">Error cargando datos.</div>';
                     console.error("Error parsing sheet:", err);
                 }
             });
@@ -1074,13 +1091,10 @@
             if (!data || data.length === 0) return;
 
             let html = '<table class="min-w-full modern-table text-xs text-left text-slate-600">';
-            
-            // Detectar índices de columnas especiales
             const headers = data[0];
             const playerColIndex = headers.findIndex(h => h.toUpperCase().includes("JUGADOR") || h.toUpperCase().includes("NOMBRE"));
             const dorsalColIndex = headers.findIndex(h => h.toUpperCase().includes("DORSAL"));
 
-            // Cabecera
             html += '<thead class="text-[10px] md:text-xs uppercase bg-udablue-800 text-white">';
             html += '<tr>';
             headers.forEach((cell, index) => {
@@ -1090,7 +1104,6 @@
             });
             html += '</tr></thead>';
 
-            // Cuerpo
             html += '<tbody class="divide-y divide-slate-100">';
             for (let i = 1; i < data.length; i++) {
                 const row = data[i];
@@ -1099,80 +1112,48 @@
                 html += '<tr class="transition-colors hover:bg-blue-50/50">';
                 row.forEach((cell, index) => {
                      if(index < headers.length && headers[index].trim() !== "") {
-                        
                         let cellContent = cell;
                         let cellClasses = "px-2 py-2 whitespace-nowrap ";
                         
-                        // Lógica especial para columna JUGADOR (FOTO + NOMBRE)
                         if (index === playerColIndex) {
                             cellClasses += "font-bold text-slate-900 text-left";
                             const rawName = cell.trim();
                             const playerPhoto = playerImages[rawName.toUpperCase()] || 'https://cdn-icons-png.flaticon.com/512/847/847969.png'; 
-                            
                             cellContent = `
                                 <div class="flex items-center gap-2">
                                     <img src="${playerPhoto}" alt="Foto" class="player-avatar shadow-sm bg-white" onerror="this.onerror=null; this.src='https://cdn-icons-png.flaticon.com/512/847/847969.png'">
                                     <span>${rawName}</span>
                                 </div>
                             `;
-                        } 
-                        // Lógica especial para columna DORSAL (Centrado)
-                        else if (index === dorsalColIndex) {
+                        } else if (index === dorsalColIndex) {
                             cellClasses += "text-center font-bold text-udablue-800"; 
-                        }
-                        // Resto de columnas (Centradas por defecto para datos numéricos)
-                        else {
+                        } else {
                             cellClasses += "text-center font-medium";
                         }
-                        
                         html += `<td class="${cellClasses}">${cellContent}</td>`;
                      }
                 });
                 html += '</tr>';
             }
             html += '</tbody></table>';
-
             document.getElementById(containerId).innerHTML = html;
+        }
+
+        // Función para enviar alegaciones por correo
+        function sendAllegation() {
+            const jornada = document.getElementById('alegacion-jornada').value;
+            const texto = document.getElementById('alegacion-texto').value;
+            const email = "juanluis.moyano@gmail.com";
+            const subject = `Alegación ${jornada}`;
+            const body = encodeURIComponent(texto);
+            
+            window.location.href = `mailto:${email}?subject=${subject}&body=${body}`;
         }
 
         // Iniciar carga de datos al cargar la página
         window.addEventListener('DOMContentLoaded', () => {
             loadPlayerImages();
         });
-
-
-        // IA Functions
-        async function callGeminiAPI(prompt) {
-            try {
-                const response = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash-preview-09-2025:generateContent?key=${apiKey}`, {
-                    method: 'POST',
-                    headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify({ contents: [{ parts: [{ text: prompt }] }] })
-                });
-                const data = await response.json();
-                return data.candidates[0].content.parts[0].text;
-            } catch (error) { return "Error al conectar con IA."; }
-        }
-
-        async function generateChronicle() {
-            const input = document.getElementById('chronicleInput').value;
-            const output = document.getElementById('chronicleOutput');
-            if(!input) return alert("Escribe algo.");
-            output.classList.remove('hidden');
-            output.innerHTML = "Pensando...";
-            const result = await callGeminiAPI("Escribe una crónica de fútbol amateur divertida con estos datos: " + input);
-            output.innerHTML = marked.parse(result);
-        }
-
-        async function generateTeams() {
-            const input = document.getElementById('playersInput').value;
-            const output = document.getElementById('teamsOutput');
-            if(!input) return alert("Escribe jugadores.");
-            output.classList.remove('hidden');
-            output.innerHTML = "Calculando...";
-            const result = await callGeminiAPI("Genera 2 equipos equilibrados y divertidos con estos nombres: " + input);
-            output.innerHTML = marked.parse(result);
-        }
     </script>
 </body>
 </html>
