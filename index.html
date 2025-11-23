@@ -369,7 +369,7 @@
                 <div class="bg-white rounded-2xl overflow-hidden shadow-md hover:shadow-xl transition duration-300 flex flex-col border border-gray-100 group">
                     <div class="relative h-56 overflow-hidden">
                         <img src="https://drive.google.com/thumbnail?id=1gxnOWj2xS07IT2FfFN7uuZCf9gBz0c2g&sz=w1000" alt="Jornada 3" class="w-full h-full object-cover group-hover:scale-105 transition duration-500 zoom-cursor" onclick="openImageModal(this.src, 'Jornada 3: Lucha de poder a poder')">
-                        <div class="absolute top-0 right-0 bg-udablue-600 text-white text-xs font-bold px-3 py-1 rounded-bl-lg pointer-events-none">Jornada 3</div>
+                        <div class="absolute top-0 right-0 bg-udablue-600 text-white text-xs font-bold px-3 py-1 rounded-full">Jornada 3</div>
                     </div>
                     <div class="p-5">
                         <div class="flex justify-between items-center mb-3">
@@ -1095,6 +1095,7 @@
             const playerColIndex = headers.findIndex(h => h.toUpperCase().includes("JUGADOR") || h.toUpperCase().includes("NOMBRE"));
             const dorsalColIndex = headers.findIndex(h => h.toUpperCase().includes("DORSAL"));
 
+            // Cabecera
             html += '<thead class="text-[10px] md:text-xs uppercase bg-udablue-800 text-white">';
             html += '<tr>';
             headers.forEach((cell, index) => {
@@ -1104,6 +1105,7 @@
             });
             html += '</tr></thead>';
 
+            // Cuerpo
             html += '<tbody class="divide-y divide-slate-100">';
             for (let i = 1; i < data.length; i++) {
                 const row = data[i];
@@ -1115,6 +1117,7 @@
                         let cellContent = cell;
                         let cellClasses = "px-2 py-2 whitespace-nowrap ";
                         
+                        // Lógica Específica por columna
                         if (index === playerColIndex) {
                             cellClasses += "font-bold text-slate-900 text-left";
                             const rawName = cell.trim();
@@ -1128,7 +1131,13 @@
                         } else if (index === dorsalColIndex) {
                             cellClasses += "text-center font-bold text-udablue-800"; 
                         } else {
-                            cellClasses += "text-center font-medium";
+                            // Lógica para tabla PUNTUACIÓN: Primera columna alineada a la izquierda
+                            // Si el encabezado contiene "Sistema", alineamos a la izquierda.
+                            if (index === 0 && headers[0].toUpperCase().includes("SISTEMA")) {
+                                cellClasses += "text-left font-medium text-slate-700";
+                            } else {
+                                cellClasses += "text-center font-medium";
+                            }
                         }
                         html += `<td class="${cellClasses}">${cellContent}</td>`;
                      }
@@ -1143,6 +1152,15 @@
         function sendAllegation() {
             const jornada = document.getElementById('alegacion-jornada').value;
             const texto = document.getElementById('alegacion-texto').value;
+            
+            if (!jornada || !texto) {
+                alert("Por favor, rellena todos los campos.");
+                return;
+            }
+
+            // Mensaje de aviso para el usuario
+            alert("Se abrirá tu aplicación de correo electrónico predeterminada. Por favor, pulsa 'Enviar' en la ventana que aparecerá para confirmar el envío.");
+
             const email = "juanluis.moyano@gmail.com";
             const subject = `Alegación ${jornada}`;
             const body = encodeURIComponent(texto);
