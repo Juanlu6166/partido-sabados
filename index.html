@@ -230,18 +230,18 @@
             </div>
 
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 reveal">
-                 <!-- J13 (NUEVA) -->
+                 <!-- J13 (NUEVA - ACTUALIZADA CON DATOS IMAGEN Y URL DRIVE) -->
                  <div class="bg-white rounded-2xl overflow-hidden shadow-md hover:shadow-xl transition duration-300 flex flex-col border border-gray-100 group">
                     <div class="relative h-56 overflow-hidden">
-                        <img src="https://drive.google.com/thumbnail?id=10io4Pn7kHGAjK8pikOndhAFNYIMpbEQE" onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1579952363873-27f3bade9f55?q=80&w=1000&auto=format&fit=crop';" alt="Jornada 13" class="w-full h-full object-cover group-hover:scale-105 transition duration-500 zoom-cursor" onclick="openImageModal(this.src, 'Jornada 13: Superioridad Blanca')">
+                        <img src="https://drive.google.com/thumbnail?id=10io4Pn7kHGAjK8pikOndhAFNYIMpbEQE&sz=w1000" onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1579952363873-27f3bade9f55?q=80&w=1000&auto=format&fit=crop';" alt="Jornada 13" class="w-full h-full object-cover group-hover:scale-105 transition duration-500 zoom-cursor" onclick="openImageModal(this.src, 'Jornada 13: Victoria Blanca (3-1)')">
                         <div class="absolute top-0 right-0 bg-udablue-600 text-white text-xs font-bold px-3 py-1 rounded-bl-lg pointer-events-none">Jornada 13</div>
                     </div>
                     <div class="p-5">
                         <div class="flex justify-between items-center mb-3">
                             <span class="text-xs font-bold text-slate-400 uppercase tracking-wider">29 Noviembre 2025</span>
-                            <span class="bg-green-100 text-green-800 text-xs font-bold px-2 py-1 rounded">3  -  1</span>
+                            <span class="bg-green-100 text-green-800 text-xs font-bold px-2 py-1 rounded">3 - 1</span>
                         </div>
-                        <h3 class="text-lg font-bold text-slate-800 mb-1">Superioridad blanca, en marcador y en número de jugadores.</h3>
+                        <h3 class="text-lg font-bold text-slate-800 mb-1">3 - 1. Luque MVP en la victoria Blanca.</h3>
                     </div>
                 </div>
 
@@ -422,20 +422,6 @@
             </div>
 
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                <!-- J13 (NUEVA) -->
-                <article class="bg-slate-50 rounded-2xl overflow-hidden shadow-md hover:shadow-2xl transition duration-300 flex flex-col h-full reveal card-hover border border-slate-100">
-                    <div class="relative h-64 overflow-hidden">
-                        <img src="https://drive.google.com/thumbnail?id=1fD_xLvj8VgJ735jq28dz-_kvaS3SG44S" onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1511886929837-354d827aae26?q=80&w=800&auto=format&fit=crop';" alt="Jornada 13" class="w-full h-full object-cover">
-                        <div class="absolute top-4 right-4 bg-udablue-600 text-white text-xs font-bold px-3 py-1 rounded-full">Jornada 13</div>
-                    </div>
-                    <div class="p-6 flex-1 flex flex-col">
-                        <div class="text-sm text-slate-500 mb-3"><i class="far fa-calendar-alt mr-2"></i> 29 Noviembre 2025</div>
-                        <h3 class="text-xl font-heading font-bold text-slate-800 mb-3">Superioridad blanca</h3>
-                        <p class="text-slate-600 text-sm line-clamp-3 flex-1">Superioridad blanca en número de jugadores y marcador...</p>
-                        <button onclick="openModal('modal-j13')" class="mt-4 text-udablue-600 font-bold text-sm hover:text-udablue-800 flex items-center self-start">Leer completa <i class="fas fa-arrow-right ml-1"></i></button>
-                    </div>
-                </article>
-
                 <!-- J12 -->
                 <article class="bg-slate-50 rounded-2xl overflow-hidden shadow-md hover:shadow-2xl transition duration-300 flex flex-col h-full reveal card-hover border border-slate-100">
                     <div class="relative h-64 overflow-hidden">
@@ -851,19 +837,26 @@
             <h3 id="lightbox-caption" class="text-white text-xl font-bold mt-4 text-center drop-shadow-md"></h3>
         </div>
     </div>
-    
-    <!-- Modal J13 (NUEVA) -->
+
+    <!-- Modal J13 (NUEVA - ACTUALIZADA) -->
     <div id="modal-j13" class="modal-content fixed inset-0 z-[70] flex items-center justify-center hidden pointer-events-none">
         <div class="bg-white w-full max-w-2xl max-h-[90vh] overflow-y-auto rounded-xl p-8 m-4 pointer-events-auto relative">
             <button onclick="closeModal()" class="absolute top-4 right-4 text-2xl"><i class="fas fa-times"></i></button>
             <h3 class="text-2xl font-bold text-udablue-800 mb-4">Jornada 13</h3>
             <div class="prose text-slate-700">
-                <p>Superioridad blanca en número de jugadores y marcador.</p>
+                <p><strong>Resultado Final:</strong> Blancos 3 - 1 Azules</p>
+                <p><strong>MVP:</strong> Luque (Dorsal 25, Blancos)</p>
+                <hr class="my-4 border-slate-200">
+                <h4 class="font-bold text-udablue-600 mb-2">Resumen del Encuentro</h4>
+                <p>Victoria contundente de los Blancos (Valoración 44) frente a los Azules (Valoración 8). El equipo blanco, con superioridad numérica (9 jugadores vs 8 jugadores), supo imponer su ritmo en el campo.</p>
+                <p class="mt-2"><strong>Alineación Blancos:</strong> Miguel (7), Vicente (28), Jorge (24), Monty (16), Fer (38), Miguel (5), Fede (32), Luque (25 - MVP) y Nono (34).</p>
+                <p class="mt-2"><strong>Alineación Azules:</strong> Antonio (9), Fran (22), Rafa (8), Carmelo (11), Julian (4), Carmelo (23), Toni (14) y Juan (33).</p>
+                <p class="italic text-sm mt-4 text-slate-500">Datos extraídos de la imagen oficial del partido.</p>
             </div>
         </div>
     </div>
 
-    <!-- Modal J12 (NUEVA) -->
+    <!-- Modal J12 -->
     <div id="modal-j12" class="modal-content fixed inset-0 z-[70] flex items-center justify-center hidden pointer-events-none">
         <div class="bg-white w-full max-w-2xl max-h-[90vh] overflow-y-auto rounded-xl p-8 m-4 pointer-events-auto relative">
             <button onclick="closeModal()" class="absolute top-4 right-4 text-2xl"><i class="fas fa-times"></i></button>
@@ -1041,13 +1034,28 @@
             document.body.classList.remove('modal-open');
         }
         
-        // Función específica para abrir imágenes
+        // Función específica para abrir imágenes y FORZAR tamaño grande en Drive
         function openImageModal(src, title) {
             const modal = document.getElementById('modal-image');
             const img = document.getElementById('lightbox-img');
             const caption = document.getElementById('lightbox-caption');
             
-            img.src = src;
+            // LÓGICA MEJORADA: Forzar alta resolución para imágenes de Google Drive
+            let highResSrc = src;
+            
+            if (src.includes('drive.google.com') && (src.includes('thumbnail') || src.includes('export=view'))) {
+                // Si el enlace ya tiene un parámetro de tamaño (sz=...), lo reemplazamos por w2000
+                if (src.includes('sz=')) {
+                    highResSrc = src.replace(/sz=w\d+/, 'sz=w2000');
+                } else {
+                    // Si no tiene parámetro de tamaño, se lo añadimos
+                    // Dependiendo del tipo de enlace, usamos & o ?
+                    const separator = src.includes('?') ? '&' : '?';
+                    highResSrc = src + separator + 'sz=w2000';
+                }
+            }
+            
+            img.src = highResSrc;
             caption.innerText = title || '';
             
             document.getElementById('modal-backdrop').classList.remove('hidden');
