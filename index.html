@@ -134,6 +134,50 @@
             background-color: #f1f5f9;
             flex-shrink: 0;
         }
+
+        /* --- ANIMACIONES PARA LA GALERÍA DE EVENTOS --- */
+        
+        /* 1. Zoom In (De pequeño a grande) */
+        @keyframes zoomInImpact {
+            0% { transform: scale(0); opacity: 0; }
+            60% { transform: scale(1.1); opacity: 1; }
+            100% { transform: scale(1); }
+        }
+        .anim-zoom { animation: zoomInImpact 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards; }
+
+        /* 2. Rotate In (Dando vueltas) */
+        @keyframes rotateInImpact {
+            0% { transform: rotate(-720deg) scale(0); opacity: 0; }
+            100% { transform: rotate(0) scale(1); opacity: 1; }
+        }
+        .anim-rotate { animation: rotateInImpact 1s ease-out forwards; }
+
+        /* 3. Bounce In (Rebotando) */
+        @keyframes bounceInImpact {
+            0% { transform: translateY(-500px); opacity: 0; }
+            40% { transform: translateY(0); opacity: 1; }
+            60% { transform: translateY(-50px); }
+            80% { transform: translateY(0); }
+            100% { transform: translateY(0); }
+        }
+        .anim-bounce { animation: bounceInImpact 1s ease-out forwards; }
+
+        /* 4. Slide Left (Apareciendo por la izquierda) */
+        @keyframes slideLeftImpact {
+            0% { transform: translateX(-100vw) skewX(-30deg); opacity: 0; }
+            70% { transform: translateX(30px) skewX(10deg); opacity: 1; }
+            100% { transform: translateX(0) skewX(0); }
+        }
+        .anim-slide-left { animation: slideLeftImpact 0.8s ease-out forwards; }
+
+        /* 5. Slide Right (Apareciendo por la derecha) */
+        @keyframes slideRightImpact {
+            0% { transform: translateX(100vw) skewX(30deg); opacity: 0; }
+            70% { transform: translateX(-30px) skewX(-10deg); opacity: 1; }
+            100% { transform: translateX(0) skewX(0); }
+        }
+        .anim-slide-right { animation: slideRightImpact 0.8s ease-out forwards; }
+
     </style>
 </head>
 <body class="bg-slate-50 text-slate-800 antialiased">
@@ -154,6 +198,7 @@
                     <a href="#jornadas" class="text-slate-600 hover:text-udablue-600 font-medium transition text-sm uppercase tracking-wide">Jornadas</a>
                     <a href="#cronicas" class="text-slate-600 hover:text-udablue-600 font-medium transition text-sm uppercase tracking-wide">Crónicas</a>
                     <a href="#clasificacion" class="text-slate-600 hover:text-udablue-600 font-medium transition text-sm uppercase tracking-wide">Estadísticas</a>
+                    <a href="#eventos" class="text-slate-600 hover:text-udablue-600 font-medium transition text-sm uppercase tracking-wide">Eventos</a>
                     <a href="#puntuacion" class="text-slate-600 hover:text-udablue-600 font-medium transition text-sm uppercase tracking-wide">Puntuación</a>
                     <a href="#alegaciones" class="text-udablue-600 hover:text-udablue-800 font-bold transition text-sm uppercase tracking-wide border border-udablue-600 rounded px-3 py-1">Alegaciones</a>
                 </div>
@@ -174,6 +219,7 @@
                 <a href="#jornadas" class="block px-3 py-3 rounded-md text-base font-medium text-slate-700 hover:text-udablue-600 hover:bg-slate-50">Jornadas</a>
                 <a href="#cronicas" class="block px-3 py-3 rounded-md text-base font-medium text-slate-700 hover:text-udablue-600 hover:bg-slate-50">Crónicas</a>
                 <a href="#clasificacion" class="block px-3 py-3 rounded-md text-base font-medium text-slate-700 hover:text-udablue-600 hover:bg-slate-50">Estadísticas</a>
+                <a href="#eventos" class="block px-3 py-3 rounded-md text-base font-medium text-slate-700 hover:text-udablue-600 hover:bg-slate-50">Eventos</a>
                 <a href="#puntuacion" class="block px-3 py-3 rounded-md text-base font-medium text-slate-700 hover:text-udablue-600 hover:bg-slate-50">Puntuación</a>
                 <a href="#alegaciones" class="block px-3 py-3 rounded-md text-base font-bold text-udablue-600 hover:bg-slate-50">Alegaciones</a>
             </div>
@@ -724,6 +770,59 @@
         </div>
     </section>
 
+    <!-- EVENTOS (NUEVA SECCIÓN) -->
+    <section id="eventos" class="py-20 bg-white border-t border-slate-200">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16 reveal">
+                <h2 class="text-3xl md:text-4xl font-heading font-bold text-slate-900 mb-4">Eventos Especiales</h2>
+                <div class="h-1 w-20 bg-udablue-600 mx-auto rounded"></div>
+                <p class="mt-4 text-lg text-slate-600">Galerías exclusivas de nuestros encuentros.</p>
+            </div>
+
+            <!-- Contenedor Principal de Eventos -->
+            <div class="reveal">
+                
+                <!-- Carpeta 13-12-2025 CHELE -->
+                <div class="max-w-md mx-auto">
+                    <div class="bg-yellow-100 hover:bg-yellow-200 transition-colors border-2 border-yellow-300 rounded-xl p-6 cursor-pointer shadow-lg hover:shadow-2xl group relative overflow-hidden" onclick="toggleEventFolder('folder-chele')">
+                        <div class="flex items-center justify-between">
+                            <div class="flex items-center gap-4">
+                                <div class="w-16 h-16 bg-yellow-400 rounded-lg flex items-center justify-center text-white text-3xl shadow-inner">
+                                    <i class="fas fa-folder-open"></i>
+                                </div>
+                                <div>
+                                    <h3 class="font-heading font-bold text-xl text-yellow-900">COMIDA DE NAVIDAD 13/12/2025 CHELE</h3>
+                                    <p class="text-sm text-yellow-700 font-medium">Pasamos mucha hambre</p>
+                                </div>
+                            </div>
+                            <i class="fas fa-chevron-down text-yellow-600 text-xl transition-transform group-hover:translate-y-1"></i>
+                        </div>
+                        <div class="absolute -right-6 -bottom-6 opacity-10 rotate-12">
+                            <i class="fas fa-camera text-9xl text-yellow-900"></i>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Contenedor Desplegable de Fotos -->
+                <div id="folder-chele" class="hidden mt-8 transition-all duration-500 ease-in-out">
+                    <div class="p-6 bg-slate-50 rounded-2xl border border-slate-200 shadow-inner">
+                        <div class="flex justify-between items-center mb-6">
+                            <h4 class="font-bold text-lg text-slate-700"><i class="fas fa-images mr-2 text-udablue-600"></i> Navidad 2025</h4>
+                        </div>
+                        
+                        <!-- Grid de 20 Fotos (Generado Dinámicamente) -->
+                        <div id="gallery-chele-grid" class="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-5 gap-4">
+                            <div class="col-span-full text-center py-8 text-slate-400">
+                                <i class="fas fa-circle-notch fa-spin mr-2"></i> Cargando galería...
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
     <!-- SISTEMA DE PUNTUACIÓN (ESTÁTICO) -->
     <section id="puntuacion" class="py-20 bg-white border-t border-slate-100">
         <div class="max-w-5xl mx-auto px-4">
@@ -846,12 +945,23 @@
     <!-- MODALES (Crónicas + IMAGEN) -->
     <div id="modal-backdrop" class="fixed inset-0 bg-black/70 z-[60] hidden transition-opacity duration-300" onclick="closeModal()"></div>
 
-    <!-- Modal Imagen (Lightbox) -->
+    <!-- Modal Imagen (Lightbox Genérico) -->
     <div id="modal-image" class="modal-content fixed inset-0 z-[90] flex items-center justify-center hidden pointer-events-none">
         <div class="relative w-full h-full max-w-6xl max-h-screen p-4 flex flex-col items-center justify-center pointer-events-auto">
             <button onclick="closeModal()" class="absolute top-4 right-4 text-white hover:text-gray-300 text-4xl z-50"><i class="fas fa-times"></i></button>
             <img id="lightbox-img" src="" alt="Imagen ampliada" class="max-w-full max-h-[85vh] object-contain rounded-lg shadow-2xl">
             <h3 id="lightbox-caption" class="text-white text-xl font-bold mt-4 text-center drop-shadow-md"></h3>
+        </div>
+    </div>
+    
+    <!-- Modal Impacto (Para Eventos) -->
+    <div id="modal-impact" class="modal-content fixed inset-0 z-[95] flex items-center justify-center hidden pointer-events-none">
+         <div class="relative w-full h-full p-4 flex flex-col items-center justify-center pointer-events-auto">
+            <button onclick="closeModal()" class="absolute top-4 right-4 text-white hover:text-gray-300 text-5xl z-[100] drop-shadow-md"><i class="fas fa-times"></i></button>
+            <!-- Contenedor de la imagen animada -->
+            <div id="impact-container" class="relative max-w-full max-h-[90vh]">
+                 <img id="impact-img" src="" alt="Evento" class="max-w-full max-h-[90vh] object-contain rounded-xl shadow-2xl border-4 border-white/20">
+            </div>
         </div>
     </div>
 
@@ -1046,11 +1156,53 @@
             document.body.classList.add('modal-open');
         }
         function closeModal() {
+            // Ocultar todos los modales y limpiar clases de animación del modal de impacto
             document.getElementById('modal-backdrop').classList.add('hidden');
             document.querySelectorAll('.modal-content').forEach(el => el.classList.add('hidden'));
+            
+            // Limpiar clases de animación de la imagen de impacto
+            const impactImg = document.getElementById('impact-img');
+            impactImg.classList.remove('anim-rotate', 'anim-zoom', 'anim-bounce', 'anim-slide-left', 'anim-slide-right');
+            
             document.body.classList.remove('modal-open');
         }
         
+        // Función para abrir carpeta de Eventos
+        function toggleEventFolder(folderId) {
+            const folder = document.getElementById(folderId);
+            if (folder.classList.contains('hidden')) {
+                folder.classList.remove('hidden');
+                setTimeout(() => {
+                    folder.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                }, 100);
+            } else {
+                folder.classList.add('hidden');
+            }
+        }
+
+        // Función para abrir Imagen con IMPACTO (Eventos)
+        function openImpactModal(src) {
+            const modal = document.getElementById('modal-impact');
+            const img = document.getElementById('impact-img');
+            
+            // 1. Setear imagen
+            img.src = src;
+
+            // 2. Elegir animación aleatoria
+            const animations = ['anim-rotate', 'anim-zoom', 'anim-bounce', 'anim-slide-left', 'anim-slide-right'];
+            const randomAnim = animations[Math.floor(Math.random() * animations.length)];
+            
+            // 3. Limpiar clases anteriores y añadir nueva
+            img.classList.remove(...animations);
+            void img.offsetWidth; // Trigger reflow para reiniciar animacion
+            img.classList.add(randomAnim);
+
+            // 4. Mostrar modal
+            document.getElementById('modal-backdrop').classList.remove('hidden');
+            modal.classList.remove('hidden');
+            document.body.classList.add('modal-open');
+        }
+
         // Función específica para abrir imágenes y FORZAR tamaño grande en Drive
         function openImageModal(src, title) {
             const modal = document.getElementById('modal-image');
@@ -1276,9 +1428,57 @@
             window.location.href = `mailto:${email}?subject=${subject}&body=${body}`;
         }
 
+        // ARRAY DE FOTOS DE LA CARPETA "CHELE" (IDs REALES)
+        const chelePhotos = [
+            "1hMRJooQlr-KCxCBphjB52ntXQg4778-M", // Foto01
+            "11nF9xScl3xDgdWPODPaSKq3FpKqTzZ01", // Foto02
+            "1q82eJoFGrCpOXcqyX_pEqE4Wbtv8Y-Ge", // Foto03
+            "1Zc8ws6s1JDX-agbDr0W1FZ4W41TsHC7A", // Foto04
+            "1OHSfqAH7Cli4rDTyC-oGtcr6E_DUCwyQ", // Foto05
+            "1n5qPmq-mp2KKy0aUkxxwZv1S_P-bsvuR", // Foto06
+            "1g6oKR9eZyfE3gkQospKzvVihNs6rXGXx", // Foto07
+            "1xQy_7ce5SAAsVqg0N3Nra27n-zw5fvPA", // Foto08
+            "1m-_Pxb5xsXINsSO9kb3HyAd7liRJEg9V", // Foto09
+            "1hP2kS2DeCc3gBUKTP7u3L4yWsV9AYbc7", // Foto10
+            "1L2obGsGX76o6f-Q7pWoaqhxkGDlAAiOU", // Foto11
+            "1sTHxaoKjstNUtlA2CjTjeDriseaC_001", // Foto12
+            "1D1pUCXiPqTsmL1TW-zue_GM9urJ_9OOm", // Foto13
+            "1refLRzedFqYtyLrSAlC2QFP7loHclglL", // Foto14
+            "1cLU6TLqFSapV2qAL8rQ50uGn7aExLFQm", // Foto15
+            "1elYgtnuNRa-2wkNkCyspA0ymNRP5pRG_", // Foto16
+            "1QnDpjcyXH1g5vQsghdYqmLzwoqcumzB0", // Foto17
+            "1jccRjaHRyethAhg9NYJweDGZzErwoPo_", // Foto18
+            "1D9OLUfVbiPIw8fQOpb8Ztm0BCH-2cFL3", // Foto19
+            "1COyf3cHfirQEwqUfgFDWWa5x0daI_aYc"  // Foto20
+        ];
+
+        // Función para renderizar la galería dinámicamente
+        function renderCheleGallery() {
+            const container = document.getElementById('gallery-chele-grid');
+            if (!container) return;
+
+            let html = '';
+            chelePhotos.forEach((photoId, index) => {
+                // Generar URL de Thumbnail de Google Drive (sz=w500 para miniatura optimizada)
+                const thumbUrl = `https://drive.google.com/thumbnail?id=${photoId}&sz=w500`;
+                // URL Full para el modal (sz=w2000 para alta calidad)
+                const fullUrl = `https://drive.google.com/thumbnail?id=${photoId}&sz=w2000`;
+                
+                html += `
+                    <div class="aspect-square bg-gray-200 rounded-lg overflow-hidden cursor-pointer hover:opacity-90 transition shadow-sm border border-gray-300 relative group" onclick="openImpactModal('${fullUrl}')">
+                        <img src="${thumbUrl}" class="w-full h-full object-cover transition duration-500 group-hover:scale-110" alt="Foto ${index + 1}" loading="lazy">
+                        <div class="absolute inset-0 bg-black/0 group-hover:bg-black/10 transition duration-300"></div>
+                    </div>
+                `;
+            });
+
+            container.innerHTML = html;
+        }
+
         // Iniciar carga de datos al cargar la página
         window.addEventListener('DOMContentLoaded', () => {
             loadPlayerImages();
+            renderCheleGallery(); // Cargar la galería
         });
     </script>
 </body>
