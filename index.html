@@ -58,12 +58,10 @@
         .card-hover:hover img { transform: scale(1.05); }
         .card-hover img { transition: transform 0.5s ease; }
 
-        /* Modal Scroll */
         .modal-open { overflow: hidden; }
         
-        /* Estilos para Tabs de Estadísticas */
         .tab-btn.active {
-            background-color: #1e3a8a; /* Azul corporativo */
+            background-color: #1e3a8a; 
             color: white;
             border-color: #1e3a8a;
             box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
@@ -80,7 +78,6 @@
             to { opacity: 1; }
         }
         
-        /* Ocultar scrollbar estándar pero mantener funcionalidad */
         .scrollbar-hide::-webkit-scrollbar {
             display: none;
         }
@@ -89,7 +86,6 @@
             scrollbar-width: none;
         }
 
-        /* Efecto Glassmorphism para botones */
         .btn-glass {
             background: rgba(255, 255, 255, 0.1);
             backdrop-filter: blur(10px);
@@ -103,28 +99,25 @@
             box-shadow: 0 10px 20px rgba(0,0,0,0.2);
         }
         
-        /* Cursor para imágenes ampliables */
         .zoom-cursor {
             cursor: zoom-in;
         }
 
-        /* Estilos Específicos para la Tabla Moderna */
         .modern-table th {
             position: sticky;
             top: 0;
-            background-color: #1e3a8a; /* udablue-800 */
+            background-color: #1e3a8a; 
             color: white;
             z-index: 10;
         }
         .modern-table tr:nth-child(even) {
-            background-color: #f8fafc; /* slate-50 */
+            background-color: #f8fafc; 
         }
         .modern-table tr:hover {
-            background-color: #dbeafe; /* udablue-100 */
+            background-color: #dbeafe; 
             transition: background-color 0.2s ease;
         }
         
-        /* Avatar de jugador */
         .player-avatar {
             width: 32px;
             height: 32px;
@@ -135,24 +128,17 @@
             flex-shrink: 0;
         }
 
-        /* --- ANIMACIONES PARA LA GALERÍA DE EVENTOS --- */
-        
-        /* 1. Zoom In (De pequeño a grande) */
         @keyframes zoomInImpact {
             0% { transform: scale(0); opacity: 0; }
             60% { transform: scale(1.1); opacity: 1; }
             100% { transform: scale(1); }
         }
         .anim-zoom { animation: zoomInImpact 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards; }
-
-        /* 2. Rotate In (Dando vueltas) */
         @keyframes rotateInImpact {
             0% { transform: rotate(-720deg) scale(0); opacity: 0; }
             100% { transform: rotate(0) scale(1); opacity: 1; }
         }
         .anim-rotate { animation: rotateInImpact 1s ease-out forwards; }
-
-        /* 3. Bounce In (Rebotando) */
         @keyframes bounceInImpact {
             0% { transform: translateY(-500px); opacity: 0; }
             40% { transform: translateY(0); opacity: 1; }
@@ -161,23 +147,18 @@
             100% { transform: translateY(0); }
         }
         .anim-bounce { animation: bounceInImpact 1s ease-out forwards; }
-
-        /* 4. Slide Left (Apareciendo por la izquierda) */
         @keyframes slideLeftImpact {
             0% { transform: translateX(-100vw) skewX(-30deg); opacity: 0; }
             70% { transform: translateX(30px) skewX(10deg); opacity: 1; }
             100% { transform: translateX(0) skewX(0); }
         }
         .anim-slide-left { animation: slideLeftImpact 0.8s ease-out forwards; }
-
-        /* 5. Slide Right (Apareciendo por la derecha) */
         @keyframes slideRightImpact {
             0% { transform: translateX(100vw) skewX(30deg); opacity: 0; }
             70% { transform: translateX(-30px) skewX(-10deg); opacity: 1; }
             100% { transform: translateX(0) skewX(0); }
         }
         .anim-slide-right { animation: slideRightImpact 0.8s ease-out forwards; }
-
     </style>
 </head>
 <body class="bg-slate-50 text-slate-800 antialiased">
@@ -191,8 +172,6 @@
                     <i class="fas fa-futbol text-udablue-800 text-3xl drop-shadow-sm"></i>
                     <span class="font-heading font-bold text-xl text-slate-900 tracking-tight">Sábados de <span class="text-udablue-600">Fútbol</span></span>
                 </div>
-                
-                <!-- Menú Escritorio -->
                 <div class="hidden md:flex space-x-6 items-center">
                     <a href="#inicio" class="text-slate-600 hover:text-udablue-600 font-medium transition text-sm uppercase tracking-wide">Inicio</a>
                     <a href="#jornadas" class="text-slate-600 hover:text-udablue-600 font-medium transition text-sm uppercase tracking-wide">Jornadas</a>
@@ -202,8 +181,6 @@
                     <a href="#puntuacion" class="text-slate-600 hover:text-udablue-600 font-medium transition text-sm uppercase tracking-wide">Puntuación</a>
                     <a href="#alegaciones" class="text-udablue-600 hover:text-udablue-800 font-bold transition text-sm uppercase tracking-wide border border-udablue-600 rounded px-3 py-1">Alegaciones</a>
                 </div>
-
-                <!-- Botón Menú Móvil -->
                 <div class="md:hidden flex items-center">
                     <button id="mobile-menu-btn" class="text-slate-600 hover:text-udablue-800 focus:outline-none">
                         <i class="fas fa-bars text-2xl"></i>
@@ -211,8 +188,6 @@
                 </div>
             </div>
         </div>
-
-        <!-- Menú Móvil -->
         <div id="mobile-menu" class="hidden md:hidden bg-white border-t border-gray-100 absolute w-full">
             <div class="px-4 pt-2 pb-6 space-y-2 shadow-lg">
                 <a href="#inicio" class="block px-3 py-3 rounded-md text-base font-medium text-slate-700 hover:text-udablue-600 hover:bg-slate-50">Inicio</a>
@@ -232,14 +207,11 @@
             <img src="https://images.unsplash.com/photo-1518091043644-c1d4457512c6?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80" alt="Campo de fútbol" class="w-full h-full object-cover">
             <div class="absolute inset-0 bg-gradient-to-r from-udablue-900/40 to-udablue-800/30"></div>
         </div>
-
-        <!-- Etiqueta Temporada -->
         <div class="relative mt-24 mb-4 md:mt-0 md:mb-0 md:absolute md:top-28 md:right-12 z-20 reveal text-center md:text-right">
              <span class="inline-block py-2 px-4 rounded-full bg-white/10 border border-white/30 text-white text-sm font-bold backdrop-blur-md shadow-lg">
                 Temporada 2025 - 2026
             </span>
         </div>
-
         <div class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 text-center">
             <h1 class="text-4xl md:text-6xl lg:text-7xl font-heading font-extrabold text-white leading-tight mb-6 reveal drop-shadow-lg">
                 El Partido de los Sábados
@@ -247,7 +219,6 @@
             <p class="mt-4 max-w-2xl mx-auto text-xl text-gray-200 mb-10 reveal font-light">
                 Fútbol, amigos, piques sanos y un tercer tiempo en el Lengüetas.
             </p>
-            
             <div class="flex flex-col sm:flex-row justify-center gap-4 reveal">
                 <a href="#cronicas" class="btn-glass px-8 py-4 rounded-xl font-bold flex items-center justify-center gap-2">
                     <i class="fas fa-newspaper"></i> Leer Crónicas
@@ -260,7 +231,6 @@
                 </a>
             </div>
         </div>
-
         <div class="absolute bottom-8 left-1/2 transform -translate-x-1/2 animate-bounce text-white/70">
             <i class="fas fa-chevron-down text-2xl"></i>
         </div>
@@ -277,10 +247,25 @@
 
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 reveal">
 
+                <!-- J16 -->
+                <div class="bg-white rounded-2xl overflow-hidden shadow-md hover:shadow-xl transition duration-300 flex flex-col border border-gray-100 group">
+                    <div class="relative h-56 overflow-hidden">
+                        <img src="https://drive.google.com/thumbnail?id=19cJdnf-V-r3wGA1-Bl4GyQ0pG2gq5i6h&sz=w1000" onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1579952363873-27f3bade9f55?q=80&w=1000&auto=format&fit=crop';" alt="Jornada 16" class="w-full h-full object-cover group-hover:scale-105 transition duration-500 zoom-cursor" onclick="openImageModal(this.src, 'Jornada 16: Balizas V16 y barriguitas')">
+                        <div class="absolute top-0 right-0 bg-udablue-600 text-white text-xs font-bold px-3 py-1 rounded-bl-lg pointer-events-none">Jornada 16</div>
+                    </div>
+                    <div class="p-5">
+                        <div class="flex justify-between items-center mb-3">
+                            <span class="text-xs font-bold text-slate-400 uppercase tracking-wider">10 Enero 2026</span>
+                            <span class="bg-blue-100 text-blue-800 text-xs font-bold px-2 py-1 rounded">2-3</span>
+                        </div>
+                        <h3 class="text-lg font-bold text-slate-800 mb-1">Primer partido del 2026 y barrigas V16.</h3>
+                    </div>
+                </div>
+
                 <!-- J15 -->
                 <div class="bg-white rounded-2xl overflow-hidden shadow-md hover:shadow-xl transition duration-300 flex flex-col border border-gray-100 group">
                     <div class="relative h-56 overflow-hidden">
-                        <img src="https://drive.google.com/thumbnail?id=15HG2SIzKez8tJ2gIuaEbnkTJfOsd2UE1&sz=w1000" onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1579952363873-27f3bade9f55?q=80&w=1000&auto=format&fit=crop';" alt="Jornada 15" class="w-full h-full object-cover group-hover:scale-105 transition duration-500 zoom-cursor" onclick="openImageModal(this.src, 'Jornada 15: Victoria Azul (1-3)')">
+                        <img src="https://drive.google.com/thumbnail?id=15HG2SIzKez8tJ2gIuaEbnkTJfOsd2UE1&sz=w1000" alt="Jornada 15" class="w-full h-full object-cover group-hover:scale-105 transition duration-500 zoom-cursor" onclick="openImageModal(this.src, 'Jornada 15: Victoria Azul (1-3)')">
                         <div class="absolute top-0 right-0 bg-udablue-600 text-white text-xs font-bold px-3 py-1 rounded-bl-lg pointer-events-none">Jornada 15</div>
                     </div>
                     <div class="p-5">
@@ -295,7 +280,7 @@
                 <!-- J14 -->
                 <div class="bg-white rounded-2xl overflow-hidden shadow-md hover:shadow-xl transition duration-300 flex flex-col border border-gray-100 group">
                     <div class="relative h-56 overflow-hidden">
-                        <img src="https://drive.google.com/thumbnail?id=1p_g_wgSzKgV0Y8nRBMk4Opd8EcNX_l49&sz=w1000" onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1579952363873-27f3bade9f55?q=80&w=1000&auto=format&fit=crop';" alt="Jornada 12" class="w-full h-full object-cover group-hover:scale-105 transition duration-500 zoom-cursor" onclick="openImageModal(this.src, 'Jornada 14: Tablas en el cesped')">
+                        <img src="https://drive.google.com/thumbnail?id=1p_g_wgSzKgV0Y8nRBMk4Opd8EcNX_l49&sz=w1000" alt="Jornada 14" class="w-full h-full object-cover group-hover:scale-105 transition duration-500 zoom-cursor" onclick="openImageModal(this.src, 'Jornada 14: Tablas en el cesped')">
                         <div class="absolute top-0 right-0 bg-udablue-600 text-white text-xs font-bold px-3 py-1 rounded-bl-lg pointer-events-none">Jornada 14</div>
                     </div>
                     <div class="p-5">
@@ -303,15 +288,14 @@
                             <span class="text-xs font-bold text-slate-400 uppercase tracking-wider">13 Diciembre 2025</span>
                             <span class="bg-green-100 text-green-800 text-xs font-bold px-2 py-1 rounded">3 - 3</span>
                         </div>
-                        <h3 class="text-lg font-bold text-slate-800 mb-1">3 - 3. Tablas en el cesped y Sanedrín concurrido.</h3>
+                        <h3 class="text-lg font-bold text-slate-800 mb-1">3 - 3. Tablas en el césped y Sanedrín concurrido.</h3>
                     </div>
-                </div>               
-                
-                
+                </div>
+
                 <!-- J13 -->
-                 <div class="bg-white rounded-2xl overflow-hidden shadow-md hover:shadow-xl transition duration-300 flex flex-col border border-gray-100 group">
+                <div class="bg-white rounded-2xl overflow-hidden shadow-md hover:shadow-xl transition duration-300 flex flex-col border border-gray-100 group">
                     <div class="relative h-56 overflow-hidden">
-                        <img src="https://drive.google.com/thumbnail?id=1OmFsO8knCw3dKH2J_SfXkm5kCTiL9ONG&sz=w1000" onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1579952363873-27f3bade9f55?q=80&w=1000&auto=format&fit=crop';" alt="Jornada 13" class="w-full h-full object-cover group-hover:scale-105 transition duration-500 zoom-cursor" onclick="openImageModal(this.src, 'Jornada 13: Victoria Blanca (3-1)')">
+                        <img src="https://drive.google.com/thumbnail?id=1OmFsO8knCw3dKH2J_SfXkm5kCTiL9ONG&sz=w1000" alt="Jornada 13" class="w-full h-full object-cover group-hover:scale-105 transition duration-500 zoom-cursor" onclick="openImageModal(this.src, 'Jornada 13: Victoria Blanca (3-1)')">
                         <div class="absolute top-0 right-0 bg-udablue-600 text-white text-xs font-bold px-3 py-1 rounded-bl-lg pointer-events-none">Jornada 13</div>
                     </div>
                     <div class="p-5">
@@ -326,7 +310,7 @@
                 <!-- J12 -->
                 <div class="bg-white rounded-2xl overflow-hidden shadow-md hover:shadow-xl transition duration-300 flex flex-col border border-gray-100 group">
                     <div class="relative h-56 overflow-hidden">
-                        <img src="https://drive.google.com/thumbnail?id=1-AgY75VZ7XnSugxjNH_Cs5jywg-aaKcQ&sz=w1000" onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1579952363873-27f3bade9f55?q=80&w=1000&auto=format&fit=crop';" alt="Jornada 12" class="w-full h-full object-cover group-hover:scale-105 transition duration-500 zoom-cursor" onclick="openImageModal(this.src, 'Jornada 12: El motrileño sorpresa')">
+                        <img src="https://drive.google.com/thumbnail?id=1-AgY75VZ7XnSugxjNH_Cs5jywg-aaKcQ&sz=w1000" alt="Jornada 12" class="w-full h-full object-cover zoom-cursor" onclick="openImageModal(this.src, 'Jornada 12: El motrileño sorpresa')">
                         <div class="absolute top-0 right-0 bg-udablue-600 text-white text-xs font-bold px-3 py-1 rounded-bl-lg pointer-events-none">Jornada 12</div>
                     </div>
                     <div class="p-5">
@@ -341,7 +325,7 @@
                 <!-- J11 -->
                 <div class="bg-white rounded-2xl overflow-hidden shadow-md hover:shadow-xl transition duration-300 flex flex-col border border-gray-100 group">
                     <div class="relative h-56 overflow-hidden">
-                        <img src="https://drive.google.com/thumbnail?id=1Te_CiOzCt1FPPY1WwIgJ9P9i_PdaQdJu&sz=w1000" alt="Jornada 11" class="w-full h-full object-cover group-hover:scale-105 transition duration-500 zoom-cursor" onclick="openImageModal(this.src, 'Jornada 11: Blancos vs Azules')">
+                        <img src="https://drive.google.com/thumbnail?id=1Te_CiOzCt1FPPY1WwIgJ9P9i_PdaQdJu&sz=w1000" alt="Jornada 11" class="w-full h-full object-cover zoom-cursor" onclick="openImageModal(this.src, 'Jornada 11: Blancos vs Azules')">
                         <div class="absolute top-0 right-0 bg-udablue-600 text-white text-xs font-bold px-3 py-1 rounded-bl-lg pointer-events-none">Jornada 11</div>
                     </div>
                     <div class="p-5">
@@ -356,7 +340,7 @@
                 <!-- J10 -->
                 <div class="bg-white rounded-2xl overflow-hidden shadow-md hover:shadow-xl transition duration-300 flex flex-col border border-gray-100 group">
                     <div class="relative h-56 overflow-hidden">
-                        <img src="https://drive.google.com/thumbnail?id=1MJ6aiIqIqOx9TcKgAWn7JB3_r7loBjx5&sz=w1000" alt="Jornada 10" class="w-full h-full object-cover group-hover:scale-105 transition duration-500 zoom-cursor" onclick="openImageModal(this.src, 'Jornada 10: El Regreso de Guti')">
+                        <img src="https://drive.google.com/thumbnail?id=1MJ6aiIqIqOx9TcKgAWn7JB3_r7loBjx5&sz=w1000" alt="Jornada 10" class="w-full h-full object-cover zoom-cursor" onclick="openImageModal(this.src, 'Jornada 10: El Regreso de Guti')">
                         <div class="absolute top-0 right-0 bg-udablue-600 text-white text-xs font-bold px-3 py-1 rounded-bl-lg pointer-events-none">Jornada 10</div>
                     </div>
                     <div class="p-5">
@@ -371,7 +355,7 @@
                 <!-- J9 -->
                 <div class="bg-white rounded-2xl overflow-hidden shadow-md hover:shadow-xl transition duration-300 flex flex-col border border-gray-100 group">
                     <div class="relative h-56 overflow-hidden">
-                        <img src="https://drive.google.com/thumbnail?id=1o1aFRahieo_we2e9g1JB1L6YofNcBo0M&sz=w1000" alt="Jornada 9" class="w-full h-full object-cover group-hover:scale-105 transition duration-500 zoom-cursor" onclick="openImageModal(this.src, 'Jornada 9: Azules vs Blancos')">
+                        <img src="https://drive.google.com/thumbnail?id=1o1aFRahieo_we2e9g1JB1L6YofNcBo0M&sz=w1000" alt="Jornada 9" class="w-full h-full object-cover zoom-cursor" onclick="openImageModal(this.src, 'Jornada 9: Azules vs Blancos')">
                         <div class="absolute top-0 right-0 bg-udablue-600 text-white text-xs font-bold px-3 py-1 rounded-bl-lg pointer-events-none">Jornada 9</div>
                     </div>
                     <div class="p-5">
@@ -386,7 +370,7 @@
                 <!-- J8 -->
                 <div class="bg-white rounded-2xl overflow-hidden shadow-md hover:shadow-xl transition duration-300 flex flex-col border border-gray-100 group">
                     <div class="relative h-56 overflow-hidden">
-                        <img src="https://drive.google.com/thumbnail?id=12tXH4TcCVJEA53ofMmpa7C3juRrSLO4A&sz=w1000" alt="Jornada 8" class="w-full h-full object-cover group-hover:scale-105 transition duration-500 zoom-cursor" onclick="openImageModal(this.src, 'Jornada 8: Desérticos y Raphaeles')">
+                        <img src="https://drive.google.com/thumbnail?id=12tXH4TcCVJEA53ofMmpa7C3juRrSLO4A&sz=w1000" alt="Jornada 8" class="w-full h-full object-cover zoom-cursor" onclick="openImageModal(this.src, 'Jornada 8: Desérticos y Raphaeles')">
                         <div class="absolute top-0 right-0 bg-udablue-600 text-white text-xs font-bold px-3 py-1 rounded-bl-lg pointer-events-none">Jornada 8</div>
                     </div>
                     <div class="p-5">
@@ -401,7 +385,7 @@
                 <!-- J7 -->
                 <div class="bg-white rounded-2xl overflow-hidden shadow-md hover:shadow-xl transition duration-300 flex flex-col border border-gray-100 group">
                     <div class="relative h-56 overflow-hidden">
-                        <img src="https://drive.google.com/thumbnail?id=1tXRa3wt0c9wJwk_aBKrYwcTydSsiZtDu&sz=w1000" alt="Jornada 7" class="w-full h-full object-cover group-hover:scale-105 transition duration-500 zoom-cursor" onclick="openImageModal(this.src, 'Jornada 7: Espadas en alto')">
+                        <img src="https://drive.google.com/thumbnail?id=1tXRa3wt0c9wJwk_aBKrYwcTydSsiZtDu&sz=w1000" alt="Jornada 7" class="w-full h-full object-cover zoom-cursor" onclick="openImageModal(this.src, 'Jornada 7: Espadas en alto')">
                         <div class="absolute top-0 right-0 bg-udablue-600 text-white text-xs font-bold px-3 py-1 rounded-bl-lg pointer-events-none">Jornada 7</div>
                     </div>
                     <div class="p-5">
@@ -416,7 +400,7 @@
                 <!-- J6 -->
                 <div class="bg-white rounded-2xl overflow-hidden shadow-md hover:shadow-xl transition duration-300 flex flex-col border border-gray-100 group">
                     <div class="relative h-56 overflow-hidden">
-                        <img src="https://drive.google.com/thumbnail?id=11aRd3_TW90rfTdNKzIN5krZBV1aICoyx&sz=w1000" alt="Jornada 6" class="w-full h-full object-cover group-hover:scale-105 transition duration-500 zoom-cursor" onclick="openImageModal(this.src, 'Jornada 6: Agenda apretada')">
+                        <img src="https://drive.google.com/thumbnail?id=11aRd3_TW90rfTdNKzIN5krZBV1aICoyx&sz=w1000" alt="Jornada 6" class="w-full h-full object-cover zoom-cursor" onclick="openImageModal(this.src, 'Jornada 6: Agenda apretada')">
                         <div class="absolute top-0 right-0 bg-udablue-600 text-white text-xs font-bold px-3 py-1 rounded-bl-lg pointer-events-none">Jornada 6</div>
                     </div>
                     <div class="p-5">
@@ -431,7 +415,7 @@
                 <!-- J5 -->
                 <div class="bg-white rounded-2xl overflow-hidden shadow-md hover:shadow-xl transition duration-300 flex flex-col border border-gray-100 group">
                     <div class="relative h-56 overflow-hidden">
-                        <img src="https://drive.google.com/thumbnail?id=1_TXvA5AWZ5aR2uRamkH17uuA8fgmJQBM&sz=w1000" alt="Jornada 5" class="w-full h-full object-cover group-hover:scale-105 transition duration-500 zoom-cursor" onclick="openImageModal(this.src, 'Jornada 5: Agenda apretada y regalos')">
+                        <img src="https://drive.google.com/thumbnail?id=1_TXvA5AWZ5aR2uRamkH17uuA8fgmJQBM&sz=w1000" alt="Jornada 5" class="w-full h-full object-cover zoom-cursor" onclick="openImageModal(this.src, 'Jornada 5: Agenda apretada y regalos')">
                         <div class="absolute top-0 right-0 bg-udablue-600 text-white text-xs font-bold px-3 py-1 rounded-bl-lg pointer-events-none">Jornada 5</div>
                     </div>
                     <div class="p-5">
@@ -446,7 +430,7 @@
                 <!-- J4 -->
                 <div class="bg-white rounded-2xl overflow-hidden shadow-md hover:shadow-xl transition duration-300 flex flex-col border border-gray-100 group">
                     <div class="relative h-56 overflow-hidden">
-                        <img src="https://drive.google.com/thumbnail?id=1TWuhsX3ToYbwSU_zW7FBi-O0dR-zXDCy&sz=w1000" alt="Jornada 4" class="w-full h-full object-cover group-hover:scale-105 transition duration-500 zoom-cursor" onclick="openImageModal(this.src, 'Jornada 4: Mañana de ausencias')">
+                        <img src="https://drive.google.com/thumbnail?id=1TWuhsX3ToYbwSU_zW7FBi-O0dR-zXDCy&sz=w1000" alt="Jornada 4" class="w-full h-full object-cover zoom-cursor" onclick="openImageModal(this.src, 'Jornada 4: Mañana de ausencias')">
                         <div class="absolute top-0 right-0 bg-udablue-600 text-white text-xs font-bold px-3 py-1 rounded-bl-lg pointer-events-none">Jornada 4</div>
                     </div>
                     <div class="p-5">
@@ -461,8 +445,8 @@
                 <!-- J3 -->
                 <div class="bg-white rounded-2xl overflow-hidden shadow-md hover:shadow-xl transition duration-300 flex flex-col border border-gray-100 group">
                     <div class="relative h-56 overflow-hidden">
-                        <img src="https://drive.google.com/thumbnail?id=1gxnOWj2xS07IT2FfFN7uuZCf9gBz0c2g&sz=w1000" alt="Jornada 3" class="w-full h-full object-cover group-hover:scale-105 transition duration-500 zoom-cursor" onclick="openImageModal(this.src, 'Jornada 3: Lucha de poder a poder')">
-                        <div class="absolute top-0 right-0 bg-udablue-600 text-white text-xs font-bold px-3 py-1 rounded-full">Jornada 3</div>
+                        <img src="https://drive.google.com/thumbnail?id=1gxnOWj2xS07IT2FfFN7uuZCf9gBz0c2g&sz=w1000" alt="Jornada 3" class="w-full h-full object-cover zoom-cursor" onclick="openImageModal(this.src, 'Jornada 3: Lucha de poder a poder')">
+                        <div class="absolute top-0 right-0 bg-udablue-600 text-white text-xs font-bold px-3 py-1 rounded-bl-lg pointer-events-none">Jornada 3</div>
                     </div>
                     <div class="p-5">
                         <div class="flex justify-between items-center mb-3">
@@ -477,15 +461,17 @@
                 <div class="bg-white rounded-2xl overflow-hidden shadow-md hover:shadow-xl transition duration-300 flex flex-col border border-gray-100 group">
                     <div class="relative h-56 overflow-hidden">
                         <img src="https://drive.google.com/thumbnail?id=1rtVt1ze0LlDljKS84yJr8YubGYFO1NR6&sz=w1000" alt="Jornada 2" class="w-full h-full object-cover">
-                        <div class="absolute top-4 right-4 bg-udablue-600 text-white text-xs font-bold px-3 py-1 rounded-full">Jornada 2</div>
+                        <div class="absolute top-0 right-0 bg-udablue-600 text-white text-xs font-bold px-3 py-1 rounded-bl-lg pointer-events-none">Jornada 2</div>
                     </div>
-                    <div class="p-6 flex-1 flex flex-col">
-                        <div class="text-sm text-slate-500 mb-3"><i class="far fa-calendar-alt mr-2"></i> 13 Septiembre 2025</div>
-                        <h3 class="text-xl font-heading font-bold text-slate-800 mb-3">Reencuentro de furgoleros</h3>
-                        <p class="text-slate-600 text-sm line-clamp-3 flex-1">Buenos días furgoleros y pachangueros, ha sido un placer...</p>
-                        <button onclick="openModal('modal-j2')" class="mt-4 text-udablue-600 font-bold text-sm hover:text-udablue-800 flex items-center self-start">Leer completa <i class="fas fa-arrow-right ml-1"></i></button>
+                    <div class="p-5">
+                        <div class="flex justify-between items-center mb-3">
+                            <span class="text-xs font-bold text-slate-400 uppercase tracking-wider">13 Septiembre 2025</span>
+                            <span class="bg-gray-100 text-gray-800 text-xs font-bold px-2 py-1 rounded">3 - 1</span>
+                        </div>
+                        <h3 class="text-lg font-bold text-slate-800 mb-1">Reencuentro de furgoleros.</h3>
                     </div>
-                </div> <!-- Aquí estaba el error, antes ponía </article> -->
+                </div>
+
             </div>
         </div>
     </section>
@@ -501,10 +487,24 @@
 
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
                 
-                 <!-- J15 -->
+                <!-- J16 -->
                 <article class="bg-slate-50 rounded-2xl overflow-hidden shadow-md hover:shadow-2xl transition duration-300 flex flex-col h-full reveal card-hover border border-slate-100">
                     <div class="relative h-64 overflow-hidden">
-                        <img src="https://drive.google.com/thumbnail?id=11m_hsAGfhQ9ZXM8ICali47TtxUZahu2w&sz=w1000" onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1511886929837-354d827aae26?q=80&w=800&auto=format&fit=crop';" alt="Jornada 15" class="w-full h-full object-cover">
+                        <img src="https://drive.google.com/thumbnail?id=1mVGimA2_BwIwL9PQx7gLf2bNT-7my-Ly&sz=w1000" onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1511886929837-354d827aae26?q=80&w=800&auto=format&fit=crop';" alt="Jornada 16" class="w-full h-full object-cover">
+                        <div class="absolute top-4 right-4 bg-udablue-600 text-white text-xs font-bold px-3 py-1 rounded-full">Jornada 16</div>
+                    </div>
+                    <div class="p-6 flex-1 flex flex-col">
+                        <div class="text-sm text-slate-500 mb-3"><i class="far fa-calendar-alt mr-2"></i> 10 Enero 2026</div>
+                        <h3 class="text-xl font-heading font-bold text-slate-800 mb-3">Balizas V16 y barriguitas amenazantes</h3>
+                        <p class="text-slate-600 text-sm line-clamp-3 flex-1">Primer partido oficial del 2026 y quórum. Nuevas ilusiones y buenas intuiciones para este nuevo curso...</p>
+                        <button onclick="openModal('modal-j16')" class="mt-4 text-udablue-600 font-bold text-sm hover:text-udablue-800 flex items-center self-start">Leer completa <i class="fas fa-arrow-right ml-1"></i></button>
+                    </div>
+                </article>
+
+                <!-- J15 -->
+                <article class="bg-slate-50 rounded-2xl overflow-hidden shadow-md hover:shadow-2xl transition duration-300 flex flex-col h-full reveal card-hover border border-slate-100">
+                    <div class="relative h-64 overflow-hidden">
+                        <img src="https://drive.google.com/thumbnail?id=11m_hsAGfhQ9ZXM8ICali47TtxUZahu2w&sz=w1000" alt="Jornada 15" class="w-full h-full object-cover">
                         <div class="absolute top-4 right-4 bg-udablue-600 text-white text-xs font-bold px-3 py-1 rounded-full">Jornada 15</div>
                     </div>
                     <div class="p-6 flex-1 flex flex-col">
@@ -518,13 +518,13 @@
                 <!-- J12 -->
                 <article class="bg-slate-50 rounded-2xl overflow-hidden shadow-md hover:shadow-2xl transition duration-300 flex flex-col h-full reveal card-hover border border-slate-100">
                     <div class="relative h-64 overflow-hidden">
-                        <img src="https://drive.google.com/thumbnail?id=11Feo67lurQx4zLQ0zx_DqWdpQG6GdxO8&sz=w1000" onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1511886929837-354d827aae26?q=80&w=800&auto=format&fit=crop';" alt="Jornada 12" class="w-full h-full object-cover">
+                        <img src="https://drive.google.com/thumbnail?id=11Feo67lurQx4zLQ0zx_DqWdpQG6GdxO8&sz=w1000" alt="Jornada 12" class="w-full h-full object-cover">
                         <div class="absolute top-4 right-4 bg-udablue-600 text-white text-xs font-bold px-3 py-1 rounded-full">Jornada 12</div>
                     </div>
                     <div class="p-6 flex-1 flex flex-col">
                         <div class="text-sm text-slate-500 mb-3"><i class="far fa-calendar-alt mr-2"></i> 22 Noviembre 2025</div>
                         <h3 class="text-xl font-heading font-bold text-slate-800 mb-3">Victoria blanca con sabor motrileño</h3>
-                        <p class="text-slate-600 text-sm line-clamp-3 flex-1">Pendiente de redacción...</p>
+                        <p class="text-slate-600 text-sm line-clamp-3 flex-1">La victoria blanca llegó de la mano de una sorpresa desde la costa...</p>
                         <button onclick="openModal('modal-j12')" class="mt-4 text-udablue-600 font-bold text-sm hover:text-udablue-800 flex items-center self-start">Leer completa <i class="fas fa-arrow-right ml-1"></i></button>
                     </div>
                 </article>
@@ -532,7 +532,7 @@
                 <!-- J11 -->
                 <article class="bg-slate-50 rounded-2xl overflow-hidden shadow-md hover:shadow-2xl transition duration-300 flex flex-col h-full reveal card-hover border border-slate-100">
                     <div class="relative h-64 overflow-hidden">
-                        <img src="https://drive.google.com/thumbnail?id=1NQ2KBYr0rsD6ZD2TaEIl5ShNFhqQ2ofr&sz=w1000" onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1511886929837-354d827aae26?q=80&w=800&auto=format&fit=crop';" alt="Futbolín" class="w-full h-full object-cover">
+                        <img src="https://drive.google.com/thumbnail?id=1NQ2KBYr0rsD6ZD2TaEIl5ShNFhqQ2ofr&sz=w1000" alt="Jornada 11" class="w-full h-full object-cover">
                         <div class="absolute top-4 right-4 bg-udablue-600 text-white text-xs font-bold px-3 py-1 rounded-full">Jornada 11</div>
                     </div>
                     <div class="p-6 flex-1 flex flex-col">
@@ -546,7 +546,7 @@
                 <!-- J10 -->
                 <article class="bg-slate-50 rounded-2xl overflow-hidden shadow-md hover:shadow-2xl transition duration-300 flex flex-col h-full reveal card-hover border border-slate-100">
                     <div class="relative h-64 overflow-hidden">
-                        <img src="https://drive.google.com/thumbnail?id=1h84ETYlO6SX5h0G_pSB0oAoGfQnCkHIz&sz=w1000" onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1529900748604-07564a03e7a6?q=80&w=800&auto=format&fit=crop';" alt="Guti" class="w-full h-full object-cover">
+                        <img src="https://drive.google.com/thumbnail?id=1h84ETYlO6SX5h0G_pSB0oAoGfQnCkHIz&sz=w1000" alt="Guti" class="w-full h-full object-cover">
                         <div class="absolute top-4 right-4 bg-udablue-600 text-white text-xs font-bold px-3 py-1 rounded-full">Jornada 10</div>
                     </div>
                     <div class="p-6 flex-1 flex flex-col">
@@ -560,7 +560,7 @@
                 <!-- J9 -->
                 <article class="bg-slate-50 rounded-2xl overflow-hidden shadow-md hover:shadow-2xl transition duration-300 flex flex-col h-full reveal card-hover border border-slate-100">
                     <div class="relative h-64 overflow-hidden">
-                        <img src="https://drive.google.com/thumbnail?id=1fNFQ-sUhPvg1Ww2BNlAqISgPKRmavJ_P&sz=w1000" onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1515162305285-0293e4767cc2?q=80&w=800&auto=format&fit=crop';" alt="Lluvia" class="w-full h-full object-cover">
+                        <img src="https://drive.google.com/thumbnail?id=1fNFQ-sUhPvg1Ww2BNlAqISgPKRmavJ_P&sz=w1000" alt="Jornada 9" class="w-full h-full object-cover">
                         <div class="absolute top-4 right-4 bg-udablue-600 text-white text-xs font-bold px-3 py-1 rounded-full">Jornada 9</div>
                     </div>
                     <div class="p-6 flex-1 flex flex-col">
@@ -574,7 +574,7 @@
                 <!-- J8 -->
                 <article class="bg-slate-50 rounded-2xl overflow-hidden shadow-md hover:shadow-2xl transition duration-300 flex flex-col h-full reveal card-hover border border-slate-100">
                     <div class="relative h-64 overflow-hidden">
-                        <img src="https://drive.google.com/thumbnail?id=1ia1Axe4OP7_Ot4RT2qcdRF3AsP893CNf&sz=w1000" onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1560272564-c8304700f688?q=80&w=800&auto=format&fit=crop';" alt="Partido" class="w-full h-full object-cover">
+                        <img src="https://drive.google.com/thumbnail?id=1ia1Axe4OP7_Ot4RT2qcdRF3AsP893CNf&sz=w1000" alt="Jornada 8" class="w-full h-full object-cover">
                         <div class="absolute top-4 right-4 bg-udablue-600 text-white text-xs font-bold px-3 py-1 rounded-full">Jornada 8</div>
                     </div>
                     <div class="p-6 flex-1 flex flex-col">
@@ -588,7 +588,7 @@
                 <!-- J7 -->
                 <article class="bg-slate-50 rounded-2xl overflow-hidden shadow-md hover:shadow-2xl transition duration-300 flex flex-col h-full reveal card-hover border border-slate-100">
                     <div class="relative h-64 overflow-hidden">
-                        <img src="https://drive.google.com/thumbnail?id=1yb0BIxK2BGNsnxxgWq3GepPY7x3FMZdL&sz=w1000" onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1434648957308-5e6a859697e8?q=80&w=800&auto=format&fit=crop';" alt="Luto" class="w-full h-full object-cover">
+                        <img src="https://drive.google.com/thumbnail?id=1yb0BIxK2BGNsnxxgWq3GepPY7x3FMZdL&sz=w1000" alt="Jornada 7" class="w-full h-full object-cover">
                         <div class="absolute top-4 right-4 bg-udablue-600 text-white text-xs font-bold px-3 py-1 rounded-full">Jornada 7</div>
                     </div>
                     <div class="p-6 flex-1 flex flex-col">
@@ -602,7 +602,7 @@
                 <!-- J6 -->
                 <article class="bg-slate-50 rounded-2xl overflow-hidden shadow-md hover:shadow-2xl transition duration-300 flex flex-col h-full reveal card-hover border border-slate-100">
                     <div class="relative h-64 overflow-hidden">
-                        <img src="https://drive.google.com/thumbnail?id=1rMxwcAERS6-GK4SuhpcmrMZy2j-Ar_b9&sz=w1000" onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1626248324034-f93d8d28298d?q=80&w=800&auto=format&fit=crop';" alt="Cronica" class="w-full h-full object-cover">
+                        <img src="https://drive.google.com/thumbnail?id=1rMxwcAERS6-GK4SuhpcmrMZy2j-Ar_b9&sz=w1000" alt="Jornada 6" class="w-full h-full object-cover">
                         <div class="absolute top-4 right-4 bg-udablue-600 text-white text-xs font-bold px-3 py-1 rounded-full">Jornada 6</div>
                     </div>
                     <div class="p-6 flex-1 flex flex-col">
@@ -672,14 +672,13 @@
         </div>
     </section>
 
-    <!-- CLASIFICACIÓN -->
+    <!-- CLASIFICACIÓN (MANTENIDA) -->
     <section id="clasificacion" class="py-20 bg-slate-100 relative">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="text-center mb-12">
                 <h2 class="text-3xl font-heading font-bold text-slate-900">Estadísticas</h2>
                 <p class="text-slate-600 mt-2">Datos en tiempo real de la temporada.</p>
             </div>
-
             <div class="mb-8 border-b border-gray-300 pb-4 overflow-x-auto scrollbar-hide">
                 <div class="flex space-x-2 min-w-max px-2">
                     <button onclick="openTab(event, 'tab1')" class="tab-btn active px-4 py-2 rounded-t-lg text-xs font-bold text-slate-500 hover:bg-white hover:text-udablue-600 border-b-2 border-transparent transition-all duration-200">General</button>
@@ -693,247 +692,53 @@
                     <button onclick="openTab(event, 'tab-eficiencia')" class="tab-btn px-4 py-2 rounded-t-lg text-xs font-bold text-slate-500 hover:bg-white hover:text-udablue-600 border-b-2 border-transparent transition-all duration-200">Eficiencia</button>
                 </div>
             </div>
-
-            <!-- Contenedor de Tablas con Nuevo Diseño -->
             <div class="bg-white rounded-2xl shadow-2xl border border-gray-200 overflow-hidden min-h-[500px]">
-                
-                <!-- General -->
-                <div id="tab1" class="tab-content active h-full p-4">
-                    <div class="overflow-x-auto rounded-xl border border-gray-200">
-                        <div id="table-container-general" class="min-w-full">
-                            <div class="flex items-center justify-center h-64 text-slate-400 animate-pulse">
-                                <i class="fas fa-circle-notch fa-spin mr-2"></i> Cargando clasificación...
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Valoración -->
-                <div id="tab-valoracion" class="tab-content h-full p-4">
-                    <div class="overflow-x-auto rounded-xl border border-gray-200">
-                        <div id="table-container-valoracion" class="min-w-full">
-                            <div class="flex items-center justify-center h-64 text-slate-400">
-                                <i class="fas fa-circle-notch fa-spin mr-2"></i> Cargando valoración...
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Racha -->
-                <div id="tab-racha" class="tab-content h-full p-4">
-                    <div class="overflow-x-auto rounded-xl border border-gray-200">
-                        <div id="table-container-racha" class="min-w-full">
-                            <div class="flex items-center justify-center h-64 text-slate-400">
-                                <i class="fas fa-circle-notch fa-spin mr-2"></i> Cargando racha...
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Asistencias -->
-                <div id="tab-asistencias" class="tab-content h-full p-4">
-                    <div class="overflow-x-auto rounded-xl border border-gray-200">
-                        <div id="table-container-asistencias" class="min-w-full">
-                             <div class="flex items-center justify-center h-64 text-slate-400">
-                                <i class="fas fa-circle-notch fa-spin mr-2"></i> Cargando asistencias...
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Pichichi -->
-                <div id="tab-pichichi" class="tab-content h-full p-4">
-                    <div class="overflow-x-auto rounded-xl border border-gray-200">
-                        <div id="table-container-pichichi" class="min-w-full">
-                             <div class="flex items-center justify-center h-64 text-slate-400">
-                                <i class="fas fa-circle-notch fa-spin mr-2"></i> Cargando pichichi...
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Regularidad -->
-                <div id="tab-regularidad" class="tab-content h-full p-4">
-                    <div class="overflow-x-auto rounded-xl border border-gray-200">
-                        <div id="table-container-regularidad" class="min-w-full">
-                             <div class="flex items-center justify-center h-64 text-slate-400">
-                                <i class="fas fa-circle-notch fa-spin mr-2"></i> Cargando regularidad...
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Defensa -->
-                <div id="tab-defensa" class="tab-content h-full p-4">
-                    <div class="overflow-x-auto rounded-xl border border-gray-200">
-                        <div id="table-container-defensa" class="min-w-full">
-                             <div class="flex items-center justify-center h-64 text-slate-400">
-                                <i class="fas fa-circle-notch fa-spin mr-2"></i> Cargando defensa...
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Zamora -->
-                <div id="tab-zamora" class="tab-content h-full p-4">
-                    <div class="overflow-x-auto rounded-xl border border-gray-200">
-                        <div id="table-container-zamora" class="min-w-full">
-                             <div class="flex items-center justify-center h-64 text-slate-400">
-                                <i class="fas fa-circle-notch fa-spin mr-2"></i> Cargando zamora...
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Eficiencia -->
-                <div id="tab-eficiencia" class="tab-content h-full p-4">
-                    <div class="overflow-x-auto rounded-xl border border-gray-200">
-                        <div id="table-container-eficiencia" class="min-w-full">
-                             <div class="flex items-center justify-center h-64 text-slate-400">
-                                <i class="fas fa-circle-notch fa-spin mr-2"></i> Cargando eficiencia...
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
+                <div id="tab1" class="tab-content active h-full p-4"><div id="table-container-general" class="min-w-full"></div></div>
+                <div id="tab-valoracion" class="tab-content h-full p-4"><div id="table-container-valoracion" class="min-w-full"></div></div>
+                <div id="tab-racha" class="tab-content h-full p-4"><div id="table-container-racha" class="min-w-full"></div></div>
+                <div id="tab-asistencias" class="tab-content h-full p-4"><div id="table-container-asistencias" class="min-w-full"></div></div>
+                <div id="tab-pichichi" class="tab-content h-full p-4"><div id="table-container-pichichi" class="min-w-full"></div></div>
+                <div id="tab-regularidad" class="tab-content h-full p-4"><div id="table-container-regularidad" class="min-w-full"></div></div>
+                <div id="tab-defensa" class="tab-content h-full p-4"><div id="table-container-defensa" class="min-w-full"></div></div>
+                <div id="tab-zamora" class="tab-content h-full p-4"><div id="table-container-zamora" class="min-w-full"></div></div>
+                <div id="tab-eficiencia" class="tab-content h-full p-4"><div id="table-container-eficiencia" class="min-w-full"></div></div>
             </div>
         </div>
     </section>
 
-    <!-- EVENTOS (NUEVA SECCIÓN) -->
+    <!-- EVENTOS (MANTENIDA) -->
     <section id="eventos" class="py-20 bg-white border-t border-slate-200">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="text-center mb-16 reveal">
                 <h2 class="text-3xl md:text-4xl font-heading font-bold text-slate-900 mb-4">Eventos Especiales</h2>
                 <div class="h-1 w-20 bg-udablue-600 mx-auto rounded"></div>
-                <p class="mt-4 text-lg text-slate-600">Galerías exclusivas de nuestros encuentros.</p>
             </div>
-
-            <!-- Contenedor Principal de Eventos -->
-            <div class="reveal">
-                
-                <!-- Carpeta 13-12-2025 CHELE -->
-                <div class="max-w-md mx-auto">
-                    <div class="bg-yellow-100 hover:bg-yellow-200 transition-colors border-2 border-yellow-300 rounded-xl p-6 cursor-pointer shadow-lg hover:shadow-2xl group relative overflow-hidden" onclick="toggleEventFolder('folder-chele')">
-                        <div class="flex items-center justify-between">
-                            <div class="flex items-center gap-4">
-                                <div class="w-16 h-16 bg-yellow-400 rounded-lg flex items-center justify-center text-white text-3xl shadow-inner">
-                                    <i class="fas fa-folder-open"></i>
-                                </div>
-                                <div>
-                                    <h3 class="font-heading font-bold text-xl text-yellow-900">COMIDA DE NAVIDAD 13/12/2025 CHELE</h3>
-                                    <p class="text-sm text-yellow-700 font-medium">Pasamos mucha hambre</p>
-                                </div>
-                            </div>
-                            <i class="fas fa-chevron-down text-yellow-600 text-xl transition-transform group-hover:translate-y-1"></i>
-                        </div>
-                        <div class="absolute -right-6 -bottom-6 opacity-10 rotate-12">
-                            <i class="fas fa-camera text-9xl text-yellow-900"></i>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Contenedor Desplegable de Fotos -->
-                <div id="folder-chele" class="hidden mt-8 transition-all duration-500 ease-in-out">
-                    <div class="p-6 bg-slate-50 rounded-2xl border border-slate-200 shadow-inner">
-                        <div class="flex justify-between items-center mb-6">
-                            <h4 class="font-bold text-lg text-slate-700"><i class="fas fa-images mr-2 text-udablue-600"></i> Navidad 2025</h4>
-                        </div>
-                        
-                        <!-- Grid de 20 Fotos (Generado Dinámicamente) -->
-                        <div id="gallery-chele-grid" class="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-5 gap-4">
-                            <div class="col-span-full text-center py-8 text-slate-400">
-                                <i class="fas fa-circle-notch fa-spin mr-2"></i> Cargando galería...
+            <div class="max-w-md mx-auto reveal">
+                <div class="bg-yellow-100 hover:bg-yellow-200 transition-colors border-2 border-yellow-300 rounded-xl p-6 cursor-pointer shadow-lg group relative overflow-hidden" onclick="toggleEventFolder('folder-chele')">
+                    <div class="flex items-center justify-between">
+                        <div class="flex items-center gap-4">
+                            <div class="w-16 h-16 bg-yellow-400 rounded-lg flex items-center justify-center text-white text-3xl shadow-inner"><i class="fas fa-folder-open"></i></div>
+                            <div>
+                                <h3 class="font-heading font-bold text-xl text-yellow-900">NAVIDAD 13/12/2025 CHELE</h3>
+                                <p class="text-sm text-yellow-700 font-medium">Pasamos mucha hambre</p>
                             </div>
                         </div>
+                        <i class="fas fa-chevron-down text-yellow-600 text-xl transition-transform group-hover:translate-y-1"></i>
                     </div>
                 </div>
-
+            </div>
+            <div id="folder-chele" class="hidden mt-8 transition-all duration-500">
+                <div id="gallery-chele-grid" class="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-5 gap-4 p-6 bg-slate-50 rounded-2xl border border-slate-200 shadow-inner"></div>
             </div>
         </div>
     </section>
 
-    <!-- SISTEMA DE PUNTUACIÓN (ESTÁTICO) -->
+    <!-- SISTEMA DE PUNTUACIÓN (MANTENIDA) -->
     <section id="puntuacion" class="py-20 bg-white border-t border-slate-100">
-        <div class="max-w-5xl mx-auto px-4">
-            <div class="text-center mb-12">
-                <h2 class="text-3xl font-heading font-bold text-slate-900">Sistema de Puntuación</h2>
-                <p class="text-slate-600 mt-2">Reglas para la asignación de puntos.</p>
-            </div>
-            
-            <div class="flex flex-col items-center gap-12">
-                <!-- Imagen del sistema -->
-                <div class="w-full max-w-3xl rounded-xl overflow-hidden shadow-lg border border-slate-200 reveal">
-                    <img src="https://drive.google.com/thumbnail?id=1AKUsNdLDKd5XfYfTCuPtvT6ruXbpaXy_&sz=w1000" alt="Sistema de Puntuación Visual" class="w-full h-auto">
-                </div>
-
-                <!-- Tabla de Puntuación ESTÁTICA -->
-                <div class="w-full max-w-4xl bg-slate-50 rounded-2xl shadow-md border border-slate-200 p-6 reveal">
-                    <div id="table-container-puntuacion" class="overflow-x-auto">
-                        <table class="min-w-full modern-table text-xs text-left text-slate-600">
-                            <thead class="text-[10px] md:text-xs uppercase bg-udablue-800 text-white">
-                                <tr>
-                                    <th scope="col" class="px-2 py-2 font-bold tracking-wider whitespace-normal text-left align-bottom shadow-sm leading-none border-b border-udablue-900">Sistema de puntuación temporada 2025 - 2026</th>
-                                    <th scope="col" class="px-2 py-2 font-bold tracking-wider whitespace-normal text-center align-bottom shadow-sm leading-none border-b border-udablue-900">Puntos</th>
-                                </tr>
-                            </thead>
-                            <tbody class="divide-y divide-slate-100">
-                                <tr class="transition-colors hover:bg-blue-50/50">
-                                    <td class="px-2 py-2 whitespace-nowrap font-bold text-slate-900 text-left">MVP</td>
-                                    <td class="px-2 py-2 whitespace-nowrap text-center font-medium">3</td>
-                                </tr>
-                                <tr class="transition-colors hover:bg-blue-50/50">
-                                    <td class="px-2 py-2 whitespace-nowrap font-bold text-slate-900 text-left">Por cada gol marcado</td>
-                                    <td class="px-2 py-2 whitespace-nowrap text-center font-medium">2</td>
-                                </tr>
-                                <tr class="transition-colors hover:bg-blue-50/50">
-                                    <td class="px-2 py-2 whitespace-nowrap font-bold text-slate-900 text-left">Asistencia de Gol</td>
-                                    <td class="px-2 py-2 whitespace-nowrap text-center font-medium">2</td>
-                                </tr>
-                                <tr class="transition-colors hover:bg-blue-50/50">
-                                    <td class="px-2 py-2 whitespace-nowrap font-bold text-slate-900 text-left">Marcador con diferencia goles = 1 (Equipo vencedor)</td>
-                                    <td class="px-2 py-2 whitespace-nowrap text-center font-medium">1</td>
-                                </tr>
-                                <tr class="transition-colors hover:bg-blue-50/50">
-                                    <td class="px-2 py-2 whitespace-nowrap font-bold text-slate-900 text-left">Marcador con diferencia goles = 2 (Equipo vencedor)</td>
-                                    <td class="px-2 py-2 whitespace-nowrap text-center font-medium">2</td>
-                                </tr>
-                                <tr class="transition-colors hover:bg-blue-50/50">
-                                    <td class="px-2 py-2 whitespace-nowrap font-bold text-slate-900 text-left">Marcador con diferencia goles >= 3 (Equipo vencedor)</td>
-                                    <td class="px-2 py-2 whitespace-nowrap text-center font-medium">3</td>
-                                </tr>
-                                <tr class="transition-colors hover:bg-blue-50/50">
-                                    <td class="px-2 py-2 whitespace-nowrap font-bold text-slate-900 text-left">Empate en el marcador (1 pto. cada jugador)</td>
-                                    <td class="px-2 py-2 whitespace-nowrap text-center font-medium">1</td>
-                                </tr>
-                                <tr class="transition-colors hover:bg-blue-50/50">
-                                    <td class="px-2 py-2 whitespace-nowrap font-bold text-slate-900 text-left">Defensas con porteria = 3 goles (Ambos equipos)</td>
-                                    <td class="px-2 py-2 whitespace-nowrap text-center font-medium">1</td>
-                                </tr>
-                                <tr class="transition-colors hover:bg-blue-50/50">
-                                    <td class="px-2 py-2 whitespace-nowrap font-bold text-slate-900 text-left">Defensas con porteria = 2 goles (Ambos equipos)</td>
-                                    <td class="px-2 py-2 whitespace-nowrap text-center font-medium">2</td>
-                                </tr>
-                                <tr class="transition-colors hover:bg-blue-50/50">
-                                    <td class="px-2 py-2 whitespace-nowrap font-bold text-slate-900 text-left">Defensas con porteria <= 1 gol (Ambos equipos)</td>
-                                    <td class="px-2 py-2 whitespace-nowrap text-center font-medium">3</td>
-                                </tr>
-                                <tr class="transition-colors hover:bg-blue-50/50">
-                                    <td class="px-2 py-2 whitespace-nowrap font-bold text-slate-900 text-left">Portero = 3 goles en un partido</td>
-                                    <td class="px-2 py-2 whitespace-nowrap text-center font-medium">1</td>
-                                </tr>
-                                <tr class="transition-colors hover:bg-blue-50/50">
-                                    <td class="px-2 py-2 whitespace-nowrap font-bold text-slate-900 text-left">Portero = 2 goles en un partido</td>
-                                    <td class="px-2 py-2 whitespace-nowrap text-center font-medium">2</td>
-                                </tr>
-                                <tr class="transition-colors hover:bg-blue-50/50">
-                                    <td class="px-2 py-2 whitespace-nowrap font-bold text-slate-900 text-left">Portero <= 1 goles en un partido</td>
-                                    <td class="px-2 py-2 whitespace-nowrap text-center font-medium">3</td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                </div>
+        <div class="max-w-5xl mx-auto px-4 text-center">
+            <h2 class="text-3xl font-heading font-bold text-slate-900 mb-12">Sistema de Puntuación</h2>
+            <div class="w-full max-w-3xl mx-auto rounded-xl overflow-hidden shadow-lg border border-slate-200 mb-12 reveal">
+                <img src="https://drive.google.com/thumbnail?id=1AKUsNdLDKd5XfYfTCuPtvT6ruXbpaXy_&sz=w1000" alt="Sistema de Puntuación" class="w-full h-auto">
             </div>
         </div>
     </section>
@@ -943,66 +748,57 @@
         <div class="max-w-3xl mx-auto px-4">
             <div class="text-center mb-12">
                 <h2 class="text-3xl font-heading font-bold text-udablue-800">Alegaciones</h2>
-                <p class="text-slate-600 mt-2">¿No estás de acuerdo con algo? Envía tu reclamación al comité.</p>
             </div>
-
             <div class="bg-white rounded-2xl shadow-xl p-8 border border-slate-100 reveal">
                 <form onsubmit="event.preventDefault(); sendAllegation();" class="space-y-6">
                     <div>
                         <label for="alegacion-jornada" class="block text-sm font-bold text-slate-700 mb-2">Jornada</label>
-                        <input type="text" id="alegacion-jornada" class="w-full px-4 py-3 rounded-lg border border-slate-300 focus:ring-2 focus:ring-udablue-600 focus:border-transparent outline-none transition" placeholder="Ej: Jornada 12" required>
+                        <input type="text" id="alegacion-jornada" class="w-full px-4 py-3 rounded-lg border border-slate-300 outline-none transition focus:ring-2 focus:ring-udablue-600" placeholder="Ej: Jornada 16" required>
                     </div>
-                    
                     <div>
-                        <label for="alegacion-texto" class="block text-sm font-bold text-slate-700 mb-2">Motivo de la alegación</label>
-                        <textarea id="alegacion-texto" rows="20" class="w-full px-4 py-3 rounded-lg border border-slate-300 focus:ring-2 focus:ring-udablue-600 focus:border-transparent outline-none transition resize-none text-slate-700" placeholder="Expón aquí tus argumentos con todo detalle..." required></textarea>
+                        <label for="alegacion-texto" class="block text-sm font-bold text-slate-700 mb-2">Motivo</label>
+                        <textarea id="alegacion-texto" rows="10" class="w-full px-4 py-3 rounded-lg border border-slate-300 outline-none transition focus:ring-2 focus:ring-udablue-600 resize-none" placeholder="Detalla tu alegación..." required></textarea>
                     </div>
-
-                    <button type="submit" class="w-full bg-udablue-800 hover:bg-udablue-900 text-white font-bold py-4 rounded-xl transition duration-300 flex items-center justify-center gap-2 shadow-lg hover:shadow-xl transform hover:-translate-y-1">
-                        <i class="fas fa-paper-plane"></i> Enviar Alegación
-                    </button>
-                    <p class="text-center text-xs text-slate-400 mt-4">Se abrirá tu gestor de correo predeterminado para enviar el mensaje.</p>
+                    <button type="submit" class="w-full bg-udablue-800 hover:bg-udablue-900 text-white font-bold py-4 rounded-xl transition shadow-lg transform hover:-translate-y-1">Enviar Alegación</button>
                 </form>
             </div>
         </div>
     </section>
 
-    <!-- FOOTER -->
-    <footer class="bg-udablue-900 text-white py-12 text-center">
-        <p>&copy; 2025 Partido de los Sábados.</p>
-    </footer>
+    <footer class="bg-udablue-900 text-white py-12 text-center"><p>&copy; 2026 Partido de los Sábados.</p></footer>
 
-    <!-- MODALES (Crónicas + IMAGEN) -->
+    <!-- MODALES -->
     <div id="modal-backdrop" class="fixed inset-0 bg-black/70 z-[60] hidden transition-opacity duration-300" onclick="closeModal()"></div>
-
-    <!-- Modal Imagen (Lightbox Genérico) -->
     <div id="modal-image" class="modal-content fixed inset-0 z-[90] flex items-center justify-center hidden pointer-events-none">
         <div class="relative w-full h-full max-w-6xl max-h-screen p-4 flex flex-col items-center justify-center pointer-events-auto">
-            <button onclick="closeModal()" class="absolute top-4 right-4 text-white hover:text-gray-300 text-4xl z-50"><i class="fas fa-times"></i></button>
-            <img id="lightbox-img" src="" alt="Imagen ampliada" class="max-w-full max-h-[85vh] object-contain rounded-lg shadow-2xl">
-            <h3 id="lightbox-caption" class="text-white text-xl font-bold mt-4 text-center drop-shadow-md"></h3>
+            <button onclick="closeModal()" class="absolute top-4 right-4 text-white text-4xl z-50"><i class="fas fa-times"></i></button>
+            <img id="lightbox-img" src="" alt="Zoom" class="max-w-full max-h-[85vh] object-contain rounded-lg shadow-2xl">
+            <h3 id="lightbox-caption" class="text-white text-xl font-bold mt-4 text-center"></h3>
         </div>
     </div>
     
-    <!-- Modal Impacto (Para Eventos) -->
-    <div id="modal-impact" class="modal-content fixed inset-0 z-[95] flex items-center justify-center hidden pointer-events-none">
-         <div class="relative w-full h-full p-4 flex flex-col items-center justify-center pointer-events-auto">
-            <button onclick="closeModal()" class="absolute top-4 right-4 text-white hover:text-gray-300 text-5xl z-[100] drop-shadow-md"><i class="fas fa-times"></i></button>
-            <!-- Contenedor de la imagen animada -->
-            <div id="impact-container" class="relative max-w-full max-h-[90vh]">
-                 <img id="impact-img" src="" alt="Evento" class="max-w-full max-h-[90vh] object-contain rounded-xl shadow-2xl border-4 border-white/20">
+    <!-- MODALES DE CRÓNICAS -->
+    <div id="modal-j16" class="modal-content fixed inset-0 z-[70] flex items-center justify-center hidden pointer-events-none">
+        <div class="bg-white w-full max-w-2xl max-h-[90vh] overflow-y-auto rounded-xl p-8 m-4 pointer-events-auto relative">
+            <button onclick="closeModal()" class="absolute top-4 right-4 text-2xl"><i class="fas fa-times"></i></button>
+            <h3 class="text-2xl font-bold text-udablue-800 mb-4">Crónica Jornada 16: Balizas V16 y barriguitas</h3>
+            <div class="prose text-slate-700">
+                <p>Primer partido oficial del 2026 y quórum. Nuevas ilusiones y buenas intuiciones para este nuevo curso, pero no las mismas barriguitas, algunas la mia incluida un poco mas amenzante para el adversario.</p>
+                <p>Pocos huecos en la mañana de hoy, aglomeracion en el centro del campo y muchas balizas V16, preparadas para señalizar las faltas que un Vicente proteston señalaba a golpe de brazos abiertos al cielo azul de nuestra querida tierra.</p>
+                <p>Hoy el resultado para unos de 3-2 los azulinos y otro de 3-3, para los blancos. Enri y el Supremo saben a ciencia cierta que los blancos cometieron un fuera de juego clamoroso, pero no sere yo quien ponga en duda su decision.</p>
+                <p>Por destacar, hoy a todos en general y para no olvidar a nadie, omito la relación de los mismos, si destacar la entrega y buena voluntad por llegar a esos balones divididos o al hueco que malditos ellos parecen cerca y a la vez tan distantes.</p>
+                <p>Buen finde y que la UDA, en un ratito nos de una alegria.</p>
             </div>
         </div>
     </div>
-    
-    <!-- Modal J15 -->
+
     <div id="modal-j15" class="modal-content fixed inset-0 z-[70] flex items-center justify-center hidden pointer-events-none">
         <div class="bg-white w-full max-w-2xl max-h-[90vh] overflow-y-auto rounded-xl p-8 m-4 pointer-events-auto relative">
             <button onclick="closeModal()" class="absolute top-4 right-4 text-2xl"><i class="fas fa-times"></i></button>
             <h3 class="text-2xl font-bold text-udablue-800 mb-4">Recital Azulino bajo la lluvia</h3>
             <div class="prose text-slate-700">
                 <p>Mañana lluviosa y con grandes ausencias en las alineaciones, amortiguadas estas por la visita del nuevo ojeador de juveniles Sali Sr., creo que ha llenado su libreta de futuribles, para llevar el botiquin y botijo.</p>
-                <p>Da comienzo el partido disolviendo Rafa Vermut, una manifestacion blanca que andaba de chachara cual viejas del visillo. Una vez comenzada la contienda, dominio blanco, adelantandose en el marcador con remate de cabeza intentando despegar del suelo pero sin exito el 6 Gabi, tras excelente asistencia de Toni, quien quizas  animado por estos pases, hace en su area otra asistencia a Vicente, quien como a caballo regalado no se perdona el gol establece el empate a 1.</p>
+                <p>Da comienzo el partido disolviendo Rafa Vermut, una manifestacion blanca que andaba de chachara cual viejas del visillo. Una vez comenzada la contienda, dominio blanco, adelantandose en el marcador con remate de cabeza intentando despegar del suelo pero sin exito el 6 Gabi, tras excelente asistencia de Toni, quien quizas animado por estos pases, hace en su area otra asistencia a Vicente, quien como a caballo regalado no se perdona el gol establece el empate a 1.</p>
                 <p>Poco antes del descanso contra blanca de libro, pero una voz llovida del...., cielo decia " PARA, PARA,PARA", indudablemente todo parao, pero no queria decir eso, si no "ESPERAME QUE VAS SOLO", enfin descanso y a tomar por culo el flan.</p>
                 <p>La segunda parte fue un recital azulino, y un querer y no puedo de los blancos, destacar la actuacion de Enri y de la mole de medias amarillas, que estorba hasta para ir a cagar, pero que evita goles cantados, lo mismo Sali Sr., se lo recomienda a un tal Floren.</p>
                 <p>En la recta final tras un tiro raro en su calidad, se lesiona M. Angel, teniendo que abandonar el rectangulo de juego, para mayor informacion y tras consultar a los servicios socio-sanitarios, la cadera estara jodida unos dias, pero hombro, codo y muñeca estan perfectas, tras hacerle la correspondiente prueba de fuerza con un botellin de cerveza y casera.</p>
@@ -1013,29 +809,10 @@
         </div>
     </div>
 
-    <!-- Modal J13 (NUEVA - ACTUALIZADA) -->
-    <div id="modal-j13" class="modal-content fixed inset-0 z-[70] flex items-center justify-center hidden pointer-events-none">
-        <div class="bg-white w-full max-w-2xl max-h-[90vh] overflow-y-auto rounded-xl p-8 m-4 pointer-events-auto relative">
-            <button onclick="closeModal()" class="absolute top-4 right-4 text-2xl"><i class="fas fa-times"></i></button>
-            <h3 class="text-2xl font-bold text-udablue-800 mb-4">Jornada 13</h3>
-            <div class="prose text-slate-700">
-                <p><strong>Resultado Final:</strong> Blancos 3 - 1 Azules</p>
-                <p><strong>MVP:</strong> Luque (Dorsal 25, Blancos)</p>
-                <hr class="my-4 border-slate-200">
-                <h4 class="font-bold text-udablue-600 mb-2">Resumen del Encuentro</h4>
-                <p>Victoria contundente de los Blancos (Valoración 44) frente a los Azules (Valoración 8). El equipo blanco, con superioridad numérica (9 jugadores vs 8 jugadores), supo imponer su ritmo en el campo.</p>
-                <p class="mt-2"><strong>Alineación Blancos:</strong> Miguel (7), Vicente (28), Jorge (24), Monty (16), Fer (38), Miguel (5), Fede (32), Luque (25 - MVP) y Nono (34).</p>
-                <p class="mt-2"><strong>Alineación Azules:</strong> Antonio (9), Fran (22), Rafa (8), Carmelo (11), Julian (4), Carmelo (23), Toni (14) y Juan (33).</p>
-                <p class="italic text-sm mt-4 text-slate-500">Datos extraídos de la imagen oficial del partido.</p>
-            </div>
-        </div>
-    </div>
-
-    <!-- Modal J12 -->
     <div id="modal-j12" class="modal-content fixed inset-0 z-[70] flex items-center justify-center hidden pointer-events-none">
         <div class="bg-white w-full max-w-2xl max-h-[90vh] overflow-y-auto rounded-xl p-8 m-4 pointer-events-auto relative">
             <button onclick="closeModal()" class="absolute top-4 right-4 text-2xl"><i class="fas fa-times"></i></button>
-            <h3 class="text-2xl font-bold text-udablue-800 mb-4">Jornada 12</h3>
+            <h3 class="text-2xl font-bold text-udablue-800 mb-4">Victoria blanca con sabor motrileño</h3>
             <div class="prose text-slate-700">
                 <p><strong>[Texto de la crónica pendiente de recibir]</strong></p>
                 <p>Aquí irá el texto completo de la jornada 12. Puedes editar este HTML y pegar el texto que desees.</p>
@@ -1043,11 +820,10 @@
         </div>
     </div>
 
-    <!-- Modal J11 -->
     <div id="modal-j11" class="modal-content fixed inset-0 z-[70] flex items-center justify-center hidden pointer-events-none">
         <div class="bg-white w-full max-w-2xl max-h-[90vh] overflow-y-auto rounded-xl p-8 m-4 pointer-events-auto relative">
             <button onclick="closeModal()" class="absolute top-4 right-4 text-2xl"><i class="fas fa-times"></i></button>
-            <h3 class="text-2xl font-bold text-udablue-800 mb-4">Jornada 11</h3>
+            <h3 class="text-2xl font-bold text-udablue-800 mb-4">Futbolín, muñecos IA y bólidos</h3>
             <div class="prose text-slate-700">
                 <p>Equipos dispares tanto en número como en velocidad, los blancos en inferioridad numérica y los azules con bólidos consagrados como Carmelo Alonso, Salinas Verstapen y Javi Hamilton, pero cuidado y no vendas la piel del oso antes de cazarlo y de eso el de las tierras altas del Santo Reino, sabe algo.</p>
                 <p>Estrategia descomunal de los Ariel con una defensa en línea, un cancerbero iluminado y guapo, un centro del campo dopao de vermut y una línea de ataque fantasmal, los azules en superioridad numérica con un juvenil en prácticas en Copysur algo perdido entre fotocopia y fotocopia, comienza el choque con marcaje férreo sobre el motrileño, siendo acogotado segundo a segundo notando en sus canillas la presión del choque.</p>
@@ -1057,12 +833,11 @@
             </div>
         </div>
     </div>
-    
-    <!-- Modal J10 -->
+
     <div id="modal-j10" class="modal-content fixed inset-0 z-[70] flex items-center justify-center hidden pointer-events-none">
         <div class="bg-white w-full max-w-2xl max-h-[90vh] overflow-y-auto rounded-xl p-8 m-4 pointer-events-auto relative">
             <button onclick="closeModal()" class="absolute top-4 right-4 text-2xl"><i class="fas fa-times"></i></button>
-            <h3 class="text-2xl font-bold text-udablue-800 mb-4">El Regreso de Guti</h3>
+            <h3 class="text-2xl font-bold text-udablue-800 mb-4">El regreso de Guti</h3>
             <div class="prose text-slate-700">
                 <p>Sábado de Santos, y no precisamente muchos de los descarrilados tuercebotas que en esta mañana se han atado sus borceguies a los tobillos.</p>
                 <p>La crónica de este dia no irá destinada ni al resultado, ni a las hazañas de la Araña o del de la txapela, tampoco relatará las correrías del pulmón Toni, ni del habilidoso Mañas, obviara la calidad de Jorge y la ausencia de Salinas Sr., así mismo no tendrá en cuenta las asistencias, regates o alaridos descomunales del Antonio alias Microsoft, no destacará la baja batería del Vicente pavía, ni los vuelos rasantes del Gavilán, tampoco hará mención a los regates, amagues y buen juego del Jerezano, por supuesto ni mencionara a este humilde cronista, venido a menos, ni destacara internadas de Fede palangana, Carmelo caracol o Salinas Jr ajamonao, no olvidara a Miguel lavadoras ni a un Cordobés expulsado de su tierra y recogido y querido en nuestra Almeria, un Juan Luis camisa manchada y ......puede que se me olvide algun imprescindible y querido componente de este gran grupo...</p>
@@ -1072,7 +847,6 @@
         </div>
     </div>
 
-    <!-- Modal J9 -->
     <div id="modal-j9" class="modal-content fixed inset-0 z-[70] flex items-center justify-center hidden pointer-events-none">
         <div class="bg-white w-full max-w-2xl max-h-[90vh] overflow-y-auto rounded-xl p-8 m-4 pointer-events-auto relative">
             <button onclick="closeModal()" class="absolute top-4 right-4 text-2xl"><i class="fas fa-times"></i></button>
@@ -1085,7 +859,7 @@
             </div>
         </div>
     </div>
-    <!-- Modal J8 -->
+
     <div id="modal-j8" class="modal-content fixed inset-0 z-[70] flex items-center justify-center hidden pointer-events-none">
         <div class="bg-white w-full max-w-2xl max-h-[90vh] overflow-y-auto rounded-xl p-8 m-4 pointer-events-auto relative">
             <button onclick="closeModal()" class="absolute top-4 right-4 text-2xl"><i class="fas fa-times"></i></button>
@@ -1098,7 +872,7 @@
             </div>
         </div>
     </div>
-    <!-- Modal J7 -->
+
     <div id="modal-j7" class="modal-content fixed inset-0 z-[70] flex items-center justify-center hidden pointer-events-none">
         <div class="bg-white w-full max-w-2xl max-h-[90vh] overflow-y-auto rounded-xl p-8 m-4 pointer-events-auto relative">
             <button onclick="closeModal()" class="absolute top-4 right-4 text-2xl"><i class="fas fa-times"></i></button>
@@ -1111,7 +885,7 @@
             </div>
         </div>
     </div>
-    <!-- Modal J6 -->
+
     <div id="modal-j6" class="modal-content fixed inset-0 z-[70] flex items-center justify-center hidden pointer-events-none">
         <div class="bg-white w-full max-w-2xl max-h-[90vh] overflow-y-auto rounded-xl p-8 m-4 pointer-events-auto relative">
             <button onclick="closeModal()" class="absolute top-4 right-4 text-2xl"><i class="fas fa-times"></i></button>
@@ -1124,11 +898,11 @@
             </div>
         </div>
     </div>
-    <!-- Modal J5 -->
+
     <div id="modal-j5" class="modal-content fixed inset-0 z-[70] flex items-center justify-center hidden pointer-events-none">
         <div class="bg-white w-full max-w-2xl max-h-[90vh] overflow-y-auto rounded-xl p-8 m-4 pointer-events-auto relative">
             <button onclick="closeModal()" class="absolute top-4 right-4 text-2xl"><i class="fas fa-times"></i></button>
-            <h3 class="text-2xl font-bold text-udablue-800 mb-4">Jornada 5</h3>
+            <h3 class="text-2xl font-bold text-udablue-800 mb-4">Agenda apretada y regalos</h3>
             <div class="prose text-slate-700">
                 <p>Hoy, la agenda de nuestro plumilla estaba apretada, había que improvisar para poder cumplir con sus múltiples quehaceres.</p>
                 <p>Los tiempos van cambiando y con ello los esforzados espartanos que sábado si y otro también se dan cita en el coliseum universitario como sonámbulos adormecidos yendo al roca a las 4 de la madrugada tras una noche del viernes fiestera.</p>
@@ -1140,11 +914,11 @@
             </div>
         </div>
     </div>
-    <!-- Modal J4 -->
+
     <div id="modal-j4" class="modal-content fixed inset-0 z-[70] flex items-center justify-center hidden pointer-events-none">
         <div class="bg-white w-full max-w-2xl max-h-[90vh] overflow-y-auto rounded-xl p-8 m-4 pointer-events-auto relative">
             <button onclick="closeModal()" class="absolute top-4 right-4 text-2xl"><i class="fas fa-times"></i></button>
-            <h3 class="text-2xl font-bold text-udablue-800 mb-4">Jornada 4</h3>
+            <h3 class="text-2xl font-bold text-udablue-800 mb-4">Mañana de ausencias</h3>
             <div class="prose text-slate-700">
                 <p>Mañana de ausencias, escaqueos y lesiones mas o menos graves en patas y piernas siempre salvaguardando brazos y codos imprescindibles para disfrutar de birras, buenos caldos y tapas varias.</p>
                 <p>En lo deportivo partido disputado con un 3-3, engañoso tras el dominio azul de 3-1, malogrado por las malas decisiones de un Juli patas de mantequilla y cabeza choritera, que ha sido aprovechada por los del Vaticano. Destacar la pelea de Salinas Jr., con la madera y la ratoneria de un Nico Padilla, que por algo lleva gafas, listo como el solo. Haced mención al debut oficial de Antonio con 2 chicharros marca de la casa.</p>
@@ -1153,11 +927,11 @@
             </div>
         </div>
     </div>
-    <!-- Modal J3 -->
+
     <div id="modal-j3" class="modal-content fixed inset-0 z-[70] flex items-center justify-center hidden pointer-events-none">
         <div class="bg-white w-full max-w-2xl max-h-[90vh] overflow-y-auto rounded-xl p-8 m-4 pointer-events-auto relative">
             <button onclick="closeModal()" class="absolute top-4 right-4 text-2xl"><i class="fas fa-times"></i></button>
-            <h3 class="text-2xl font-bold text-udablue-800 mb-4">Jornada 3</h3>
+            <h3 class="text-2xl font-bold text-udablue-800 mb-4">Lucha de poder a poder</h3>
             <div class="prose text-slate-700">
                  <p>Queridos todos, todas y todes, que esta mañana se han batido en una lucha de poder a poder, en la que un sábado mas el blanco vaticano se ha impuesto por un claro 4-2 a los azules. Dominio alterno tanto en juego como en goles, destacando un gran gol de cabeza del notario, molestado en un gran salto por el que escribe, levantando del suelo la uña del pie izquierdo.</p>
                  <p>Primera parte con 2-2, en los que los cancerberos anduvieron con varias de cal y otras de arena.</p>
@@ -1166,11 +940,11 @@
             </div>
         </div>
     </div>
-    <!-- Modal J2 -->
+
     <div id="modal-j2" class="modal-content fixed inset-0 z-[70] flex items-center justify-center hidden pointer-events-none">
         <div class="bg-white w-full max-w-2xl max-h-[90vh] overflow-y-auto rounded-xl p-8 m-4 pointer-events-auto relative">
             <button onclick="closeModal()" class="absolute top-4 right-4 text-2xl"><i class="fas fa-times"></i></button>
-            <h3 class="text-2xl font-bold text-udablue-800 mb-4">Jornada 2</h3>
+            <h3 class="text-2xl font-bold text-udablue-800 mb-4">Reencuentro de furgoleros</h3>
             <div class="prose text-slate-700">
                  <p>Buenos días furgoleros y pachangueros, ha sido un placer volver a compartir afición y amistad a pesar de que alguno iba amenazando con pluma, papel y recursos al límite de la legalidad.</p>
                  <p>Buen partido de los blancos con un 3-1 final que gracias al arácnido cervecero evitó mayor casillero para los blancos.</p>
@@ -1181,132 +955,54 @@
     </div>
 
     <script>
-        // Menú Móvil
         const mobileMenuBtn = document.getElementById('mobile-menu-btn');
         const mobileMenu = document.getElementById('mobile-menu');
-        mobileMenuBtn.addEventListener('click', () => {
-            mobileMenu.classList.toggle('hidden');
-        });
+        mobileMenuBtn.addEventListener('click', () => mobileMenu.classList.toggle('hidden'));
 
-        // Reveal Animación
         const revealElements = document.querySelectorAll('.reveal');
         const revealObserver = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) entry.target.classList.add('active');
-            });
+            entries.forEach(entry => { if (entry.isIntersecting) entry.target.classList.add('active'); });
         }, { threshold: 0.1 });
         revealElements.forEach(el => revealObserver.observe(el));
 
-        // Modales
         function openModal(modalId) {
             document.getElementById('modal-backdrop').classList.remove('hidden');
             document.getElementById(modalId).classList.remove('hidden');
             document.body.classList.add('modal-open');
         }
         function closeModal() {
-            // Ocultar todos los modales y limpiar clases de animación del modal de impacto
             document.getElementById('modal-backdrop').classList.add('hidden');
             document.querySelectorAll('.modal-content').forEach(el => el.classList.add('hidden'));
-            
-            // Limpiar clases de animación de la imagen de impacto
-            const impactImg = document.getElementById('impact-img');
-            impactImg.classList.remove('anim-rotate', 'anim-zoom', 'anim-bounce', 'anim-slide-left', 'anim-slide-right');
-            
             document.body.classList.remove('modal-open');
         }
-        
-        // Función para abrir carpeta de Eventos
         function toggleEventFolder(folderId) {
             const folder = document.getElementById(folderId);
-            if (folder.classList.contains('hidden')) {
-                folder.classList.remove('hidden');
-                setTimeout(() => {
-                    folder.scrollIntoView({ behavior: 'smooth', block: 'start' });
-                }, 100);
-            } else {
-                folder.classList.add('hidden');
-            }
+            folder.classList.toggle('hidden');
         }
-
-        // Función para abrir Imagen con IMPACTO (Eventos)
-        function openImpactModal(src) {
-            const modal = document.getElementById('modal-impact');
-            const img = document.getElementById('impact-img');
-            
-            // 1. Setear imagen
-            img.src = src;
-
-            // 2. Elegir animación aleatoria
-            const animations = ['anim-rotate', 'anim-zoom', 'anim-bounce', 'anim-slide-left', 'anim-slide-right'];
-            const randomAnim = animations[Math.floor(Math.random() * animations.length)];
-            
-            // 3. Limpiar clases anteriores y añadir nueva
-            img.classList.remove(...animations);
-            void img.offsetWidth; // Trigger reflow para reiniciar animacion
-            img.classList.add(randomAnim);
-
-            // 4. Mostrar modal
-            document.getElementById('modal-backdrop').classList.remove('hidden');
-            modal.classList.remove('hidden');
-            document.body.classList.add('modal-open');
-        }
-
-        // Función específica para abrir imágenes y FORZAR tamaño grande en Drive
         function openImageModal(src, title) {
-            const modal = document.getElementById('modal-image');
             const img = document.getElementById('lightbox-img');
             const caption = document.getElementById('lightbox-caption');
-            
-            // LÓGICA MEJORADA: Forzar alta resolución para imágenes de Google Drive
             let highResSrc = src;
-            
-            if (src.includes('drive.google.com') && (src.includes('thumbnail') || src.includes('export=view'))) {
-                // Si el enlace ya tiene un parámetro de tamaño (sz=...), lo reemplazamos por w2000
-                if (src.includes('sz=')) {
-                    highResSrc = src.replace(/sz=w\d+/, 'sz=w2000');
-                } else {
-                    // Si no tiene parámetro de tamaño, se lo añadimos
-                    // Dependiendo del tipo de enlace, usamos & o ?
-                    const separator = src.includes('?') ? '&' : '?';
-                    highResSrc = src + separator + 'sz=w2000';
-                }
+            if (src.includes('drive.google.com')) {
+                highResSrc = src.includes('sz=') ? src.replace(/sz=w\d+/, 'sz=w2000') : src + '&sz=w2000';
             }
-            
             img.src = highResSrc;
             caption.innerText = title || '';
-            
             document.getElementById('modal-backdrop').classList.remove('hidden');
-            modal.classList.remove('hidden');
+            document.getElementById('modal-image').classList.remove('hidden');
             document.body.classList.add('modal-open');
         }
 
-        // Tabs
         function openTab(evt, tabName) {
-            var i, tabcontent, tablinks;
-            tabcontent = document.getElementsByClassName("tab-content");
-            for (i = 0; i < tabcontent.length; i++) {
-                tabcontent[i].style.display = "none";
-                tabcontent[i].classList.remove('active');
-            }
-            tablinks = document.getElementsByClassName("tab-btn");
-            for (i = 0; i < tablinks.length; i++) {
-                tablinks[i].className = tablinks[i].className.replace(" active", "");
-                tablinks[i].style.backgroundColor = "";
-                tablinks[i].style.color = "";
-                tablinks[i].style.borderColor = "transparent";
-            }
-            document.getElementById(tabName).style.display = "block";
+            const contents = document.getElementsByClassName("tab-content");
+            for (let c of contents) c.classList.remove('active');
+            const btns = document.getElementsByClassName("tab-btn");
+            for (let b of btns) b.classList.remove('active');
             document.getElementById(tabName).classList.add('active');
-            evt.currentTarget.className += " active";
-            evt.currentTarget.style.borderColor = "#1e3a8a";
+            evt.currentTarget.classList.add('active');
         }
 
-        // --- LÓGICA DE TABLAS GOOGLE SHEETS (MODERNA) ---
         const sheetBaseUrl = "https://docs.google.com/spreadsheets/d/e/2PACX-1vRXR-Va_Ws73XosK7V9wkioiR5sinJzif4fcpXJe518upKSDGtsJHoLJ2n6kUmE9ACwfnUMrPPXp0yc/pub?single=true&output=csv&gid=";
-        
-        // GID de la hoja de IMÁGENES
-        const GID_JUGADORES = '54735206'; 
-        
         const sheets = {
             'table-container-general': '852287887',
             'table-container-valoracion': '308523986',
@@ -1317,217 +1013,35 @@
             'table-container-defensa': '132385510',
             'table-container-zamora': '1108366683',
             'table-container-eficiencia': '922129375'
-            // PUNTUACIÓN: Ya es estática, no hace falta aquí.
         };
-
-        // Mapa para guardar fotos de jugadores { "NOMBRE MAYUS": "URL Foto" }
-        let playerImages = {};
-
-        // Función auxiliar para limpiar enlaces de Google Drive
-        function cleanGoogleDriveUrl(url) {
-            if (!url) return '';
-            if (url.includes('drive.google.com')) {
-                let id = '';
-                const parts = url.split('/');
-                const dIndex = parts.indexOf('d');
-                if (dIndex !== -1 && parts.length > dIndex + 1) {
-                    id = parts[dIndex + 1];
-                } else if (url.includes('id=')) {
-                    id = url.split('id=')[1].split('&')[0];
-                }
-                if (id) return `https://drive.google.com/uc?export=view&id=${id}`;
-            }
-            return url;
-        }
-
-        // 1. Cargar primero las imágenes de los jugadores
-        function loadPlayerImages() {
-            const manualOverrides = {
-                "TONI": "https://drive.google.com/uc?export=view&id=1LfC31jLds0Ewtpkd-MCLJOm_hwkto0it"
-            };
-
-            Papa.parse(sheetBaseUrl + GID_JUGADORES, {
-                download: true,
-                header: true, 
-                complete: function(results) {
-                    if(results.data && results.data.length > 0) {
-                        results.data.forEach(row => {
-                            const keys = Object.keys(row);
-                            const nameKey = keys.find(k => k.toUpperCase().includes("NOMBRE") || k.toUpperCase().includes("JUGADOR"));
-                            const photoKey = keys.find(k => k.toUpperCase().includes("FOTO") || k.toUpperCase().includes("IMAGEN") || k.toUpperCase().includes("LINK") || k.toUpperCase().includes("URL"));
-                            
-                            if (nameKey && photoKey && row[nameKey]) {
-                                const cleanName = row[nameKey].trim().toUpperCase();
-                                const cleanUrl = cleanGoogleDriveUrl(row[photoKey]);
-                                if(cleanUrl) playerImages[cleanName] = cleanUrl;
-                            }
-                        });
-                    }
-                    Object.assign(playerImages, manualOverrides);
-                    loadAllStats();
-                },
-                error: function(err) {
-                    console.warn("Error cargando imágenes", err);
-                    Object.assign(playerImages, manualOverrides);
-                    loadAllStats(); 
-                }
-            });
-        }
 
         function loadAllStats() {
             for (const [id, gid] of Object.entries(sheets)) {
-                loadSheetData(id, gid);
+                Papa.parse(sheetBaseUrl + gid, {
+                    download: true,
+                    header: false,
+                    complete: (results) => renderTable(id, results.data)
+                });
             }
-        }
-
-        function loadSheetData(containerId, gid) {
-            Papa.parse(sheetBaseUrl + gid, {
-                download: true,
-                header: false,
-                complete: function(results) {
-                    renderTable(containerId, results.data);
-                },
-                error: function(err) {
-                    const el = document.getElementById(containerId);
-                    if(el) el.innerHTML = '<div class="text-red-500 text-center p-4 text-sm">Error cargando datos.</div>';
-                    console.error("Error parsing sheet:", err);
-                }
-            });
         }
 
         function renderTable(containerId, data) {
-            if (!data || data.length === 0) return;
-
+            const container = document.getElementById(containerId);
+            if (!container || !data.length) return;
             let html = '<table class="min-w-full modern-table text-xs text-left text-slate-600">';
-            const headers = data[0];
-            const playerColIndex = headers.findIndex(h => h.toUpperCase().includes("JUGADOR") || h.toUpperCase().includes("NOMBRE"));
-            const dorsalColIndex = headers.findIndex(h => h.toUpperCase().includes("DORSAL"));
-
-            // Cabecera
-            html += '<thead class="text-[10px] md:text-xs uppercase bg-udablue-800 text-white">';
-            html += '<tr>';
-            headers.forEach((cell, index) => {
-                if(cell.trim() !== "") {
-                    html += `<th scope="col" class="px-2 py-2 font-bold tracking-wider whitespace-normal text-center align-bottom shadow-sm leading-none border-b border-udablue-900">${cell}</th>`;
-                }
-            });
-            html += '</tr></thead>';
-
-            // Cuerpo
-            html += '<tbody class="divide-y divide-slate-100">';
+            html += '<thead class="bg-udablue-800 text-white"><tr>';
+            data[0].forEach(h => html += `<th class="px-2 py-2 text-center">${h}</th>`);
+            html += '</tr></thead><tbody>';
             for (let i = 1; i < data.length; i++) {
-                const row = data[i];
-                if (row.length === 0 || (row.length === 1 && row[0] === "")) continue;
-                
-                html += '<tr class="transition-colors hover:bg-blue-50/50">';
-                row.forEach((cell, index) => {
-                     if(index < headers.length && headers[index].trim() !== "") {
-                        let cellContent = cell;
-                        let cellClasses = "px-2 py-2 whitespace-nowrap ";
-                        
-                        // Lógica Específica por columna
-                        if (index === playerColIndex) {
-                            cellClasses += "font-bold text-slate-900 text-left";
-                            const rawName = cell.trim();
-                            const playerPhoto = playerImages[rawName.toUpperCase()] || 'https://cdn-icons-png.flaticon.com/512/847/847969.png'; 
-                            cellContent = `
-                                <div class="flex items-center gap-2">
-                                    <img src="${playerPhoto}" alt="Foto" class="player-avatar shadow-sm bg-white" onerror="this.onerror=null; this.src='https://cdn-icons-png.flaticon.com/512/847/847969.png'">
-                                    <span>${rawName}</span>
-                                </div>
-                            `;
-                        } else if (index === dorsalColIndex) {
-                            cellClasses += "text-center font-bold text-udablue-800"; 
-                        } else {
-                            // Si el encabezado contiene "Sistema", alineamos a la izquierda.
-                            if (index === 0 && headers[0].toUpperCase().includes("SISTEMA")) {
-                                cellClasses += "text-left font-medium text-slate-700";
-                            } else {
-                                cellClasses += "text-center font-medium";
-                            }
-                        }
-                        html += `<td class="${cellClasses}">${cellContent}</td>`;
-                     }
-                });
+                html += '<tr class="border-b border-slate-100">';
+                data[i].forEach(cell => html += `<td class="px-2 py-2 text-center">${cell}</td>`);
                 html += '</tr>';
             }
             html += '</tbody></table>';
-            const container = document.getElementById(containerId);
-            if(container) container.innerHTML = html;
-        }
-
-        // Función para enviar alegaciones por correo
-        function sendAllegation() {
-            const jornada = document.getElementById('alegacion-jornada').value;
-            const texto = document.getElementById('alegacion-texto').value;
-            
-            if (!jornada || !texto) {
-                alert("Por favor, rellena todos los campos.");
-                return;
-            }
-
-            // Mensaje de aviso para el usuario
-            alert("Se abrirá tu aplicación de correo electrónico predeterminada. Por favor, pulsa 'Enviar' en la ventana que aparecerá para confirmar el envío.");
-
-            const email = "juanluis.moyano@gmail.com";
-            const subject = `Alegación ${jornada}`;
-            const body = encodeURIComponent(texto);
-            
-            window.location.href = `mailto:${email}?subject=${subject}&body=${body}`;
-        }
-
-        // ARRAY DE FOTOS DE LA CARPETA "CHELE" (IDs REALES)
-        const chelePhotos = [
-            "1hMRJooQlr-KCxCBphjB52ntXQg4778-M", // Foto01
-            "11nF9xScl3xDgdWPODPaSKq3FpKqTzZ01", // Foto02
-            "1q82eJoFGrCpOXcqyX_pEqE4Wbtv8Y-Ge", // Foto03
-            "1Zc8ws6s1JDX-agbDr0W1FZ4W41TsHC7A", // Foto04
-            "1OHSfqAH7Cli4rDTyC-oGtcr6E_DUCwyQ", // Foto05
-            "1n5qPmq-mp2KKy0aUkxxwZv1S_P-bsvuR", // Foto06
-            "1g6oKR9eZyfE3gkQospKzvVihNs6rXGXx", // Foto07
-            "1xQy_7ce5SAAsVqg0N3Nra27n-zw5fvPA", // Foto08
-            "1m-_Pxb5xsXINsSO9kb3HyAd7liRJEg9V", // Foto09
-            "1hP2kS2DeCc3gBUKTP7u3L4yWsV9AYbc7", // Foto10
-            "1L2obGsGX76o6f-Q7pWoaqhxkGDlAAiOU", // Foto11
-            "1sTHxaoKjstNUtlA2CjTjeDriseaC_001", // Foto12
-            "1D1pUCXiPqTsmL1TW-zue_GM9urJ_9OOm", // Foto13
-            "1refLRzedFqYtyLrSAlC2QFP7loHclglL", // Foto14
-            "1cLU6TLqFSapV2qAL8rQ50uGn7aExLFQm", // Foto15
-            "1elYgtnuNRa-2wkNkCyspA0ymNRP5pRG_", // Foto16
-            "1QnDpjcyXH1g5vQsghdYqmLzwoqcumzB0", // Foto17
-            "1jccRjaHRyethAhg9NYJweDGZzErwoPo_", // Foto18
-            "1D9OLUfVbiPIw8fQOpb8Ztm0BCH-2cFL3", // Foto19
-            "1COyf3cHfirQEwqUfgFDWWa5x0daI_aYc"  // Foto20
-        ];
-
-        // Función para renderizar la galería dinámicamente
-        function renderCheleGallery() {
-            const container = document.getElementById('gallery-chele-grid');
-            if (!container) return;
-
-            let html = '';
-            chelePhotos.forEach((photoId, index) => {
-                // Generar URL de Thumbnail de Google Drive (sz=w500 para miniatura optimizada)
-                const thumbUrl = `https://drive.google.com/thumbnail?id=${photoId}&sz=w500`;
-                // URL Full para el modal (sz=w2000 para alta calidad)
-                const fullUrl = `https://drive.google.com/thumbnail?id=${photoId}&sz=w2000`;
-                
-                html += `
-                    <div class="aspect-square bg-gray-200 rounded-lg overflow-hidden cursor-pointer hover:opacity-90 transition shadow-sm border border-gray-300 relative group" onclick="openImpactModal('${fullUrl}')">
-                        <img src="${thumbUrl}" class="w-full h-full object-cover transition duration-500 group-hover:scale-110" alt="Foto ${index + 1}" loading="lazy">
-                        <div class="absolute inset-0 bg-black/0 group-hover:bg-black/10 transition duration-300"></div>
-                    </div>
-                `;
-            });
-
             container.innerHTML = html;
         }
 
-        // Iniciar carga de datos al cargar la página
-        window.addEventListener('DOMContentLoaded', () => {
-            loadPlayerImages();
-            renderCheleGallery(); // Cargar la galería
-        });
+        window.addEventListener('DOMContentLoaded', loadAllStats);
     </script>
 </body>
 </html>
