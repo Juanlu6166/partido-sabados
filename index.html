@@ -712,11 +712,86 @@
     </section>
 
     <!-- SISTEMA PUNTUACIÓN -->
-    <section id="puntuacion" class="py-20 bg-white border-t border-slate-100 text-center">
+    <section id="puntuacion" class="py-20 bg-white border-t border-slate-100">
         <div class="max-w-5xl mx-auto px-4">
-            <h2 class="text-3xl font-heading font-bold text-slate-900 mb-12">Sistema de Puntuación</h2>
-            <div class="w-full max-w-3xl mx-auto rounded-xl overflow-hidden shadow-lg border border-slate-200 reveal">
-                <img src="https://drive.google.com/thumbnail?id=1AKUsNdLDKd5XfYfTCuPtvT6ruXbpaXy_&sz=w1000" alt="Sistema Puntuación" class="w-full h-auto">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl font-heading font-bold text-slate-900">Sistema de Puntuación</h2>
+                <p class="text-slate-600 mt-2">Reglas para la asignación de puntos.</p>
+            </div>
+            
+            <div class="flex flex-col items-center gap-12">
+                <!-- Imagen del sistema -->
+                <div class="w-full max-w-3xl rounded-xl overflow-hidden shadow-lg border border-slate-200 reveal">
+                    <img src="https://drive.google.com/thumbnail?id=1AKUsNdLDKd5XfYfTCuPtvT6ruXbpaXy_&sz=w1000" alt="Sistema de Puntuación Visual" class="w-full h-auto">
+                </div>
+
+                <!-- Tabla de Puntuación ESTÁTICA -->
+                <div class="w-full max-w-4xl bg-slate-50 rounded-2xl shadow-md border border-slate-200 p-6 reveal">
+                    <div id="table-container-puntuacion" class="overflow-x-auto">
+                        <table class="min-w-full modern-table text-xs text-left text-slate-600">
+                            <thead class="text-[10px] md:text-xs uppercase bg-udablue-800 text-white">
+                                <tr>
+                                    <th scope="col" class="px-2 py-2 font-bold tracking-wider whitespace-normal text-left align-bottom shadow-sm leading-none border-b border-udablue-900">Sistema de puntuación temporada 2025 - 2026</th>
+                                    <th scope="col" class="px-2 py-2 font-bold tracking-wider whitespace-normal text-center align-bottom shadow-sm leading-none border-b border-udablue-900">Puntos</th>
+                                </tr>
+                            </thead>
+                            <tbody class="divide-y divide-slate-100">
+                                <tr class="transition-colors hover:bg-blue-50/50">
+                                    <td class="px-2 py-2 whitespace-nowrap font-bold text-slate-900 text-left">MVP</td>
+                                    <td class="px-2 py-2 whitespace-nowrap text-center font-medium">3</td>
+                                </tr>
+                                <tr class="transition-colors hover:bg-blue-50/50">
+                                    <td class="px-2 py-2 whitespace-nowrap font-bold text-slate-900 text-left">Por cada gol marcado</td>
+                                    <td class="px-2 py-2 whitespace-nowrap text-center font-medium">2</td>
+                                </tr>
+                                <tr class="transition-colors hover:bg-blue-50/50">
+                                    <td class="px-2 py-2 whitespace-nowrap font-bold text-slate-900 text-left">Asistencia de Gol</td>
+                                    <td class="px-2 py-2 whitespace-nowrap text-center font-medium">2</td>
+                                </tr>
+                                <tr class="transition-colors hover:bg-blue-50/50">
+                                    <td class="px-2 py-2 whitespace-nowrap font-bold text-slate-900 text-left">Marcador con diferencia goles = 1 (Equipo vencedor)</td>
+                                    <td class="px-2 py-2 whitespace-nowrap text-center font-medium">1</td>
+                                </tr>
+                                <tr class="transition-colors hover:bg-blue-50/50">
+                                    <td class="px-2 py-2 whitespace-nowrap font-bold text-slate-900 text-left">Marcador con diferencia goles = 2 (Equipo vencedor)</td>
+                                    <td class="px-2 py-2 whitespace-nowrap text-center font-medium">2</td>
+                                </tr>
+                                <tr class="transition-colors hover:bg-blue-50/50">
+                                    <td class="px-2 py-2 whitespace-nowrap font-bold text-slate-900 text-left">Marcador con diferencia goles >= 3 (Equipo vencedor)</td>
+                                    <td class="px-2 py-2 whitespace-nowrap text-center font-medium">3</td>
+                                </tr>
+                                <tr class="transition-colors hover:bg-blue-50/50">
+                                    <td class="px-2 py-2 whitespace-nowrap font-bold text-slate-900 text-left">Empate en el marcador (1 pto. cada jugador)</td>
+                                    <td class="px-2 py-2 whitespace-nowrap text-center font-medium">1</td>
+                                </tr>
+                                <tr class="transition-colors hover:bg-blue-50/50">
+                                    <td class="px-2 py-2 whitespace-nowrap font-bold text-slate-900 text-left">Defensas con porteria = 3 goles (Ambos equipos)</td>
+                                    <td class="px-2 py-2 whitespace-nowrap text-center font-medium">1</td>
+                                </tr>
+                                <tr class="transition-colors hover:bg-blue-50/50">
+                                    <td class="px-2 py-2 whitespace-nowrap font-bold text-slate-900 text-left">Defensas con porteria = 2 goles (Ambos equipos)</td>
+                                    <td class="px-2 py-2 whitespace-nowrap text-center font-medium">2</td>
+                                </tr>
+                                <tr class="transition-colors hover:bg-blue-50/50">
+                                    <td class="px-2 py-2 whitespace-nowrap font-bold text-slate-900 text-left">Defensas con porteria <= 1 gol (Ambos equipos)</td>
+                                    <td class="px-2 py-2 whitespace-nowrap text-center font-medium">3</td>
+                                </tr>
+                                <tr class="transition-colors hover:bg-blue-50/50">
+                                    <td class="px-2 py-2 whitespace-nowrap font-bold text-slate-900 text-left">Portero = 3 goles en un partido</td>
+                                    <td class="px-2 py-2 whitespace-nowrap text-center font-medium">1</td>
+                                </tr>
+                                <tr class="transition-colors hover:bg-blue-50/50">
+                                    <td class="px-2 py-2 whitespace-nowrap font-bold text-slate-900 text-left">Portero = 2 goles en un partido</td>
+                                    <td class="px-2 py-2 whitespace-nowrap text-center font-medium">2</td>
+                                </tr>
+                                <tr class="transition-colors hover:bg-blue-50/50">
+                                    <td class="px-2 py-2 whitespace-nowrap font-bold text-slate-900 text-left">Portero <= 1 goles en un partido</td>
+                                    <td class="px-2 py-2 whitespace-nowrap text-center font-medium">3</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
             </div>
         </div>
     </section>
