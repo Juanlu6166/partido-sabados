@@ -249,6 +249,21 @@
 
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 reveal">
 
+                <!-- J17 -->
+                <div class="bg-white rounded-2xl overflow-hidden shadow-md hover:shadow-xl transition duration-300 flex flex-col border border-gray-100 group">
+                    <div class="relative h-56 overflow-hidden">
+                        <img src="https://drive.google.com/thumbnail?id=1Jx3NabxTeY5kBUixb5nbw5CgfLIOdpaq&sz=w1000" onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1579952363873-27f3bade9f55?q=80&w=1000&auto=format&fit=crop';" alt="Jornada 17" class="w-full h-full object-cover group-hover:scale-105 transition duration-500 zoom-cursor" onclick="openImageModal(this.src, 'Jornada 17: Canillas heladas y dominio azul')">
+                        <div class="absolute top-0 right-0 bg-udablue-600 text-white text-xs font-bold px-3 py-1 rounded-bl-lg">Jornada 17</div>
+                    </div>
+                    <div class="p-5">
+                        <div class="flex justify-between items-center mb-3">
+                            <span class="text-xs font-bold text-slate-400 uppercase tracking-wider">17 Enero 2026</span>
+                            <span class="bg-blue-100 text-blue-800 text-xs font-bold px-2 py-1 rounded">6 - 2</span>
+                        </div>
+                        <h3 class="text-lg font-bold text-slate-800 mb-1">6 - 2. Canillas heladas y goleada azul.</h3>
+                    </div>
+                </div>
+
                 <!-- J16 -->
                 <div class="bg-white rounded-2xl overflow-hidden shadow-md hover:shadow-xl transition duration-300 flex flex-col border border-gray-100 group">
                     <div class="relative h-56 overflow-hidden">
@@ -462,6 +477,20 @@
 
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
                 
+                <!-- J17 -->
+                <article class="bg-slate-50 rounded-2xl overflow-hidden shadow-md hover:shadow-2xl transition duration-300 flex flex-col h-full reveal card-hover border border-slate-100">
+                    <div class="relative h-64 overflow-hidden">
+                        <img src="https://drive.google.com/thumbnail?id=17oLSjKcCZKpo7lF0bHHjSPbr2gZlVf6E&sz=w1000" onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1511886929837-354d827aae26?q=80&w=800&auto=format&fit=crop';" alt="Jornada 17" class="w-full h-full object-cover">
+                        <div class="absolute top-4 right-4 bg-udablue-600 text-white text-xs font-bold px-3 py-1 rounded-full">Jornada 17</div>
+                    </div>
+                    <div class="p-6 flex-1 flex flex-col">
+                        <div class="text-sm text-slate-500 mb-3"><i class="far fa-calendar-alt mr-2"></i> 17 Enero 2026</div>
+                        <h3 class="text-xl font-heading font-bold text-slate-800 mb-3">Canillas heladas y goleada azul</h3>
+                        <p class="text-slate-600 text-sm line-clamp-3 flex-1">Mañana de canillas heladas, blancuzcas y sin depilar, pero tensas y dispuestas a dar batalla futbolera...</p>
+                        <button onclick="openModal('modal-j17')" class="mt-4 text-udablue-600 font-bold text-sm hover:text-udablue-800 flex items-center self-start">Leer completa <i class="fas fa-arrow-right ml-1"></i></button>
+                    </div>
+                </article>
+
                 <!-- J16 -->
                 <article class="bg-slate-50 rounded-2xl overflow-hidden shadow-md hover:shadow-2xl transition duration-300 flex flex-col h-full reveal card-hover border border-slate-100">
                     <div class="relative h-64 overflow-hidden">
@@ -629,7 +658,7 @@
                     <div class="p-6 flex-1 flex flex-col">
                         <div class="text-sm text-slate-500 mb-3"><i class="far fa-calendar-alt mr-2"></i> 13 Septiembre 2025</div>
                         <h3 class="text-xl font-heading font-bold text-slate-800 mb-3">Reencuentro de furgoleros</h3>
-                        <p class="text-slate-600 text-sm line-clamp-3 flex-1">Buenos días furgoleros y pachangueros, ha sido un placer...</p>
+                        <p class="text-slate-600 text-sm line-clamp-3 flex-1">Buenos días furgoleros y pachangueros, ha sido un placer volver a compartir afición y amistad...</p>
                         <button onclick="openModal('modal-j2')" class="mt-4 text-udablue-600 font-bold text-sm hover:text-udablue-800 flex items-center self-start">Leer completa <i class="fas fa-arrow-right ml-1"></i></button>
                     </div>
                 </article>
@@ -835,6 +864,21 @@
     </div>
 
     <!-- Modales Crónicas -->
+    
+    <!-- J17 -->
+    <div id="modal-j17" class="modal-content fixed inset-0 z-[70] flex items-center justify-center hidden pointer-events-none">
+        <div class="bg-white w-full max-w-2xl max-h-[90vh] overflow-y-auto rounded-xl p-8 m-4 pointer-events-auto relative shadow-2xl">
+            <button onclick="closeModal()" class="absolute top-4 right-4 text-2xl"><i class="fas fa-times"></i></button>
+            <h3 class="text-2xl font-bold text-udablue-800 mb-4">Crónica J17: Canillas heladas y goleada azul</h3>
+            <div class="prose prose-slate text-slate-700 leading-relaxed">
+                <p>Mañana de canillas heladas, blancuzcas y sin depilar, pero tensas y dispuestas a dar batalla futbolera en el recinto donde la sapiencia, la buena cordura y la sensatez debe jugar un valor tan importante como el buen inicio de partido de los blancos, posesion larga no larguisima de un lado a otro del terreno de juego pero sin mordiente goleadora, los azules pacientes cual león veterano, agazapados y saliendo veloces en unas rapidas transiciones en poco mas de 15m ya habian puesto un claro 4-1 a su favor, produciendo desconcierto y disparidad de opiniones en la defensa muy critica con su cancerbero, al que una y otra vez dejaban vendido por su banda derecha y centro de la defensa.</p>
+                <p>Se llega al descando con un claro 5-1 a favor de los azules, forjado por su buen posicionamiento tactico y los blancos buscan la grada intentando recomponer su nula disciplina sobre el terreno de juego.</p>
+                <p>Segunda parte mas igualada intentando los blancos ajustar la derrota sin conseguirlo, finalizando la contienda con un 6-2 contundente y sin paliativos ni discusiones de jugadas en el Bar.</p>
+                <p>Buen finde y que esta noche los que vayamos al estadio salgamos victoriosos, los que esteis en el sofa, poned unas velas y rezar que nos hara falta para ganarle al Depor.</p>
+            </div>
+        </div>
+    </div>
+
     <div id="modal-j16" class="modal-content fixed inset-0 z-[70] flex items-center justify-center hidden pointer-events-none">
         <div class="bg-white w-full max-w-2xl max-h-[90vh] overflow-y-auto rounded-xl p-8 m-4 pointer-events-auto relative shadow-2xl">
             <button onclick="closeModal()" class="absolute top-4 right-4 text-2xl"><i class="fas fa-times"></i></button>
